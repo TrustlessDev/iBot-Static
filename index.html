@@ -274,6 +274,7 @@
         " " +
         Telegram.WebApp.initDataUnsafe.user.last_name;
       userData = (await webLogin()).user;
+      alert(JSON.stringify(userData));
       let wallets = userData.wallets;
       for (let i = 0; i < wallets.length; i++) {
         let wallet = wallets[i];
