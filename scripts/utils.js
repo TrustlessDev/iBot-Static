@@ -1,4 +1,5 @@
 let lang = {};
+let site = {};
 
 async function callAPI(method, params = {}) {
     let initData = Telegram.WebApp.initData;
@@ -15,6 +16,18 @@ async function callAPI(method, params = {}) {
     });
     let data = await resp.json();
     return data;
+}
+
+async function initSite() {
+    let url = new URL(location.href)
+    let resp = await fetch("scripts/site.json", {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    let data = await resp.json();
+    site = data[url.host];
 }
 
 async function initLanguages() {
