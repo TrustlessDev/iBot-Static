@@ -274,13 +274,12 @@
         " " +
         Telegram.WebApp.initDataUnsafe.user.last_name;
       userData = (await webLogin()).user;
-      alert(JSON.stringify(userData));
       let wallets = userData.wallets;
       for (let i = 0; i < wallets.length; i++) {
         let wallet = wallets[i];
         let balance = parseFloat(wallet.balance);
         let usdtValue = parseFloat((balance * wallet.price).toFixed(2));
-        let card = createCardElement(
+        let card = createIndexCardElement(
           wallet.id,
           wallet.name,
           wallet.symbol,
@@ -289,6 +288,7 @@
           parseFloat(balance.toFixed(8)),
           usdtValue
         );
+        alert(card);
         $("#wallets").append(card);
       }
       await initFriendsBlock();
@@ -500,7 +500,7 @@
       return divElement;
     }
 
-    function createCardElement(id, name, symbol, image, chains, balance, usdt) {
+    function createIndexCardElement(id, name, symbol, image, chains, balance, usdt) {
       // Create elements
       const divSlide = document.createElement("div");
       const divCard = document.createElement("div");
