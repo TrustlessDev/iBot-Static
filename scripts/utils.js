@@ -35,7 +35,7 @@ async function initSite() {
 }
 
 async function initLanguages() {
-    let resp = await fetch("/lang", {
+    let resp = await fetch("https://" + site.apiUrl + "/lang", {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
