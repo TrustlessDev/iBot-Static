@@ -32,6 +32,7 @@
     let telegramId = "";
     let rnd = "";
     let betLock = false;
+    let site = {};
     /*
     async function loadJS(url) {
       return new Promise((resolve, reject) => {
@@ -64,6 +65,7 @@
     async function init() {
       //await loadCSS("style.css");
       //await loadJS("script.js");
+      await initSite();
       for(let i=1;i<=4;i++) {
         $("#bet" + i).click(() => {
           toggleBetsOn(i);
@@ -88,7 +90,7 @@
       if(play) {
         animator.start();
         $.ajax({
-          url: "/api/oddEvenBet",
+          url: "https://" + site.apiUrl + "/api/oddEvenBet",
           type: "POST",
           data: {
             telegramId: telegramId,
@@ -108,6 +110,22 @@
         });
       }
     }
+
+    async function initSite() {
+			let url = new URL(location.href)
+			let resp = await fetch("scripts/site.json", {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				}
+			});
+			let data = await resp.json();
+			if(data[url.host]) {
+				site = data[url.host];
+			} else {
+				site = data["127.0.0.1"];
+			}
+		}
 
     function toggleBetsOn(bet) {
       let betVals = [0.1, 0.5, 1, 3];

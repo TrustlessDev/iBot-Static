@@ -2,7 +2,7 @@
     "127.0.0.1": {
         "hello": "Dalton"
     },
-    "localhost": {
+    "localhost:": {
         "hello": "kitty"
     },
     "ibot-dev.d8.run": {

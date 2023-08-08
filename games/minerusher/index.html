@@ -90,6 +90,7 @@
 	<!-- Construct 2 exported games require jQuery. -->
 	<script src="jquery-2.1.1.min.js"></script>
     <script>
+		let site = {};
 		let stateMap = {
 			onReady: false,
 			onStart: false,
@@ -104,7 +105,7 @@
 			log: function (message) {
 				$.ajax({
 					type: "POST",
-					url: "/api/gameLog",
+					url: "https://" + site.apiUrl + "/api/gameLog",
 					data: {
 						"message": message
 					},
@@ -116,7 +117,7 @@
 			warn: function (message) {
 				$.ajax({
 					type: "POST",
-					url: "/api/gameLog",
+					url: "https://" + site.apiUrl + "/api/gameLog",
 					data: {
 						"message": message
 					},
@@ -134,11 +135,27 @@
 			return Score.data;
 		}
 
+		async function initSite() {
+			let url = new URL(location.href)
+			let resp = await fetch("scripts/site.json", {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				}
+			});
+			let data = await resp.json();
+			if(data[url.host]) {
+				site = data[url.host];
+			} else {
+				site = data["127.0.0.1"];
+			}
+		}
+
 		async function startGame(id, telegramId) {
 			return new Promise((resolve, reject) => {
 				$.ajax({
 					type: "POST",
-					url: "/api/startGame",
+					url: "https://" + site.apiUrl + "/api/startGame",
 					data: {
 						"id": id,
 						"telegramId": telegramId
@@ -154,7 +171,7 @@
 			return new Promise((resolve, reject) => {
 				$.ajax({
 					type: "POST",
-					url: "/api/endGame",
+					url: "https://" + site.apiUrl + "/api/endGame",
 					data: {
 						"id": id,
 						"telegramId": telegramId,
@@ -174,7 +191,7 @@
 			return new Promise((resolve, reject) => {
 				$.ajax({
 					type: "POST",
-					url: "/api/gameState",
+					url: "https://" + site.apiUrl + "/api/gameState",
 					data: {
 						"id": id,
 						"telegramId": telegramId
@@ -219,6 +236,7 @@
 		init();
 
 		async function init() {
+			await initSite();
 			var urlParams = new URLSearchParams(window.location.search);
 			var id = urlParams.get('id');
 			var telegramId = urlParams.get('telegramId');

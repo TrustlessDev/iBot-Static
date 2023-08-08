@@ -3,7 +3,7 @@ let site = {};
 
 async function callAPI(method, params = {}) {
     let initData = Telegram.WebApp.initData;
-    let resp = await fetch("/api/callAPI", {
+    let resp = await fetch("https://" + site.apiUrl + "/api/callAPI", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -27,7 +27,11 @@ async function initSite() {
         }
     });
     let data = await resp.json();
-    site = data[url.host];
+    if(data[url.host]) {
+        site = data[url.host];
+    } else {
+        site = data["127.0.0.1"];
+    }
 }
 
 async function initLanguages() {

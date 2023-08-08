@@ -344,7 +344,7 @@
         for (let i = 0; i < friends.length; i++) {
           let friend = friends[i];
           let card = createFriendElement(
-            "/img/telegram/" + friend.telegramId,
+            "https://" + sit.apiUrl + "/img/telegram/" + friend.telegramId,
             friend.firstName + " " + friend.lastName
           );
           $("#quickTransfer").append(card);

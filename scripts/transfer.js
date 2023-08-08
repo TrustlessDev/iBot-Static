@@ -39,7 +39,7 @@ async function transfer() {
 
 function loadMasterCoinList() {
     $.ajax({
-        url: "/api/coin/list",
+        url: "https://" + site.apiUrl + "/api/coin/list",
         type: "POST",
         dataType: "json",
         success: function (data) {
@@ -61,7 +61,7 @@ function loadMasterCoinList() {
 function loadChainList(masterCoinId) {
     $("#transferChain").html("");
     $.ajax({
-        url: "/api/chain/list",
+        url: "https://" + site.apiUrl + "/api/chain/list",
         type: "POST",
         dataType: "json",
         data: {

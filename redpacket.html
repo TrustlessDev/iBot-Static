@@ -45,17 +45,7 @@
 
         // 設定 onload
         window.onload = async function () {
-            /*
-            turnstile.ready(function () {
-                turnstile.render('#cloudflareCaptcha', {
-                    sitekey: '0x4AAAAAAAIVxHwcIUUVVdSX',
-                    callback: function(token) {
-                        cloudflareToken = token;
-                        $("#btnOpenRedPacket").show();
-                    },
-                });
-            });
-            */
+            await initSite();
             let uid = Telegram.WebApp.initDataUnsafe.user.id;
             var urlParams = new URLSearchParams(window.location.search);
 			var id = urlParams.get('tgWebAppStartParam');
@@ -71,7 +61,7 @@
                     text = text.substring(0, 30) + "...";
                 }
                 $("#packetText").text(text);
-                $("#userImg").attr("src", "/img/telegram/" + fromTelegramId);
+                $("#userImg").attr("src", "https://" + site.apiUrl + "/img/telegram/" + fromTelegramId);
                 
                 open.onclick = openRedPacket;
                 let playWrapper = document.querySelector(".playWrapper");
@@ -85,6 +75,22 @@
                 return;
             }
         };
+
+        async function initSite() {
+			let url = new URL(location.href)
+			let resp = await fetch("scripts/site.json", {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				}
+			});
+			let data = await resp.json();
+			if(data[url.host]) {
+				site = data[url.host];
+			} else {
+				site = data["127.0.0.1"];
+			}
+		}
 
         async function openRedPacket() {
             slide.style.bottom = "370px";

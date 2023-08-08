@@ -193,7 +193,7 @@ async function initHomeCharts() {
 async function getNews() {
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: "/api/news",
+            url: "https://" + site.apiUrl + "/api/news",
             data: JSON.stringify({}),
             type: "POST",
             dataType: "json",
