@@ -266,6 +266,8 @@
     function fakeData() {
       Telegram = {
         WebApp: {
+          close: function() {},
+          expand: function() {},
           initData: 'query_id=AAE8yqIgAAAAADzKoiB7Cviz&user=%7B%22id%22%3A547539516%2C%22first_name%22%3A%22Dalton%22%2C%22last_name%22%3A%22Hsu%22%2C%22username%22%3A%22cthenum%22%2C%22language_code%22%3A%22zh-hans%22%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1691508220&hash=769988c6d3b0786a04aac5641416167d28939d77b019e1a154965abdda44e025',
           initDataUnsafe: {
             user: {
@@ -282,7 +284,7 @@
     }
 
     async function init() {
-      fakeData();
+      //fakeData();
       await loadJS("scripts/utils.js");
       await initSite();
       await initOffCanvasEvent();

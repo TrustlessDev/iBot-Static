@@ -186,8 +186,10 @@ async function initHomeCharts() {
         tooltip: {enabled:false},
     };
     
-    var chart = new ApexCharts(document.querySelector("#chart-balance"), options);
-    chart.render();
+    try {
+        var chart = new ApexCharts(document.querySelector("#chart-balance"), options);
+        chart.render();
+    } catch(e) {}
 }
 
 async function getNews() {
