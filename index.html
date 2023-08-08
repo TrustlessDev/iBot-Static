@@ -242,7 +242,7 @@
   <!-- End of Page ID-->
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"
     integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <!--<script src="https://telegram.org/js/telegram-web-app.js"></script>-->
   <!--<script src="scripts/utils.js"></script>-->
   <script src="scripts/bootstrap.min.js"></script>
   <script src="scripts/custom.js"></script>
@@ -259,20 +259,37 @@
   <script type="application/javascript">
     let currentCardId = 1;
     let userData = {};
+    let Telegram = {};
 
     init();
 
+    function fakeData() {
+      Telegram = {
+        WebApp: {
+          initData: 'query_id=AAE8yqIgAAAAADzKoiB7Cviz&user=%7B%22id%22%3A547539516%2C%22first_name%22%3A%22Dalton%22%2C%22last_name%22%3A%22Hsu%22%2C%22username%22%3A%22cthenum%22%2C%22language_code%22%3A%22zh-hans%22%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1691508220&hash=769988c6d3b0786a04aac5641416167d28939d77b019e1a154965abdda44e025',
+          initDataUnsafe: {
+            user: {
+              id: 547539516,
+              first_name: "Dalton",
+              last_name: "Hsu",
+              username: "cthenum",
+              language_code: "zh-hans",
+              allows_write_to_pm: true
+            }
+          }
+        }
+      }
+    }
+
     async function init() {
+      fakeData();
       await loadJS("scripts/utils.js");
       await initSite();
       await initOffCanvasEvent();
       await refreshNews();
       await initLanguages();
       
-      document.querySelector("#user-identity").innerHTML =
-        Telegram.WebApp.initDataUnsafe.user.first_name +
-        " " +
-        Telegram.WebApp.initDataUnsafe.user.last_name;
+      document.querySelector("#user-identity").innerHTML = Telegram.WebApp.initDataUnsafe.user.first_name + " " + Telegram.WebApp.initDataUnsafe.user.last_name;
       userData = (await webLogin()).user;
       let wallets = userData.wallets;
       for (let i = 0; i < wallets.length; i++) {
@@ -344,7 +361,7 @@
         for (let i = 0; i < friends.length; i++) {
           let friend = friends[i];
           let card = createFriendElement(
-            "https://" + sit.apiUrl + "/img/telegram/" + friend.telegramId,
+            "https://" + site.apiUrl + "/img/telegram/" + friend.telegramId,
             friend.firstName + " " + friend.lastName
           );
           $("#quickTransfer").append(card);
@@ -500,8 +517,6 @@
     }
 
     function createIndexCardElement(id, name, symbol, image, chains, balance, usdt) {
-      alert(balance);
-      alert(usdt);
       // Create elements
       const divSlide = document.createElement("div");
       const divCard = document.createElement("div");

@@ -1,6 +1,11 @@
 {
     "127.0.0.1": {
-        "hello": "Dalton"
+        "hello": "Dalton",
+        "apiUrl": "api-dev.d8.run"
+    },
+    "127.0.0.1:8081": {
+        "hello": "Dalton",
+        "apiUrl": "api-dev.d8.run"
     },
     "localhost:": {
         "hello": "kitty"
