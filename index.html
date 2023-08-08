@@ -255,7 +255,7 @@
   <script src="scripts/listAd.js"></script>
   <script src="scripts/adInfo.js"></script>
   <script src="scripts/prodAdd.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
   <script type="application/javascript">
     let currentCardId = 1;
     let userData = {};
@@ -284,6 +284,7 @@
     }
 
     async function init() {
+      eruda.init();
       //fakeData();
       await loadJS("scripts/utils.js");
       await initSite();
