@@ -1,0 +1,82 @@
+<!-- menu-size will be the dimension of your menu. If you set it to smaller than your content it will scroll-->
+<div class="menu-size" style="height:370px;">
+    <div class="d-flex mx-3 mt-3 py-1">
+        <div class="align-self-center">
+            <h1 class="mb-0">創建紅包</h1>
+        </div>
+        <div class="align-self-center ms-auto">
+            <a href="#" class="ps-4 shadow-0 me-n2" data-bs-dismiss="offcanvas">
+                <i class="bi bi-x color-red-dark font-26 line-height-xl"></i>
+            </a>
+        </div>
+    </div>
+    <div class="divider divider-margins mt-3"></div>
+    <div class="content mt-0">
+        <h6 class="opacity-40">每包紅包總共發放金額</h6>
+        <div class="row">
+            <div class="col-4">
+                <div class="stepper rounded-s">
+                    <a href="#" class="stepper-sub float-start"><i class="bi bi-dash font-18 color-theme opacity-40"></i></a>
+                    <input id="personalRedpacketAmount" type="number" class="color-theme" min="1" max="99" value="1">
+                    <a href="#" class="stepper-add float-end"><i class="bi bi-plus font-18 color-theme opacity-40"></i></a>
+                </div>
+            </div>
+            <div class="col-2">
+                USDT
+            </div>
+            <div class="col-4">
+                <div class="stepper rounded-xs">
+                    <a href="#" class="stepper-sub float-start"><i class="bi bi-dash-circle font-16 color-theme opacity-20"></i></a>
+                    <input id="personalRedpacketLimit" type="number" class="color-theme" min="1" max="10000" value="95">
+                    <a href="#" class="stepper-add float-end"><i class="bi bi-plus-circle font-16 color-theme opacity-20"></i></a>
+                </div>
+            </div>
+            <div class="col-2">
+                包
+            </div>
+        </div>
+        <div class="divider divider-margins mt-3"></div>
+        <h4>紅包文案</h4>
+        <p class="mb-0">
+            在此輸入的文字內容將會顯示在紅包上方，請勿輸入過長的文字，以免影響美觀。
+        </p>
+        <div class="form-custom form-label form-icon mb-3">
+            <i class="bi bi-pencil-fill font-12"></i>
+            <textarea class="form-control rounded-xs" placeholder="請輸入紅包文案" id="personalRedpacketText"></textarea>
+            <label for="adText" class="color-theme">紅包文案</label>
+            <div class="valid-feedback">HTML5 does not offer Dates Field Validation!<!-- text for field valid--></div>
+        </div>
+        <div class="divider divider-margins mt-3"></div>
+        <div class="border border-blue-dark rounded-s overflow-hidden">
+            <table class="table color-theme border-blue-dark mb-0">
+                <thead class="rounded-s bg-blue-dark border-l">
+                    <tr class="color-white">
+                        <th scope="col"><h5 class="color-white font-15 mb-0">項目</h5></th>
+                        <th scope="col"><h5 class="color-white font-15 mb-0">單價</h5></th>
+                        <th scope="col"><h5 class="color-white font-15 mb-0">數量</h5></th>
+                        <th scope="col"><h5 class="color-white font-15 mb-0">總額</h5></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>5% 手續費</strong></td>
+                        <td class="personalRedpacketFeeFrom" colspan="2"></td>
+                        <td class="personalRedpacketFee"></td>
+                    </tr>
+                    <tr>
+                        <td ><strong>實際發放</strong></td>
+                        <td class="personalRealEachAmount"></td>
+                        <td class="personalRedpacketCount"></td>
+                        <td class="personalRealTotalAmount"></td>
+                    </tr>
+                    <tr>
+                        <td class="border-0"><strong>零頭損耗</strong></td>
+                        <td class="border-0 personalEatAmount" colspan="3"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <a href="#" onclick="callSendRedPacket()" class="mx-3 btn btn-full gradient-blue shadow-bg shadow-bg-s">發送</a>
+</div>

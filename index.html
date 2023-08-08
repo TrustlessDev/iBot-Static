@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <title>i-Bot</title>
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="fonts/bootstrap-icons.css" />
+  <link rel="stylesheet" type="text/css" href="styles/style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="manifest" href="_manifest.json" />
+  <meta id="theme-check" name="theme-color" content="#FFFFFF" />
+  <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png" />
+</head>
+
+<body class="theme-light">
+  <div id="preloader">
+    <div class="spinner-border color-highlight" role="status"></div>
+  </div>
+
+  <!-- Page Wrapper-->
+  <div id="page">
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+      <a href="page-games.html" onclick="initGames()"><i class="bi bi-controller"></i><span>遊戲</span></a>
+      <a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper"></i><span>新聞</span></a>
+      <a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>首頁</span></a>
+      <a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt"></i><span>帳務資訊</span></a>
+      <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>更多</span></a>
+    </div>
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+      <!-- Page Title-->
+      <div class="pt-3">
+        <div class="page-title d-flex">
+          <div class="align-self-center me-auto">
+            <p class="color-white opacity-80 header-date"></p>
+            <h1 class="color-white">歡迎</h1>
+            <h2 id="user-identity"></h2>
+          </div>
+          <div class="align-self-center ms-auto">
+            <a href="#" onclick="showScanQrPopup(false, QRCodeCallback)" data-bs-toggle="offcanvas"
+              class="icon bg-white color-theme rounded-m shadow-xl">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-qr-code-scan" viewBox="0 0 16 16">
+                <path
+                  d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0v-3Zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5ZM.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5Zm15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5ZM4 4h1v1H4V4Z" />
+                <path d="M7 2H2v5h5V2ZM3 3h3v3H3V3Zm2 8H4v1h1v-1Z" />
+                <path d="M7 9H2v5h5V9Zm-4 1h3v3H3v-3Zm8-6h1v1h-1V4Z" />
+                <path
+                  d="M9 2h5v5H9V2Zm1 1v3h3V3h-3ZM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8H8Zm2 2H9V9h1v1Zm4 2h-1v1h-2v1h3v-2Zm-4 2v-1H8v1h2Z" />
+                <path d="M12 9h2V8h-2v1Z" />
+              </svg>
+            </a>
+            <!--
+                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-notifications" class="icon bg-white color-theme rounded-m shadow-xl">
+                        <i class="bi bi-bell-fill color-black font-17"></i>
+                        <em class="badge bg-red-light color-white scale-box">3</em>
+                    </a>
+                    -->
+          </div>
+        </div>
+      </div>
+
+      <svg id="header-deco" viewBox="0 0 1440 600" xmlns="http://www.w3.org/2000/svg"
+        class="transition duration-300 ease-in-out delay-150">
+        <path id="header-deco-1"
+          d="M 0,600 C 0,600 0,120 0,120 C 92.36363636363635,133.79904306220095 184.7272727272727,147.59808612440193 287,148 C 389.2727272727273,148.40191387559807 501.4545454545455,135.40669856459328 592,129 C 682.5454545454545,122.5933014354067 751.4545454545455,122.77511961722489 848,115 C 944.5454545454545,107.22488038277511 1068.7272727272727,91.49282296650718 1172,91 C 1275.2727272727273,90.50717703349282 1357.6363636363635,105.25358851674642 1440,120 C 1440,120 1440,600 1440,600 Z">
+        </path>
+        <path id="header-deco-2"
+          d="M 0,600 C 0,600 0,240 0,240 C 98.97607655502392,258.2105263157895 197.95215311004785,276.4210526315789 278,282 C 358.04784688995215,287.5789473684211 419.16746411483257,280.5263157894737 524,265 C 628.8325358851674,249.4736842105263 777.377990430622,225.47368421052633 888,211 C 998.622009569378,196.52631578947367 1071.3205741626793,191.57894736842107 1157,198 C 1242.6794258373207,204.42105263157893 1341.3397129186603,222.21052631578948 1440,240 C 1440,240 1440,600 1440,600 Z">
+        </path>
+        <path id="header-deco-3"
+          d="M 0,600 C 0,600 0,360 0,360 C 65.43540669856458,339.55023923444975 130.87081339712915,319.1004784688995 245,321 C 359.12918660287085,322.8995215311005 521.9521531100479,347.1483253588517 616,352 C 710.0478468899521,356.8516746411483 735.3205741626795,342.3062200956938 822,333 C 908.6794258373205,323.6937799043062 1056.7655502392345,319.62679425837325 1170,325 C 1283.2344497607655,330.37320574162675 1361.6172248803828,345.1866028708134 1440,360 C 1440,360 1440,600 1440,600 Z">
+        </path>
+        <path id="header-deco-4"
+          d="M 0,600 C 0,600 0,480 0,480 C 70.90909090909093,494.91866028708137 141.81818181818187,509.8373205741627 239,499 C 336.18181818181813,488.1626794258373 459.6363636363636,451.5693779904306 567,446 C 674.3636363636364,440.4306220095694 765.6363636363636,465.88516746411483 862,465 C 958.3636363636364,464.11483253588517 1059.8181818181818,436.8899521531101 1157,435 C 1254.1818181818182,433.1100478468899 1347.090909090909,456.555023923445 1440,480 C 1440,480 1440,600 1440,600 Z">
+        </path>
+      </svg>
+
+      <!-- Main Card Slider-->
+      <div class="splide single-slider slider-no-dots slider-no-arrows slider-visible" id="single-slider-1">
+        <div class="splide__track">
+          <div id="wallets" class="splide__list"></div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="content py-2">
+        <div class="d-flex text-center">
+          <div class="me-auto">
+            <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-transfer"
+              class="icon icon-xxl rounded-m bg-theme shadow-m"><i
+                class="font-28 color-green-dark bi bi-arrow-up-circle"></i></a>
+            <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">轉帳</h6>
+          </div>
+          <div class="m-auto">
+            <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-request"
+              class="icon icon-xxl rounded-m bg-theme shadow-m"><i
+                class="font-28 color-red-dark bi bi-arrow-down-circle"></i></a>
+            <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">收款</h6>
+          </div>
+          <div data-bs-toggle="offcanvas" data-bs-target="#menu-exchange" class="m-auto">
+            <a href="#" class="icon icon-xxl rounded-m bg-theme shadow-m"><i
+                class="font-28 color-blue-dark bi bi-arrow-repeat"></i></a>
+            <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">閃兌</h6>
+          </div>
+          <div class="ms-auto">
+            <a href="page-payment-bill.html" onclick="initBills()" class="icon icon-xxl rounded-m bg-theme shadow-m"><i
+                class="font-28 color-brown-dark bi bi-filter-circle"></i></a>
+            <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">明細</h6>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-style shadow-bg shadow-bg-s">
+        <div class="content">
+          <!--
+          <h4>帳戶餘額變動</h4>
+          <div class="align-self-center m-auto">
+            <div id="chart-balance" class="chart mt-n5 pt-4 ms-n3"></div>
+          </div>
+          -->
+        </div>
+      </div>
+
+      <div class="card card-style gradient-red shadow-bg shadow-bg-s">
+        <div class="content">
+          <a href="#" onclick="callCreateRedPacket()" class="d-flex">
+            <div class="align-self-center">
+              <h1 class="mb-0 font-40">
+                <i class="bi bi-cash-coin color-white pe-3"></i>
+              </h1>
+            </div>
+            <div class="align-self-center">
+              <h5 id="text_activity" class="color-white font-700 mb-0 mt-0 pt-1">
+                發送紅包
+              </h5>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Recent Activity Title-->
+      <div class="content my-0 mt-n2 px-1">
+        <div class="d-flex">
+          <div class="align-self-center">
+            <h3 class="font-16 mb-2">區塊鏈新聞</h3>
+          </div>
+          <div class="align-self-center ms-auto">
+            <a href="page-activity.html" onclick="initNews()" class="font-12 pt-1">顯示全部</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity Cards-->
+      <div class="card card-style">
+        <div id="newsBlock" class="content"></div>
+      </div>
+
+      <!-- Send Money Title-->
+      <div class="content mb-0">
+        <div class="d-flex">
+          <div class="align-self-center">
+            <h3 class="font-16 mb-2">快速轉帳</h3>
+          </div>
+          <!--
+          <div class="align-self-center ms-auto">
+            <a href="page-payment-transfer.html" class="font-12 pt-1">顯示全部</a>
+          </div>
+          -->
+        </div>
+      </div>
+
+      <!-- Send Money Slider-->
+      <div class="splide quad-slider slider-no-dots slider-no-arrows slider-visible text-center" id="double-slider-2">
+        <div class="splide__track">
+          <div id="quickTransfer" class="splide__list"></div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Page Content-->
+
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar" data-menu-active="nav-welcome" data-menu-load="menu-sidebar.html"
+      class="offcanvas offcanvas-start offcanvas-detached rounded-m"></div>
+
+    <!-- Card Menu More -->
+    <div id="menu-card-more" data-menu-load="menu-card-settings.html"
+      class="offcanvas offcanvas-bottom offcanvas-detached rounded-m"></div>
+
+    <!-- Transfer Button Menu -->
+    <div id="menu-transfer" data-menu-load="menu-transfer.html"
+      class="offcanvas offcanvas-bottom offcanvas-detached rounded-m"></div>
+
+    <!-- Transfer Friends Menu -->
+    <div id="menu-friends-transfer" data-menu-load="menu-friends-transfer.html"
+      class="offcanvas offcanvas-bottom offcanvas-detached rounded-m"></div>
+
+    <!-- Request Button Menu -->
+    <div id="menu-request" data-menu-load="menu-request.html"
+      class="offcanvas offcanvas-bottom offcanvas-detached rounded-m"></div>
+
+    <!-- Exchange Button Menu -->
+    <div id="menu-exchange" data-menu-load="menu-exchange.html"
+      class="offcanvas offcanvas-bottom offcanvas-detached rounded-m"></div>
+
+    <!-- Notifications Bell -->
+    <div id="menu-notifications" data-menu-load="menu-notifications.html"
+      class="offcanvas offcanvas-top offcanvas-detached rounded-m"></div>
+
+    <!-- Highlights Menu -->
+    <div id="menu-highlights" data-menu-load="menu-highlights.html"
+      class="offcanvas offcanvas-bottom offcanvas-detached rounded-m"></div>
+
+    <!-- Redpacket Button Menu -->
+    <div id="menu-create-redpacket" data-menu-load="menu-create-redpacket.html"
+      class="offcanvas offcanvas-bottom offcanvas-detached rounded-m"></div>
+
+      
+    <div id="index-warning" hasClick="false" style="width:320px" class="offcanvas offcanvas-modal offcanvas-detached rounded-m">
+      <div class="content text-center">
+        <i style="font-size:65px;" class="scale-box bi bi-x-circle-fill color-red-dark shadow-s rounded-circle p-0 mt-3 mb-3 d-inline-block"></i>
+        <h1 id="index-warning-title" class="pt-3 font-28">Transfer Failed</h1>
+        <p id="index-warning-content" class="font-14 mb-0">
+          There was an error processing your transfer. Please contact support for more details.
+        </p>
+        <a id="indexAlertConfirm" href="#" class="btn btn-full gradient-red shadow-bg shadow-bg-xs">確定</a>
+              <a style="display:none" href="#" data-bs-toggle="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-xs">Okay</a>
+      </div>
+    </div>
+  </div>
+  <!-- End of Page ID-->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <!--<script src="scripts/utils.js"></script>-->
+  <script src="scripts/bootstrap.min.js"></script>
+  <script src="scripts/custom.js"></script>
+  <script src="scripts/ibot.js"></script>
+  <script src="scripts/bills.js"></script>
+  <script src="scripts/transfer.js"></script>
+  <script src="scripts/news.js?t=1123"></script>
+  <script src="scripts/games.js"></script>
+  <script src="scripts/ad.js"></script>
+  <script src="scripts/listAd.js"></script>
+  <script src="scripts/adInfo.js"></script>
+  <script src="scripts/prodAdd.js"></script>
+
+  <script type="application/javascript">
+    let currentCardId = 1;
+    let userData = {};
+
+    init();
+
+    async function init() {
+      await loadJS("scripts/utils.js");
+      await initOffCanvasEvent();
+      await refreshNews();
+      await initLanguages();
+      
+      document.querySelector("#user-identity").innerHTML =
+        Telegram.WebApp.initDataUnsafe.user.first_name +
+        " " +
+        Telegram.WebApp.initDataUnsafe.user.last_name;
+      userData = (await webLogin()).user;
+      let wallets = userData.wallets;
+      for (let i = 0; i < wallets.length; i++) {
+        let wallet = wallets[i];
+        let balance = parseFloat(wallet.balance);
+        let usdtValue = parseFloat((balance * wallet.price).toFixed(2));
+        let card = createCardElement(
+          wallet.id,
+          wallet.name,
+          wallet.symbol,
+          wallet.image,
+          wallet.chainSupported,
+          parseFloat(balance.toFixed(8)),
+          usdtValue
+        );
+        $("#wallets").append(card);
+      }
+      await initFriendsBlock();
+      initSplider();
+      initHomeCharts();
+      initEventHandler();
+      // init transfer type
+      $("#transferType").on("change", function () {
+        let val = $("#transferType").val();
+        if (val == "2") {
+          $(".transferOut").hide();
+        } else {
+          $(".transferOut").show();
+        }
+      });
+    }
+
+    async function initOffCanvasEvent() {
+      var transferMenu = document.getElementById('menu-transfer')
+      transferMenu.addEventListener('shown.bs.offcanvas', function () {
+        Telegram.WebApp.expand();
+        loadMasterCoinList();
+        $("#transferCoin").change(function () {
+          let masterCoinId = $("#transferCoin").val();
+          loadChainList(masterCoinId);
+        });
+      });
+      var requestMenu = document.getElementById('menu-request')
+      requestMenu.addEventListener('shown.bs.offcanvas', function () {
+        Telegram.WebApp.expand();
+      });
+      var exchangeMenu = document.getElementById('menu-exchange')
+      exchangeMenu.addEventListener('shown.bs.offcanvas', function () {
+        Telegram.WebApp.expand();
+      });
+    }
+    
+    async function loadJS(url) {
+      return new Promise((resolve, reject) => {
+        let script = document.createElement('script');
+        script.src = url + "?t=" + new Date().getTime();
+        script.onload = () => {
+          resolve();
+        };
+        document.head.appendChild(script);
+      });
+    }
+
+    async function initFriendsBlock() {
+      let rst = await callAPI("GetFriends");
+      if (rst.success) {
+        let friends = rst.users;
+        $("#quickTransfer").empty();
+        for (let i = 0; i < friends.length; i++) {
+          let friend = friends[i];
+          let card = createFriendElement(
+            "/img/telegram/" + friend.telegramId,
+            friend.firstName + " " + friend.lastName
+          );
+          $("#quickTransfer").append(card);
+        }
+      }
+    }
+
+    function showScanQrPopup(linksOnly = false, callback) {
+      Telegram.WebApp.showScanQrPopup(
+        {
+          text: "請掃描錢包位址",
+        },
+        function (text) {
+          callAPI("ScanQRCode", {
+            text: text,
+          }).then(callback);
+          return true;
+        }
+      );
+    }
+
+    function initEventHandler() {
+      // 收款監聽事件
+      var menuRequest = document.getElementById("menu-request");
+      menuRequest.addEventListener("shown.bs.offcanvas", function () {
+        let masterWallet = userData.wallets.find(
+          (wallet) => wallet.id == currentCardId
+        );
+        $("#selectChain").empty();
+        for (let i = 0; i < masterWallet.chainSupported.length; i++) {
+          let chain = masterWallet.chainSupported[i];
+          $("#selectChain").append(
+            "<option " +
+            (i == 0 ? "selected" : "") +
+            " value='" +
+            chain.chainId +
+            "-" +
+            chain.address +
+            "'>" +
+            chain.chainName +
+            "</option>"
+          );
+        }
+      });
+    }
+
+    async function refreshNews() {
+      let news = await getNews();
+      let newsCounts = news.length > 5 ? 5 : news.length;
+      for (let i = 0; i < newsCounts; i++) {
+        if (i != 0) {
+          $("#newsBlock").append(
+            '<div class="divider my-2 opacity-50"></div>'
+          );
+        }
+        let ele = createNewsElement(
+          news[i].providerIcon,
+          news[i].title,
+          news[i].link,
+          news[i].date
+        );
+        $("#newsBlock").append(ele);
+      }
+    }
+
+    async function sendQRCode() {
+      let selectedData = $("#selectChain").val();
+      let arr = selectedData.split("-");
+      let chainId = arr[0];
+      let address = arr[1];
+      callAPI("sendQRCode", {
+        chainId: chainId,
+        address: address,
+      });
+      Telegram.WebApp.close();
+    }
+
+    function createNewsElement(providerIcon, title, url, date) {
+      // Create <a> element
+      let a = document.createElement("a");
+      a.href = url;
+      a.target = "_blank";
+      a.className = "d-flex py-1";
+
+      // Create first <div> inside <a>
+      let div1 = document.createElement("div");
+      div1.className = "align-self-center";
+
+      let img = document.createElement("img");
+      img.width = "32";
+      img.src = providerIcon;
+
+      div1.appendChild(img);
+
+      // Create second <div> inside <a>
+      let div2 = document.createElement("div");
+      div2.className = "align-self-center ps-1";
+
+      let h5 = document.createElement("h5");
+      h5.className = "pt-1 mb-n1";
+      h5.textContent = title;
+
+      let p = document.createElement("p");
+      p.className = "mb-0 font-11 opacity-50";
+      p.textContent = new Date(date);
+
+      let span = document.createElement("span");
+      span.className = "copyright-year";
+
+      p.appendChild(span);
+      div2.appendChild(h5);
+      div2.appendChild(p);
+
+      // Append div1 and div2 to <a>
+      a.appendChild(div1);
+      a.appendChild(div2);
+
+      return a;
+    }
+
+    function createFriendElement(imageUrl, title) {
+      // Create the outer 'div' element
+      let divElement = document.createElement("div");
+      divElement.classList.add("splide__slide");
+
+      // Create the 'a' element and set required attributes
+      let aElement = document.createElement("a");
+      aElement.setAttribute("href", "#");
+      aElement.setAttribute("data-card-height", "60");
+      aElement.setAttribute("data-bs-toggle", "offcanvas");
+      aElement.setAttribute("data-bs-target", "#menu-friends-transfer");
+      aElement.style.backgroundImage = `url('${imageUrl}')`;
+      aElement.classList.add(
+        "card",
+        "border-0",
+        "shadow-card",
+        "shadow-card-m",
+        "rounded-m"
+      );
+
+      // Append 'a' element to 'div' element
+      divElement.appendChild(aElement);
+
+      // Create the 'h6' element, set its text and append to 'div' element
+      let h6Element = document.createElement("h6");
+      h6Element.classList.add("pt-2");
+      h6Element.textContent = title;
+
+      // Append 'h6' element to 'div' element
+      divElement.appendChild(h6Element);
+
+      return divElement;
+    }
+
+    function createCardElement(id, name, symbol, image, chains, balance, usdt) {
+      // Create elements
+      const divSlide = document.createElement("div");
+      const divCard = document.createElement("div");
+      const divCardTop = document.createElement("div");
+      const aCardTop = document.createElement("a");
+      const iCardTop = document.createElement("i");
+      const divCardCenter = document.createElement("div");
+      const divBgTheme = document.createElement("div");
+      const h1Font = document.createElement("h1");
+      const aColorTheme = document.createElement("a");
+      const divCollapse = document.createElement("div");
+      const h2Balance = document.createElement("h2");
+      const h4AproxUSDT = document.createElement("h4");
+      const strongTop = document.createElement("strong");
+      const strongBottom = document.createElement("strong");
+      const divOverlay = document.createElement("div");
+
+      // Set attributes and content
+      divSlide.className = "splide__slide";
+
+      divCard.className = "card card-style m-0 shadow-card shadow-card-m";
+      divCard.style.height = "200px";
+      divCard.style.backgroundImage = "url(" + image + ")";
+
+      divCardTop.className = "card-top p-3";
+
+      aCardTop.href = "#";
+      aCardTop.setAttribute("data-bs-toggle", "offcanvas");
+      aCardTop.setAttribute("data-bs-target", "#menu-card-more");
+      aCardTop.setAttribute("onclick", "setCardId(" + id + ")");
+      aCardTop.className = "icon icon-xxs bg-white color-black float-end";
+
+      iCardTop.className = "bi bi-three-dots font-18";
+
+      divCardCenter.className = "card-center";
+
+      divBgTheme.className = "bg-theme px-3 py-2 rounded-end d-inline-block";
+
+      h1Font.className = "font-13 my-n1";
+
+      aColorTheme.className = "color-theme";
+      aColorTheme.setAttribute("data-bs-toggle", "collapse");
+      aColorTheme.href = "#balance" + id;
+      aColorTheme.setAttribute("aria-controls", "balance2");
+      aColorTheme.textContent = "點擊查看餘額";
+
+      divCollapse.className = "collapse";
+      divCollapse.id = "balance" + id;
+
+      h2Balance.className = "color-theme font-26";
+      h2Balance.textContent = balance + " " + symbol;
+
+      h4AproxUSDT.className = "color-theme font-14";
+      h4AproxUSDT.textContent = "~ " + usdt + " USDT";
+
+      strongTop.className =
+        "card-top no-click font-12 p-3 color-white font-monospace";
+      strongTop.textContent = name;
+
+      strongBottom.className =
+        " card-bottom no-click p-3 font-10 text-start color-white font-monospace";
+      strongBottom.textContent =
+        chains.length > 1 ? "支援多鏈" : chains[0].address;
+      divOverlay.className = "card-overlay bg-black opacity-50";
+
+      // Append elements
+      aCardTop.appendChild(iCardTop);
+      divCardTop.appendChild(aCardTop);
+
+      divCollapse.appendChild(h2Balance);
+      divCollapse.appendChild(h4AproxUSDT);
+      
+      h1Font.appendChild(aColorTheme);
+      divBgTheme.appendChild(h1Font);
+      divBgTheme.appendChild(divCollapse);
+      divCardCenter.appendChild(divBgTheme);
+
+      divCard.appendChild(divCardTop);
+      divCard.appendChild(divCardCenter);
+      divCard.appendChild(strongTop);
+      divCard.appendChild(strongBottom);
+      divCard.appendChild(divOverlay);
+
+      divSlide.appendChild(divCard);
+
+      return divSlide;
+    }
+
+    function setCardId(id) {
+      currentCardId = id;
+    }
+
+    function QRCodeCallback(text) {
+      Telegram.WebApp.close();
+      return true;
+    }
+  </script>
+</body>
+
+</html>

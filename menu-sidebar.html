@@ -1,0 +1,113 @@
+<!-- menu-size will be the dimension of your menu. If you set it to smaller than your content it will scroll-->
+<div class="menu-size" style="width:230px;">
+    <!-- Menu Title-->
+    <div class="pt-3">
+        <div class="page-title sidebar-title d-flex">
+            <div class="align-self-center me-auto">
+                <p class="color-highlight">探索更多</p>
+                <h1>強大功能</h1>
+            </div>
+        </div>
+
+        <div class="divider divider-margins mb-3 opacity-50"></div>
+
+        <!-- Main Menu List-->
+        <div class="list-group list-custom list-menu-large">
+            <a href="#" data-submenu="community" class="list-group-item">
+                <i class="bi bg-red-dark shadow-bg shadow-bg-xs bi-people"></i>
+                <div>社群</div>
+                <i class="bi bi-plus font-18"></i>
+            </a>
+            <div class="list-submenu" id="community">
+                <a href="https://t.me/ibot_official" id="nav-waves" class="list-group-item">
+                    <div class="ps-4">官方中文群</div>
+                </a>
+                <a href="https://t.me/ibot_channel" id="nav-classic" class="list-group-item">
+                    <div class="ps-4">i-Bot加密助手更新日誌</div>
+                </a>
+            </div>
+            <!--
+            <a href="#" data-submenu="invest" class="list-group-item">
+                <i class="bi bg-green-dark shadow-bg shadow-bg-xs bi-piggy-bank"></i>
+                <div>投資專區</div>
+                <i class="bi bi-plus font-18"></i>
+            </a>
+            <div class="list-submenu" id="invest">
+                <a href="#" id="nav-waves" class="list-group-item">
+                    <div class="ps-4">零錢定投</div>
+                </a>
+                <a href="#" id="nav-waves" class="list-group-item">
+                    <div class="ps-4">贊助專區</div>
+                </a>
+            </div>
+            -->
+            <a href="#" data-submenu="sub1" class="list-group-item">
+                <i class="bi bg-blue-dark shadow-bg shadow-bg-xs bi-shop-window"></i>
+                <div>消費購物</div>
+                <i class="bi bi-plus font-18"></i>
+            </a>
+            <div class="list-submenu" id="sub1">
+                <a href="page-add-product.html" onclick="initProductCreatePage()" id="nav-classic" class="list-group-item">
+                    <div class="ps-4">創建商品</div>
+                    <i class="bi bi-heart-fill"></i>
+                </a>
+                <a href="index.html" id="nav-waves" class="list-group-item">
+                    <div class="ps-4">i-Bot 商城</div>
+                    <i class="bi bi-shop"></i>
+                </a>
+            </div>
+            <a href="#" data-submenu="ads" class="list-group-item">
+                <i class="bi bg-brown-dark shadow-bg shadow-bg-xs bi-badge-ad"></i>
+                <div>廣告行銷</div>
+                <i class="bi bi-plus font-18"></i>
+            </a>
+            <div class="list-submenu" id="ads">
+                <a href="page-ad-list.html" onclick="initAdList()" id="nav-waves" class="list-group-item">
+                    <div class="ps-4">我的廣告排程</div>
+                </a>
+                <a href="page-add-ad.html" onclick="initAdPage()" id="nav-waves" class="list-group-item">
+                    <div class="ps-4">客製化廣告紅包</div>
+                </a>
+                <a href="#" id="nav-waves" class="list-group-item">
+                    <div class="ps-4">社群推廣計畫</div>
+                </a>
+            </div>
+            
+			<a data-bs-toggle="offcanvas" data-bs-target="#menu-highlights" href="#" class="list-group-item">
+				<i class="bi bg-magenta-dark shadow-bg shadow-bg-xs bi-palette-fill"></i>
+				<div>風格設定</div>
+				<i class="bi bi-chevron-right"></i>
+			</a>
+
+            <a href="#" class="list-group-item" data-toggle-theme data-trigger-switch="switch-1">
+                <i class="bi bg-yellow-dark shadow-bg shadow-bg-xs bi-lightbulb-fill"></i>
+                <div>夜行模式</div>
+                <div class="form-switch ios-switch switch-green switch-s me-2">
+                    <input type="checkbox" data-toggle-theme class="ios-input" id="switch-1">
+                    <label class="custom-control-label" for="switch-1"></label>
+                </div>
+            </a>
+        </div>
+
+        <div class="divider divider-margins mb-3 opacity-50"></div>
+
+        <!-- Useful Links-->
+        <h6 class="opacity-40 px-3 mt-n2 mb-0">其他</h6>
+        <div class="list-group list-custom list-menu-small">
+            <a href="https://t.me/Ibot_cs3" class="list-group-item default-link">
+                <i class="bi bi-arrow-up-circle-fill opacity-20 font-16"></i>
+                <div>支援</div>
+                <i class="bi bi-chevron-right"></i>
+            </a>
+            <a href="#" class="list-group-item">
+                <i class="bi bi-gear-fill opacity-20 font-16"></i>
+                <div>設定</div>
+                <i class="bi bi-chevron-right"></i>
+            </a>
+        </div>
+
+        <div class="divider divider-margins opacity-50"></div>
+        <!-- Menu Copyright -->
+        <p class="px-3 font-9 opacity-30 color-theme mt-n3">版權所有 <span class="copyright-year"></span>. DAO <i class="bi bi-heart-fill color-red-dark px-1"></i> i-Bot</p>
+    </div>
+</div>

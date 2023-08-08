@@ -1,0 +1,128 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Red Packet</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
+    <link rel="stylesheet" href="/styles/redpacket.css">
+</head>
+
+<body>
+    <div class="playWrapper" style="display: none;">
+        <section class="play">
+            <section class="info">
+                <img id="userImg" src="/img/telegram/547539516" width="70px" height="70px">
+                <article>
+                    <h3 id="packetFrom"></h3>
+                    <h4>發送了一個紅包</h4>
+                    <h4 id="packetText">恭喜發財 大吉大利</h4>
+                </article>
+            </section>
+            <div class="slide"></div>
+            <button id="btnOpenRedPacket" type="button" name="get">開</button>
+            <div id="cloudflareCaptcha"></div>
+            <section class="resultWrapper">
+                <article>
+                    <h3 id="openText1"></h3>
+                    <h2 id="openText2"></h2>
+                    <h4 id="openText3"></h4>
+                </article>
+            </section>
+        </section>
+    </div>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script>
+        const open = document.querySelector("button[name=get]");
+        const slide = document.querySelector(".slide");
+        const info = document.querySelector(".info article");
+        const resultWrapper = document.querySelector(".resultWrapper");
+        
+        let total, money;
+        let redpacket;
+        let cloudflareToken;
+
+        // 設定 onload
+        window.onload = async function () {
+            /*
+            turnstile.ready(function () {
+                turnstile.render('#cloudflareCaptcha', {
+                    sitekey: '0x4AAAAAAAIVxHwcIUUVVdSX',
+                    callback: function(token) {
+                        cloudflareToken = token;
+                        $("#btnOpenRedPacket").show();
+                    },
+                });
+            });
+            */
+            let uid = Telegram.WebApp.initDataUnsafe.user.id;
+            var urlParams = new URLSearchParams(window.location.search);
+			var id = urlParams.get('tgWebAppStartParam');
+            redpacket = (await callAPI("getRedPacketInfo", {
+                redpacketId: id,
+            }));
+            if(redpacket.success) {
+                redpacket = redpacket.data;
+                let fromTelegramId = redpacket.fromTelegramId;
+                $("#packetFrom").text(redpacket.from);
+                let text = redpacket.text;
+                if(text.length > 30) {
+                    text = text.substring(0, 30) + "...";
+                }
+                $("#packetText").text(text);
+                $("#userImg").attr("src", "/img/telegram/" + fromTelegramId);
+                
+                open.onclick = openRedPacket;
+                let playWrapper = document.querySelector(".playWrapper");
+                total = 1;
+                money = 10;
+                playWrapper.style.display = "block";
+            } else {
+                $("#packetFrom").text("錯誤");
+                $("#packetText").text("請洽系統管理員");
+                playWrapper.style.display = "block";
+                return;
+            }
+        };
+
+        async function openRedPacket() {
+            slide.style.bottom = "370px";
+            info.style.display = "none";
+            open.style.display = "none";
+            resultWrapper.style.display = "block";
+            let resp = await callAPI("receiveRedPacket", {
+                redpacketId: redpacket.id,
+                token: cloudflareToken
+            });
+            if(resp.success) {
+                $("#openText1").text("恭喜你獲得");
+                $("#openText2").text(resp.data.eachAmount + " USDT");
+                $("#openText3").text("恭喜發財 大吉大利");
+            } else {
+                $("#openText1").text(resp.message);
+                $("#openText2").text("");
+                $("#openText3").text("");
+            }
+        }
+
+        /*
+        async function loadCSS(url) {
+            return new Promise((resolve, reject) => {
+                let link = document.createElement('link');
+                link.href = url + "?t=" + new Date().getTime();
+                link.rel = 'stylesheet';
+                link.onload = () => {
+                    resolve();
+                };
+                link.onerror = () => {
+                    reject(new Error(`Style load error for resource: ${url}`));
+                };
+                document.head.appendChild(link);
+            });
+        }
+        */
+    </script>
+</body>
+
+</html>

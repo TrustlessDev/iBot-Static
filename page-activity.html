@@ -1,0 +1,311 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>PayApp - Finance, Banking, Wallet, Crypto Mobile PWA</title>
+<link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="fonts/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="styles/style.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="_manifest.json">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+    
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="page-games.html" onclick="initGames()"><i class="bi bi-controller"></i><span>遊戲</span></a>
+        <a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper"></i><span>新聞</span></a>
+        <a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>首頁</span></a>
+        <a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt"></i><span>帳務資訊</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>更多</span></a>
+    </div>
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center me-auto">
+                    <p class="color-highlight">隨時掌握最新快訊</p>
+                    <h1 class="color-theme">區塊鏈新聞</h1>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="card card-style">
+            <div class="content">
+                <div class="tabs tabs-pill" id="tab-group-2">
+                    <div class="tab-controls rounded-m p-1 overflow-visible">
+                        <a class="font-13 rounded-m shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#recent" aria-expanded="true">最新</a>
+                        <a class="font-13 rounded-m shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#crypto" aria-expanded="false">加密貨幣市場</a>
+                        <a class="font-13 rounded-m shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#market" aria-expanded="false">市場分析</a>
+                    </div>
+                    <div class="mt-3"></div>
+                    <!-- Tab Group 1 -->
+                    <div class="collapse show" id="recent" data-bs-parent="#tab-group-2">
+                        
+                    </div>
+                    <!-- Tab Group 2 -->
+                    <div class="collapse" id="crypto" data-bs-parent="#tab-group-2">
+                        
+                    </div>
+                    <!-- Tab Group 3 -->
+                    <div class="collapse" id="market" data-bs-parent="#tab-group-2">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+    <!-- Main Sidebar Menu -->
+    <div id="menu-sidebar"
+        data-menu-active="nav-pages"
+        data-menu-load="menu-sidebar.html"
+        class="offcanvas offcanvas-start offcanvas-detached rounded-m">
+    </div>
+	
+	<!-- Highlights Menu -->
+	<div id="menu-highlights"
+		data-menu-load="menu-highlights.html"
+		class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+	</div>
+
+    <!-- Transaction Action Sheet -->
+    <div id="menu-activity-1" class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+        <!-- menu-size will be the dimension of your menu. If you set it to smaller than your content it will scroll-->
+        <div class="menu-size" style="height:385px;">
+            <div class="content">
+                <a href="#" class="d-flex py-1 pb-4">
+                    <div class="align-self-center">
+                        <span class="icon gradient-red me-2 shadow-bg shadow-bg-s rounded-s">
+                            <img src="images/pictures/6s.jpg" width="45" class="rounded-s" alt="img"></span>
+                    </div>
+                    <div class="align-self-center ps-1">
+                        <h5 class="pt-1 mb-n1">Karla Black</h5>
+                        <p class="mb-0 font-11 opacity-70">12th March <span class="copyright-year"></span></p>
+                    </div>
+                    <div class="align-self-center ms-auto text-end">
+                        <h4 class="pt-1 font-14 mb-n1 color-green-dark">APPROVED</h4>
+                        <p class="mb-0 font-11"> ID-315-6123</p>
+                    </div>
+                </a>
+                <div class="row">
+                    <strong class="col-5 color-theme">Type</strong>
+                    <strong class="col-7 text-end">Incoming</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Date</strong>
+                    <strong class="col-7 text-end">12th March</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Amount</strong>
+                    <strong class="col-7 text-end color-highlight">$150.55</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Sent Via</strong>
+                    <strong class="col-7 text-end">Credit Card</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Added To</strong>
+                    <strong class="col-7 text-end">Main Account</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                </div>
+            </div>
+            <a href="#" data-bs-dismiss="offcanvas" class="mx-3 btn btn-full gradient-highlight shadow-bg shadow-bg-s">Back to Activity</a>
+        </div>
+    </div>
+    
+    <!-- Transaction Action Sheet -->
+    <div id="menu-activity-2" class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+        <!-- menu-size will be the dimension of your menu. If you set it to smaller than your content it will scroll-->
+        <div class="menu-size" style="height:385px;">
+            <div class="content">
+                <a href="#" class="d-flex py-1 pb-4">
+                    <div class="align-self-center">
+                        <span class="icon rounded-s me-2 gradient-brown shadow-bg shadow-bg-xs"><i class="bi bi-wallet color-white"></i></span>
+                    </div>
+                    <div class="align-self-center ps-1">
+                        <h5 class="pt-1 mb-n1">Withdrawal</h5>
+                        <p class="mb-0 font-11 opacity-70">12th March <span class="copyright-year"></span></p>
+                    </div>
+                    <div class="align-self-center ms-auto text-end">
+                        <h4 class="pt-1 font-14 mb-n1 color-green-dark">APPROVED</h4>
+                        <p class="mb-0 font-11"> ID-315-6123</p>
+                    </div>
+                </a>
+                <div class="row">
+                    <strong class="col-5 color-theme">Type</strong>
+                    <strong class="col-7 text-end">Withdrawal</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Date</strong>
+                    <strong class="col-7 text-end">12th March</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Amount</strong>
+                    <strong class="col-7 text-end color-highlight">$345.31</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Withdrawn To</strong>
+                    <strong class="col-7 text-end">Credit Card</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Withdraw From</strong>
+                    <strong class="col-7 text-end">Main Account</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                </div>
+            </div>
+            <a href="#" data-bs-dismiss="offcanvas" class="mx-3 btn btn-full gradient-highlight shadow-bg shadow-bg-s">Back to Activity</a>
+        </div>
+    </div>
+    
+    <!-- Transaction Action Sheet -->
+    <div id="menu-activity-3" class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+        <!-- menu-size will be the dimension of your menu. If you set it to smaller than your content it will scroll-->
+        <div class="menu-size" style="height:385px;">
+            <div class="content">
+                <a href="#" class="d-flex py-1 pb-4">
+                    <div class="align-self-center">
+                        <span class="icon rounded-s me-2 gradient-orange shadow-bg shadow-bg-xs"><i class="bi bi-google color-white"></i></span>
+                    </div>
+                    <div class="align-self-center ps-1">
+                        <h5 class="pt-1 mb-n1">Google Ads</h5>
+                        <p class="mb-0 font-11 opacity-70">14th March <span class="copyright-year"></span></p>
+                    </div>
+                    <div class="align-self-center ms-auto text-end">
+                        <h4 class="pt-1 font-14 mb-n1 color-red-dark">RECEIVED</h4>
+                        <p class="mb-0 font-11"> ID-315-6123</p>
+                    </div>
+                </a>
+                <div class="row">
+                    <strong class="col-5 color-theme">Type</strong>
+                    <strong class="col-7 text-end">Payment</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Paid To</strong>
+                    <strong class="col-7 text-end">GOOGLE LLC LTD</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Date</strong>
+                    <strong class="col-7 text-end">12th March</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Amount</strong>
+                    <strong class="col-7 text-end color-highlight">$324.55</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Paid From</strong>
+                    <strong class="col-7 text-end">Credit Card</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                </div>
+            </div>
+            <a href="#" data-bs-dismiss="offcanvas" class="mx-3 btn btn-full gradient-highlight shadow-bg shadow-bg-s">Back to Activity</a>
+        </div>
+    </div>
+    
+     <!-- Transaction Action Sheet -->
+    <div id="menu-activity-4" class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+        <!-- menu-size will be the dimension of your menu. If you set it to smaller than your content it will scroll-->
+        <div class="menu-size" style="height:380px;">
+            <div class="content">
+                <a href="#" class="d-flex py-1 pb-4">
+                    <div class="align-self-center">
+                        <span class="icon rounded-s me-2 gradient-green shadow-bg shadow-bg-xs"><i class="bi bi-person-circle font-18 color-white"></i></span>
+                    </div>
+                    <div class="align-self-center ps-1">
+                        <h5 class="pt-1 mb-n1">Karla Black</h5>
+                        <p class="mb-0 font-11 opacity-70">Awaiting Approval</p>
+                    </div>
+                    <div class="align-self-center ms-auto text-end">
+                        <h4 class="pt-1 font-14 mb-n1 color-yellow-dark">PENDING</h4>
+                        <p class="mb-0 font-11"> ID-315-6123</p>
+                    </div>
+                </a>
+                <div class="row">
+                    <strong class="col-5 color-theme">Type</strong>
+                    <strong class="col-7 text-end">Transfer</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Paid To</strong>
+                    <strong class="col-7 text-end">GOOGLE LLC LTD</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Date</strong>
+                    <strong class="col-7 text-end">12th March</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Amount</strong>
+                    <strong class="col-7 text-end color-highlight">$324.55</strong>
+                    <div class="col-12 mt-2 mb-2"><div class="divider my-0"></div></div>
+                    <strong class="col-5 color-theme">Paid From</strong>
+                    <strong class="col-7 text-end">Credit Card</strong>
+                    <div class="col-12 mt-2 mb-4"><div class="divider my-0"></div></div>
+                    <div class="col-6">
+                        <a href="#" data-bs-dismiss="offcanvas" class="btn btn-s btn-full gradient-green shadow-bg shadow-bg-xs">Approve</a>
+                    </div>
+                    <div class="col-6">
+                        <a href="#" data-bs-dismiss="offcanvas" class="btn btn-s btn-full gradient-red shadow-bg shadow-bg-xs">Reject</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Transaction Action Sheet -->
+    <div id="menu-activity-5" class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
+        <!-- menu-size will be the dimension of your menu. If you set it to smaller than your content it will scroll-->
+        <div class="menu-size" style="height:320px;">
+            <div class="content">
+                <a href="#" class="d-flex py-1 pb-4">
+                    <div class="align-self-center">
+                        <span class="icon rounded-s me-2 gradient-blue shadow-bg shadow-bg-xs"><i class="bi bi-lock-fill font-18 color-white"></i></span>
+                    </div>
+                    <div class="align-self-center ps-1">
+                        <h5 class="pt-1 mb-n1">Verification</h5>
+                        <p class="mb-0 font-11 opacity-70">Action Required</p>
+                    </div>
+                    <div class="align-self-center ms-auto text-end">
+                        <h4 class="pt-1 font-14 mb-n1 color-yellow-dark">PENDING</h4>
+                        <p class="mb-0 font-11"> ID-315-6123</p>
+                    </div>
+                </a>
+                <div class="form-custom form-label form-icon mt-3">
+                    <i class="bi bi-person-circle font-14"></i>
+                    <input type="email" class="form-control rounded-xs" id="c32" placeholder="john@domain.com" />
+                    <label for="c32" class="form-label-always-active color-theme font-11">Account Holder Email</label>
+                    <span class="font-10">(required)</span>
+                </div>
+                <div class="form-custom form-label form-icon mt-4">
+                    <i class="bi bi-person-circle font-14"></i>
+                    <input type="number" class="form-control rounded-xs" id="c321" placeholder="ID-125-5132" />
+                    <label for="c321" class="form-label-always-active color-theme font-11">Account Holder Security Code</label>
+                    <span class="font-10">(required)</span>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <a href="#" data-bs-dismiss="offcanvas" class="btn btn-s btn-full gradient-green shadow-bg shadow-bg-xs">Verify</a>
+                    </div>
+                    <div class="col-6">
+                        <a href="#" data-bs-dismiss="offcanvas" class="btn btn-s btn-full gradient-blue shadow-bg shadow-bg-xs">Later</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<!-- End of Page ID-->
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="scripts/bootstrap.min.js"></script>
+<script src="scripts/custom.js"></script>
+<script src="scripts/ibot.js"></script>
+</body>

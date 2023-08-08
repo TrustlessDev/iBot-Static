@@ -1,0 +1,345 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>創建商品</title>
+<link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="fonts/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="styles/style.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="_manifest.json">
+<meta id="theme-check" name="theme-color" content="#FFFFFF">
+<link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png"></head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<!-- Page Wrapper-->
+<div id="page">
+
+    <!-- Footer Bar -->
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
+        <a href="page-games.html" onclick="initGames()"><i class="bi bi-controller"></i><span>遊戲</span></a>
+        <a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper"></i><span>新聞</span></a>
+        <a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>首頁</span></a>
+        <a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt"></i><span>帳務資訊</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>更多</span></a>
+    </div>
+
+    <!-- Page Content - Only Page Elements Here-->
+    <div class="page-content footer-clear">
+
+        <!-- Page Title-->
+        <div class="pt-3">
+            <div class="page-title d-flex">
+                <div class="align-self-center">
+                    <a href="index.html" onclick="init()" data-back-button class="me-3 ms-0 icon icon-xxs bg-theme rounded-s shadow-m">
+                        <i class="bi bi-chevron-left color-theme font-14"></i>
+                    </a>
+                </div>
+                <div class="align-self-center me-auto">
+                    <h1 class="color-theme mb-0 font-18">創建商品</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-style">
+            <div class="content">
+                <h4>商品名稱</h4>
+                <p class="mb-0">
+                    請輸入商品名稱
+                </p>
+                <div class="form-custom form-label form-icon mb-3">
+                    <i class="bi bi-gift font-12"></i>
+                    <input type="text" class="form-control rounded-xs" id="productTitle" placeholder="商品名稱" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" required />
+                    <label for="adTitle" class="color-theme">商品名稱</label>
+                    <div class="valid-feedback">The URL looks good!<!-- text for field valid--></div>
+                    <div class="invalid-feedback">Website is missing or is invalid.</div>
+                </div>
+
+                <div class="divider mt-4"></div>
+
+                <h4>商品封面</h4>
+                <p class="mb-0">
+                    此張圖片將會由機器人推播至選定的群組內
+                </p>
+                <div class="file-data">
+                    <img id="image-data" class="img-fluid rounded-s" alt="img">
+                    <span class="upload-file-name d-block text-center"
+                          data-text-before="<i class='bi bi-check-circle-fill color-green-dark pe-2'></i> 圖片:"
+                          data-text-after=" 已經準備好了.">
+                    </span>
+                    <div>
+                        <br>
+                        <input type="file" class="upload-file" accept="image/*">
+                        <p class="btn btn-full btn-m text-uppercase font-700 rounded-s upload-file-text gradient-highlight shadow-bg shadow-bg-xs no-click">上傳商品封面</p>
+                    </div>
+                </div>
+
+                <div class="divider mt-4"></div>
+
+                <h4>商品文案</h4>
+                <p class="mb-0">
+                    在此輸入的文字內容將會顯示在商品封面下方
+                </p>
+                <div class="form-custom form-label form-icon mb-3">
+                    <i class="bi bi-pencil-fill font-12"></i>
+                    <textarea class="form-control rounded-xs" placeholder="請輸入商品文案" id="adText"></textarea>
+                    <label for="adText" class="color-theme">商品文案</label>
+                    <div class="valid-feedback">HTML5 does not offer Dates Field Validation!<!-- text for field valid--></div>
+                </div>
+                <a href="#" data-trigger-switch="switch-html-enabled" class="demo-icons d-flex pb-1">
+					<div class="align-self-center">
+						<h5 class="mb-0 font-13 opacity-80">啟用 HTML 格式</h5>
+					</div>
+					<div class="align-self-center ms-auto">
+						<div class="form-switch ios-switch switch-green switch-xs">
+							<input type="checkbox" class="ios-input" id="switch-html-enabled" checked>
+							<label class="custom-control-label" for="switch-html-enabled"></label>
+						</div>
+					</div>
+				</a>
+
+                <div class="divider mt-4"></div>
+
+                <h4>連結</h4>
+                <p class="mb-0">
+                    請在此設定要附加的連結，最多可設定 2 個連結，請以 https:// 開頭，屆時將會出現在購買按鈕下方，若不需要請留空
+                </p>
+                <br>
+                <div class="form-custom form-label form-icon mb-3">
+                    <i class="bi bi-menu-button-fill font-12"></i>
+                    <input type="text" class="form-control rounded-xs" id="adButton1" placeholder="按鈕 1 文字" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" required />
+                    <label for="adButton1" class="color-theme">按鈕文字 - 1</label>
+                    <div class="valid-feedback">The URL looks good!<!-- text for field valid--></div>
+                    <div class="invalid-feedback">Website is missing or is invalid.</div>
+                </div>
+                <div class="form-custom form-label form-icon mb-3">
+                    <i class="bi bi-globe2 font-12"></i>
+                    <input type="url" class="form-control rounded-xs" id="adUrl1" placeholder="https://www.google.com" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" required />
+                    <label for="adUrl1" class="color-theme">連結 - 1</label>
+                    <div class="valid-feedback">The URL looks good!<!-- text for field valid--></div>
+                    <div class="invalid-feedback">Website is missing or is invalid.</div>
+                </div>
+                <div class="form-custom form-label form-icon mb-3">
+                    <i class="bi bi-menu-button-fill font-12"></i>
+                    <input type="text" class="form-control rounded-xs" id="adButton2" placeholder="按鈕 2 文字" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" required />
+                    <label for="adButton2" class="color-theme">按鈕文字 - 2</label>
+                    <div class="valid-feedback">The URL looks good!<!-- text for field valid--></div>
+                    <div class="invalid-feedback">Website is missing or is invalid.</div>
+                </div>
+                <div class="form-custom form-label form-icon mb-3">
+                    <i class="bi bi-globe2 font-12"></i>
+                    <input type="url" class="form-control rounded-xs" id="adUrl2" placeholder="https://www.google.com" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" required />
+                    <label for="adUrl2" class="color-theme">連結 - 2</label>
+                    <div class="valid-feedback">The URL looks good!<!-- text for field valid--></div>
+                    <div class="invalid-feedback">Website is missing or is invalid.</div>
+                </div>
+
+                <div class="divider mt-4"></div>
+
+                <h4>商品價格設定設定</h4>
+                <p class="mb-0">
+                    此處可以設定商品的價格，每件商品我們將會收取 5% 的手續費，請注意商品價格設定後無法修改。
+                </p>
+
+                <h6 class="opacity-40">商品金額</h6>
+				<div class="row">
+					<div class="col-4">
+						<div class="stepper rounded-s">
+							<a href="#" class="stepper-sub float-start"><i class="bi bi-dash font-18 color-theme opacity-40"></i></a>
+							<input id="productAmount" type="number" class="color-theme" min="1" max="99" value="1">
+							<a href="#" class="stepper-add float-end"><i class="bi bi-plus font-18 color-theme opacity-40"></i></a>
+						</div>
+					</div>
+                    <div class="col-4">
+                        <b>USDT</b>
+                    </div>
+				</div>
+                <br>
+                <div class="border border-blue-dark rounded-s overflow-hidden">
+                    <table class="table color-theme border-blue-dark mb-0">
+                        <thead class="rounded-s bg-blue-dark border-l">
+                            <tr class="color-white">
+                                <th scope="col"><h5 class="color-white font-15 mb-0">項目</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0">單價</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0">數量</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0">總額</h5></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>原始預算</strong></td>
+                                <td class="sourcePerPacket"></td>
+                                <td class="redpacketCount"></td>
+                                <td class="redpacketAmount"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>5% 手續費</strong></td>
+                                <td class="redpacketFeeFrom" colspan="2"></td>
+                                <td class="redpacketFee"></td>
+                            </tr>
+                            <tr>
+                                <td ><strong>實際發放</strong></td>
+                                <td class="realEachAmount"></td>
+                                <td class="redpacketCount"></td>
+                                <td class="realTotalAmount"></td>
+                            </tr>
+                            <tr>
+                                <td class="border-0"><strong>零頭損耗</strong></td>
+                                <td class="border-0 eatAmount" colspan="3"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div id="lowAlert" style="display: none" class="card card-style bg-red-dark alert-dismissible show shadow-bg shadow-bg-m fade p-0">
+                    <div class="content my-3">
+                        <div class="d-flex">
+                            <div class="align-self-center no-click">
+                                <i class="bi bi-emoji-frown-fill font-36 d-block color-white"></i>
+                            </div>
+                            <div class="align-self-center no-click">
+                                <p class="color-white mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
+                                    實際發放金額，每包至少需要達到 0.01 <b>USDT</b><br> 請降低紅包數量獲增加預算以符合規定.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divider mt-4"></div>
+
+                <h4>選擇投放群組</h4>
+                <p class="mb-0">
+                    請勾選你要投放的群組(系統僅顯示人數大於100人的群組)
+                </p>
+                <div class="border border-blue-dark rounded-s overflow-hidden">
+                    <table class="table color-theme border-blue-dark mb-0">
+                        <thead class="rounded-s bg-blue-dark border-l">
+                            <tr class="color-white">
+                                <th scope="col"><h5 class="color-white font-15 mb-0">投放</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0">群組名稱</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0">人數</h5></th>
+                            </tr>
+                        </thead>
+                        <tbody id="groupTable">
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div id="selectedGroupInfo" style="width:100%;text-align: center;">目前已選擇 0 群組，共觸及 0 人</div>
+                <div id="groupPagination" style="width:100%;text-align: center;"></div>
+
+                <div class="divider mt-4"></div>
+
+                <h4>設定投放時間及頻率</h4>
+                <br>
+                <div class="form-custom form-label form-icon mb-3">
+                    <i class="bi bi-alarm font-13"></i>
+                    <select id="selectFrequence" class="form-select rounded-xs" id="redpacketFrequence" aria-label="Floating label select example">
+                        <option value="15" selected>每 15 分鐘投放</option>
+                        <option value="30">每 30 分鐘投放</option>
+                        <option value="60">每 1 小時投放</option>
+                        <option value="120">每 2 小時投放</option>
+                        <option value="240">每 4 小時投放</option>
+                        <option value="480">每 8 小時投放</option>
+                        <option value="720">每 12 小時投放</option>
+                        <option value="1440">每日投放</option>
+                    </select>
+                    <label for="redpacketFrequence" class="color-theme">紅包發放頻率</label>
+                    <div class="valid-feedback">HTML5 does not offer Dates Field Validation!<!-- text for field valid--></div>
+                </div>
+
+                <div id="cronTime" style="display: none" class="form-custom form-label form-icon mb-3">
+                    <i class="bi bi-clock font-12"></i>
+                    <input type="time" class="form-control rounded-xs" id="redpacketTime" value="13:30:30" />
+                    <label for="redpacketTime" class="color-theme">每日投放時間</label>
+                    <div class="valid-feedback">HTML5 does not offer Dates Field Validation!<!-- text for field valid--></div>
+                </div>
+
+                <div class="divider mt-4"></div>
+
+                <h4>成本試算</h4>
+
+                <div class="border border-blue-dark rounded-s overflow-hidden">
+                    <table class="table color-theme border-blue-dark mb-0">
+                        <thead class="rounded-s bg-blue-dark border-l">
+                            <tr class="color-white">
+                                <th scope="col"><h5 class="color-white font-15 mb-0">項目</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0">描述</h5></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>每日投放次數</strong></td>
+                                <td class="dailyCount">96 次</td>
+                            </tr>
+                            <tr>
+                                <td><strong>每次投放成本</strong></td>
+                                <td class="eachTotalAmount"></td>
+                            </tr>
+                            <tr>
+                                <td class="border-0"><strong>每日投放成本</strong></td>
+                                <td class="border-0 dailyTotalAmount"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="divider mt-2 mb-4"></div>
+
+                <a id="btnCreateAd" href="#" onclick="createAd()" style="display: none" data-bs-dismiss="offcanvas" class="btn btn-full gradient-highlight shadow-bg shadow-bg-s">新增廣告行銷</a>
+
+                <!-- End of Tab Wrapper-->
+            </div>
+        </div>
+
+    </div>
+    <!-- End of Page Content-->
+
+    <!-- Off Canvas and Menu Elements-->
+    <!-- Always outside the Page Content-->
+
+    <div id="ad-warning" hasClick="false" style="width:320px" class="offcanvas offcanvas-modal offcanvas-detached rounded-m">
+		<div class="content text-center">
+			<i style="font-size:65px;" class="scale-box bi bi-x-circle-fill color-red-dark shadow-s rounded-circle p-0 mt-3 mb-3 d-inline-block"></i>
+			<h1 id="ad-warning-title" class="pt-3 font-28">Transfer Failed</h1>
+			<p id="ad-warning-content" class="font-14 mb-0">
+				There was an error processing your transfer. Please contact support for more details.
+			</p>
+			<a id="adAlertConfirm" href="#" class="btn btn-full gradient-red shadow-bg shadow-bg-xs">確定</a>
+            <a style="display:none" href="#" data-bs-toggle="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-xs">Okay</a>
+		</div>
+	</div>
+
+    <div id="ad-info" hasClick="false" style="width:320px" class="offcanvas offcanvas-modal offcanvas-detached rounded-m">
+		<div class="content text-center">
+			<i style="font-size:65px;" class="scale-box bi bi-info-circle-fill color-blue-dark shadow-s rounded-circle p-0 mt-3 mb-3 d-inline-block"></i>
+			<h1 id="ad-info-title" class="pt-3 font-28">adInfoConfirm</h1>
+			<p id="ad-info-content" class="font-14 mb-0">
+				There was an error processing your transfer. Please contact support for more details.
+			</p>
+			<a id="adInfoConfirm" href="#" class="btn btn-full gradient-blue shadow-bg shadow-bg-xs">確定</a>
+            <a style="display:none" href="#" data-bs-toggle="offcanvas" class="btn btn-full gradient-blue shadow-bg shadow-bg-xs">Okay</a>
+		</div>
+	</div>
+
+</div>
+<!-- End of Page ID-->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="scripts/bootstrap.min.js"></script>
+<script src="scripts/custom.js"></script>
+<script src="scripts/ad.js?t=123"></script>
+<script>
+    $(document).ready(function() {
+        initProductCreatePage();
+    });
+</script>
+</body>

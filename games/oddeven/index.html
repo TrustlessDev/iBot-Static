@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>哈希大小單雙</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div>
+    <div>
+      <canvas></canvas>
+    </div>
+    <div class="bets">
+      <a id="bet1"><img width="64" src="images/bet01-on.png"/></a>
+      <a id="bet2"><img width="64" src="images/bet05-off.png"/></a>
+      <a id="bet3"><img width="64" src="images/bet1-off.png"/></a>
+      <a id="bet4"><img width="64" src="images/bet3-off.png"/></a>
+    </div>
+    <div class="go">
+      <a href="javascript:startBet('big')"><img width="64" src="images/big.png"/></a>
+      <a href="javascript:startBet('small')"><img width="64" src="images/small.png"/></a>
+      <a href="javascript:startBet('odd')"><img width="64" src="images/odd.png"/></a>
+      <a href="javascript:startBet('even')"><img width="64" src="images/even.png"/></a>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+  <script>
+    let bets = 0.1;
+    let id = 0;
+    let telegramId = "";
+    let rnd = "";
+    let betLock = false;
+    /*
+    async function loadJS(url) {
+      return new Promise((resolve, reject) => {
+        let script = document.createElement('script');
+        script.src = url + "?t=" + new Date().getTime();
+        script.onload = () => {
+          resolve();
+        };
+        document.head.appendChild(script);
+      });
+    }
+    */
+    /*
+    async function loadCSS(url) {
+      return new Promise((resolve, reject) => {
+          let link = document.createElement('link');
+          link.href = url + "?t=" + new Date().getTime();
+          link.rel = 'stylesheet';
+          link.onload = () => {
+              resolve();
+          };
+          link.onerror = () => {
+              reject(new Error(`Style load error for resource: ${url}`));
+          };
+          document.head.appendChild(link);
+      });
+    }
+    */
+
+    async function init() {
+      //await loadCSS("style.css");
+      //await loadJS("script.js");
+      for(let i=1;i<=4;i++) {
+        $("#bet" + i).click(() => {
+          toggleBetsOn(i);
+        });
+      }
+      var urlParams = new URLSearchParams(window.location.search);
+			id = urlParams.get('id');
+			telegramId = urlParams.get('telegramId');
+      rnd = urlParams.get('random');
+    }
+
+    function startBet(rst) {
+      if(betLock) return;
+      betLock = true;
+      let wordMap = {
+        big: "大",
+        small: "小",
+        odd: "單",
+        even: "雙"
+      };
+      let play = true;//confirm("確定要以 " + bets + " USDT 下注 " + wordMap[rst] + " 嗎？");
+      if(play) {
+        animator.start();
+        $.ajax({
+          url: "/api/oddEvenBet",
+          type: "POST",
+          data: {
+            telegramId: telegramId,
+            rnd: rnd,
+            stake: bets,
+            option: rst
+          },
+          success: (res) => {
+            if(res.success) {
+              animator.setValue(res.lastSixHash, res);
+              rnd = res.rnd;
+              betLock = false;
+            } else {
+              animator.error(res.message);
+            }
+          }
+        });
+      }
+    }
+
+    function toggleBetsOn(bet) {
+      let betVals = [0.1, 0.5, 1, 3];
+      let imgPath = ["images/bet01-on.png", "images/bet05-on.png", "images/bet1-on.png", "images/bet3-on.png"];
+      toggleAllBetsOff();
+      bets = betVals[bet-1];
+      $("#bet" + bet + " img").attr("src", imgPath[bet-1]);
+    }
+
+    function toggleAllBetsOff() {
+      $("#bet1 img").attr("src", "images/bet01-off.png");
+      $("#bet2 img").attr("src", "images/bet05-off.png");
+      $("#bet3 img").attr("src", "images/bet1-off.png");
+      $("#bet4 img").attr("src", "images/bet3-off.png");
+    }
+
+    window.onload = init;
+    
+  </script>
+</body>
+</html>
