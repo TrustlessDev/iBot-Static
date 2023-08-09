@@ -115,7 +115,8 @@
 
     async function initSite() {
 			let url = new URL(location.href)
-			let resp = await fetch("scripts/site.json", {
+
+			let resp = await fetch("https://" + url.host + "/scripts/site.json", {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
