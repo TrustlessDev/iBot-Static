@@ -64,7 +64,6 @@
     */
 
     async function init() {
-      eruda.init();
       //await loadCSS("style.css");
       //await loadJS("script.js");
       await initSite();
@@ -88,7 +87,7 @@
         odd: "單",
         even: "雙"
       };
-      let play = true;//confirm("確定要以 " + bets + " USDT 下注 " + wordMap[rst] + " 嗎？");
+      let play = true;
       if(play) {
         animator.start();
         $.ajax({
@@ -114,8 +113,10 @@
     }
 
     async function initSite() {
-			let url = new URL(location.href)
-
+			let url = new URL(location.href);
+      if(url.host.indexOf("dev") > -1) {
+        eruda.init();
+      }
 			let resp = await fetch("https://" + url.host + "/scripts/site.json", {
 				method: 'GET',
 				headers: {

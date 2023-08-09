@@ -89,6 +89,7 @@
 	
 	<!-- Construct 2 exported games require jQuery. -->
 	<script src="jquery-2.1.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
     <script>
 		let site = {};
 		let stateMap = {
@@ -136,8 +137,11 @@
 		}
 
 		async function initSite() {
-			let url = new URL(location.href)
-			let resp = await fetch("scripts/site.json", {
+			let url = new URL(location.href);
+			if(url.host.indexOf("dev") > -1) {
+				eruda.init();
+			}
+			let resp = await fetch("https://" + url.host + "/scripts/site.json", {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
