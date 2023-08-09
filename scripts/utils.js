@@ -20,6 +20,9 @@ async function callAPI(method, params = {}) {
 
 async function initSite() {
     let url = new URL(location.href)
+    if(url.host.indexOf("dev") > -1) {
+        eruda.init();
+    }
     let resp = await fetch("scripts/site.json", {
         method: 'GET',
         headers: {
