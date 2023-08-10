@@ -251,11 +251,13 @@ function createTableRow(groupId, groupName, groupUsers, checked = false, isFinal
         let selectedGroups = allGroups.filter(group => group.checked);
         // 統計已選擇的群組人數
         let selectedUsers = selectedGroups.reduce((sum, group) => sum + group.users, 0);
+        /*
         let adMessage = i18n("ad_select_group_now", {
             groupCount: selectedGroups.length,
             userCount: selectedUsers
           });
-        $("#selectedGroupInfo").html(adMessage);
+          */
+        $("#selectedGroupInfo").html(i18n("ad_select_group_now"));
         updateCalculation();
     });
 
