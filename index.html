@@ -260,47 +260,49 @@
     init();
 
     async function init() {
-      await loadJS("scripts/utils.js");
-      await initSite();
-      await initOffCanvasEvent();
-      await refreshNews();
-      await initLanguages();
-      
-      document.querySelector("#user-identity").innerHTML = Telegram.WebApp.initDataUnsafe.user.first_name + " " + Telegram.WebApp.initDataUnsafe.user.last_name;
-      userData = (await webLogin()).user;
-      let wallets = userData.wallets;
-      for (let i = 0; i < wallets.length; i++) {
-        let wallet = wallets[i];
-        let balance = parseFloat(wallet.balance);
-        let usdtValue = parseFloat((balance * wallet.price).toFixed(2));
-        let card = createIndexCardElement(
-          wallet.id,
-          wallet.name,
-          wallet.symbol,
-          wallet.image,
-          wallet.chainSupported,
-          parseFloat(balance.toFixed(8)),
-          usdtValue
-        );
-        $("#wallets").append(card);
-      }
-      await initFriendsBlock();
-      initSplider();
-      initHomeCharts();
-      initEventHandler();
-      // init transfer type
-      $("#transferType").on("change", function () {
-        let val = $("#transferType").val();
-        if (val == "2") {
-          $(".transferOut").hide();
-        } else {
-          $(".transferOut").show();
+      setTimeout(async function() {
+        await loadJS("scripts/utils.js");
+        await initSite();
+        await initOffCanvasEvent();
+        await refreshNews();
+        await initLanguages();
+        
+        document.querySelector("#user-identity").innerHTML = Telegram.WebApp.initDataUnsafe.user.first_name + " " + Telegram.WebApp.initDataUnsafe.user.last_name;
+        userData = (await webLogin()).user;
+        let wallets = userData.wallets;
+        for (let i = 0; i < wallets.length; i++) {
+          let wallet = wallets[i];
+          let balance = parseFloat(wallet.balance);
+          let usdtValue = parseFloat((balance * wallet.price).toFixed(2));
+          let card = createIndexCardElement(
+            wallet.id,
+            wallet.name,
+            wallet.symbol,
+            wallet.image,
+            wallet.chainSupported,
+            parseFloat(balance.toFixed(8)),
+            usdtValue
+          );
+          $("#wallets").append(card);
         }
-      });
+        await initFriendsBlock();
+        initSplider();
+        initHomeCharts();
+        initEventHandler();
+        // init transfer type
+        $("#transferType").on("change", function () {
+          let val = $("#transferType").val();
+          if (val == "2") {
+            $(".transferOut").hide();
+          } else {
+            $(".transferOut").show();
+          }
+        });
 
-      initFootBar();
-      mappingLang();
-      closePreloader();
+        initFootBar();
+        mappingLang();
+        closePreloader();
+      }, 300);
     }
 
     async function initOffCanvasEvent() {
