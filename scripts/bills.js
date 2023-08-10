@@ -24,7 +24,7 @@ async function initBills() {
             }
         }
         initFootBar();
-        //mappingLang();
+        mappingLang();
         closePreloader();
     }, 300);
 }
