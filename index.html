@@ -317,6 +317,8 @@
         loadMasterCoinList("#transferFriendCoin");
         $("#transferFriendCoin").change(function () {
           let masterCoinId = $("#transferFriendCoin").val();
+          let symbol = $("#transferFriendCoin").find("option:selected").text();
+          $("#transferFriendSymbol").text(symbol);
           loadChainList(masterCoinId, "#transferFriendChain");
         });
       });
