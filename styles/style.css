@@ -121,6 +121,7 @@ Item Support: https://www.enableds.com/contact/
 
 #ibot-preloader {
   background-color: #0f1117;
+  width: 100%;
 }
 
 /* Generating Color Pack*/
@@ -4551,6 +4552,11 @@ input[type=range] {
   bottom: 0px;
   z-index: 99999;
   transition: all 200ms ease;
+}
+
+#ibot-preloader img {
+  width: 100%;
+  height: auto; /* This will maintain the aspect ratio */
 }
 
 #preloader {
