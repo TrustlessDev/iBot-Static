@@ -99,10 +99,12 @@ function mappingLang() {
     }
 }
 
-function i18n(key) {
-    if(lang[key] ) {
-        return lang[key];
-    } else {
-        return "[ " + key + " ]";
+function i18n(key, replacements) {
+    let text = lang[key] || "[ " + key + " ]";
+    if (replacements) {
+        for (let placeholder in replacements) {
+            text = text.replace(`{${placeholder}}`, replacements[placeholder]);
+        }
     }
+    return text;
 }
