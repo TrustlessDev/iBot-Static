@@ -59,6 +59,7 @@ function mappingLang() {
         let text = i18n(i18nTag);
         // 判斷元素類型
         if(i18nList[i].tagName == "INPUT") {
+            alert(text);
             i18nList[i].placeholder = text;
         } else {
             i18nList[i].innerHTML = text;
