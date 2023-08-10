@@ -255,6 +255,7 @@ function createTableRow(groupId, groupName, groupUsers, checked = false, isFinal
             groupCount: selectedGroups.length,
             userCount: selectedUsers
           });
+          console.log("adMessage: ", adMessage);
         $("#selectedGroupInfo").html(adMessage);
         updateCalculation();
     });
