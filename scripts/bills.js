@@ -1,29 +1,31 @@
 async function initBills() {
-    await initSite();
-    await initLanguages();
-    let rst = await callAPI("GetBills");
-    if(rst.success) {
-        let bills = rst.bills.sort((a, b) => {
-            return new Date(b.date) - new Date(a.date);
-        })
-        $("#tab-sumary").empty();
-        $("#tab-in").empty();
-        $("#tab-out").empty();
-        for(let bill of bills) {
-            let sumary = createBillElement(bill.title, bill.amount, bill.symbol, bill.date, bill.hash, bill.txUrl);
-            $("#tab-sumary").append(sumary);
-            if(bill.amount >= 0) {
-                let inBill = createBillElement(bill.title, bill.amount, bill.symbol, bill.date, bill.hash, bill.txUrl);
-                $("#tab-in").append(inBill);
-            } else {
-                let outBill = createBillElement(bill.title, bill.amount, bill.symbol, bill.date, bill.hash, bill.txUrl);
-                $("#tab-out").append(outBill);
+    setTimeout(async function() {
+        await initSite();
+        await initLanguages();
+        let rst = await callAPI("GetBills");
+        if(rst.success) {
+            let bills = rst.bills.sort((a, b) => {
+                return new Date(b.date) - new Date(a.date);
+            })
+            $("#tab-sumary").empty();
+            $("#tab-in").empty();
+            $("#tab-out").empty();
+            for(let bill of bills) {
+                let sumary = createBillElement(bill.title, bill.amount, bill.symbol, bill.date, bill.hash, bill.txUrl);
+                $("#tab-sumary").append(sumary);
+                if(bill.amount >= 0) {
+                    let inBill = createBillElement(bill.title, bill.amount, bill.symbol, bill.date, bill.hash, bill.txUrl);
+                    $("#tab-in").append(inBill);
+                } else {
+                    let outBill = createBillElement(bill.title, bill.amount, bill.symbol, bill.date, bill.hash, bill.txUrl);
+                    $("#tab-out").append(outBill);
+                }
+                
             }
-            
         }
-    }
-    initFootBar();
-    mappingLang();
+        initFootBar();
+        mappingLang();
+    }, 500);
 }
 
 function setTxDetail(txType, txHash, txDate, txAmount, txUrl) {
