@@ -1,7 +1,11 @@
 function initAdInfo(adId) {
-    setTimeout(function() {
+    setTimeout(async function() {
+        await initSite();
+        await initLanguages();
         loadAdRedPacketInfo(adId);
-    }, 1000);
+        initFootBar();
+        mappingLang();
+    }, 300);
 }
 
 async function loadAdRedPacketInfo(adId) {

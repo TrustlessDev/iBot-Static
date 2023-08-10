@@ -5,7 +5,7 @@ async function initNews() {
         refreshCategoriesNews();
         initFootBar();
         mappingLang();
-    }, 1000);
+    }, 300);
 }
 
 async function refreshCategoriesNews() {

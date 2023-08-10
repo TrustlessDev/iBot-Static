@@ -43,9 +43,10 @@ function initAdPage() {
         await loadGroups();
         // 初始化表格
         updateTable();
+        initFootBar();
         // 載入語言
         mappingLang();
-    }, 1000);
+    }, 300);
 }
 
 function updateCalculation() {

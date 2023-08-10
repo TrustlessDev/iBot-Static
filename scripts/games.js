@@ -5,7 +5,7 @@ async function initGames() {
         await getGames();
         initFootBar();
         mappingLang();
-    }, 1000);
+    }, 300);
 }
 
 async function startGame(gameId) {

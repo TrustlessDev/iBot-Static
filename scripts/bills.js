@@ -25,7 +25,7 @@ async function initBills() {
         }
         initFootBar();
         mappingLang();
-    }, 500);
+    }, 300);
 }
 
 function setTxDetail(txType, txHash, txDate, txAmount, txUrl) {

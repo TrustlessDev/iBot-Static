@@ -4,6 +4,8 @@ let addBudgetBsOffcanvas
 
 function initAdList() {
     setTimeout(async function() {
+        await initSite();
+        await initLanguages();
         $("#adList").empty();
         let adList = await callAPI("getAdList", {});
         if(adList.success) {
@@ -12,7 +14,9 @@ function initAdList() {
                 $("#adList").append(tmp);
             }
         }
-    }, 1000);
+        initFootBar();
+        mappingLang();
+    }, 300);
 }
 
 function createAdListCard(adId, title, status, budget, used) {
