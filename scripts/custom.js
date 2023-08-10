@@ -1,8 +1,3 @@
-//Removing Preloader
-setTimeout(function(){
-    var preloader = document.getElementById('preloader')
-    if(preloader){preloader.classList.add('preloader-hide');}
-},150);
 
 document.addEventListener('DOMContentLoaded', () => {
     'use strict'
