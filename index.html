@@ -562,7 +562,7 @@
       aColorTheme.setAttribute("data-bs-toggle", "collapse");
       aColorTheme.href = "#balance" + id;
       aColorTheme.setAttribute("aria-controls", "balance2");
-      aColorTheme.textContent = "點擊查看餘額";
+      aColorTheme.textContent = i18n("check_balance");
 
       divCollapse.className = "collapse";
       divCollapse.id = "balance" + id;
@@ -580,7 +580,7 @@
       strongBottom.className =
         " card-bottom no-click p-3 font-10 text-start color-white font-monospace";
       strongBottom.textContent =
-        chains.length > 1 ? "支援多鏈" : chains[0].address;
+        chains.length > 1 ? i18n("multi_chain") : chains[0].address;
       divOverlay.className = "card-overlay bg-black opacity-50";
 
       // Append elements
