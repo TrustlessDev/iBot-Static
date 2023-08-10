@@ -11,19 +11,19 @@ async function transfer() {
     }
     */
     if (transferAmount == "" || transferAmount == null || transferAmount == undefined || isNaN(transferAmount) || transferAmount <= 0) {
-        alert("請輸入轉帳金額");
+        alert(i18n("transfer_amount"));
         return;
     }
     if (transferTo == "" || transferTo == null || transferTo == undefined) {
-        alert("請輸入轉帳對象" + transferTo);
+        alert(i18n("transfer_to_who") + transferTo);
         return;
     }
     if (transferCoin == 0) {
-        alert("請選擇幣種");
+        alert(i18n("select_currency_prompt"));
         return;
     }
     if (transferChain == 0) {
-        alert("請選擇鏈");
+        alert(i18n("select_chain_prompt"));
         return;
     }
 
@@ -74,7 +74,7 @@ function loadMasterCoinList(selector) {
             if (data.success) {
                 var coinList = data.data;
                 $(selector).html("");
-                $(selector).append("<option value='0'>請選擇幣種</option>");
+                $(selector).append("<option value='0'>" + i18n("choose_currency") + "</option>");
                 for (var i = 0; i < coinList.length; i++) {
                     $(selector).append("<option value='" + coinList[i].id + "'>" + coinList[i].symbol + "</option>");
                 }
@@ -99,7 +99,7 @@ function loadChainList(masterCoinId, selector) {
             if (data.success) {
                 var chainList = data.data;
                 $(selector).html("");
-                $(selector).append("<option value='0'>請選擇鏈</option>");
+                $(selector).append("<option value='0'>" + i18n("select_chain_prompt") + "</option>");
                 for (var i = 0; i < chainList.length; i++) {
                     $(selector).append("<option value='" + chainList[i].chainId + "'>" + chainList[i].chainName + "</option>");
                 }
