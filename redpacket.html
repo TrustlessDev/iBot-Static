@@ -47,6 +47,7 @@
         // 設定 onload
         window.onload = async function () {
             await initSite();
+            await initLanguages();
             let uid = Telegram.WebApp.initDataUnsafe.user.id;
             var urlParams = new URLSearchParams(window.location.search);
 			var id = urlParams.get('tgWebAppStartParam');
@@ -75,6 +76,7 @@
                 playWrapper.style.display = "block";
                 return;
             }
+            await mappingLang();
         };
 
         async function initSite() {
