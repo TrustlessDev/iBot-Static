@@ -2,7 +2,7 @@
 <div class="menu-size" style="height:440px;">
     <div class="d-flex mx-3 mt-3 py-1">
         <div class="align-self-center">
-            <h1 class="mb-0">轉帳</h1>
+            <h1 class="mb-0 i18n" i18nTag="transfer">轉帳</h1>
         </div>
         <div class="align-self-center ms-auto">
             <a href="#" class= ps-4 shadow-0 me-n2" data-bs-dismiss="offcanvas">
@@ -26,40 +26,40 @@
         <div class="form-custom form-label form-icon">
             <i class="bi bi-wallet2 font-14"></i>
             <select id="transferCoin" class="form-select rounded-xs" aria-label="Floating label select example">
-                <option value='0'>請選擇幣種</option>
+                <option value='0' class="i18n" i18nTag="select_currency_prompt">請選擇幣種</option>
             </select>
-            <label for="transferCoin" class="form-label-always-active color-highlight font-11">選擇幣種</label>
+            <label for="transferCoin" class="form-label-always-active color-highlight font-11 i18n" i18nTag="choose_currency">選擇幣種</label>
         </div>
         <div class="pb-3"></div>
         <div class="form-custom form-label form-icon">
             <i class="bi bi-wallet2 font-14"></i>
             <select id="transferChain" class="form-select rounded-xs" aria-label="Floating label select example">
-                <option value='0'>請選擇鏈</option>
+                <option value='0' class="i18n" i18ntag="select_chain_prompt">請選擇鏈</option>
             </select>
-            <label for="transferChain" class="form-label-always-active color-highlight font-11">轉帳網路</label>
+            <label for="transferChain" class="form-label-always-active color-highlight font-11 i18n" i18nTag="transfer_network">轉帳網路</label>
         </div>
         <div class="transferOut pb-3"></div>
         <div class="transferOut form-custom form-label form-icon">
             <i class="bi bi-code-square font-14"></i>
             <input id="transferTo" type="text" class="form-control rounded-xs" placeholder="TEfRauDXtL1TH6FsHEvGe3WWbToEF5xmLQ" />
-            <label for="transferTo" class="form-label-always-active color-highlight font-11">收款帳戶</label>
-            <span class="font-10">(必填)</span>
+            <label for="transferTo" class="form-label-always-active color-highlight font-11 i18n" i18ntag="recipient_account">收款帳戶</label>
+            <span class="font-10 i18n" i18nTag="required_field">(必填)</span>
         </div>
         <div class="pb-3"></div>
         <div class="form-custom form-label form-icon">
             <i class="bi bi-code-square font-14"></i>
             <input id="transferAmount" type="number" value="1" class="form-control rounded-xs" placeholder="1.00"/>
-            <label for="transferAmount" class="form-label-always-active color-highlight font-11">金額</label>
-            <span class="font-10">( 幣別: USDT )</span>
+            <label for="transferAmount" class="form-label-always-active color-highlight font-11 i18n" i18nTag="amount">金額</label>
+            <span class="font-10 i18n" i18nTag="currency_label">( 幣別: USDT )</span>
         </div>
         <div class="pb-2"></div>
         <div class="form-check form-check-custom">
             <input class="form-check-input" type="checkbox" name="type" value="" id="c2">
-            <label class="form-check-label" for="c2">我接受轉帳 <a href="#">服務條款</a></label>
+            <label class="form-check-label i18n" for="c2" i18nTag="accept_transfers">我接受轉帳 <a href="#" class="i18n" i18nTag="terms_of_service">服務條款</a></label>
             <i class="is-checked color-green-dark font-14 bi bi-check-circle-fill"></i>
             <i class="is-unchecked color-green-dark font-14 bi bi-circle"></i>
         </div>
     
     </div>
-    <a onclick="transfer()" class="mx-3 mb-3 btn btn-full gradient-green shadow-bg shadow-bg-s">轉帳</a>
+    <a onclick="transfer()" class="mx-3 mb-3 btn btn-full gradient-green shadow-bg shadow-bg-s i18n" i18nTag="transfer">轉帳</a>
 </div>
