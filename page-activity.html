@@ -24,11 +24,11 @@
     
     <!-- Footer Bar -->
     <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
-        <a href="page-games.html" onclick="initGames()"><i class="bi bi-controller"></i><span>遊戲</span></a>
-        <a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper"></i><span>新聞</span></a>
-        <a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>首頁</span></a>
-        <a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt"></i><span>帳務資訊</span></a>
-        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>更多</span></a>
+        <a href="page-games.html" onclick="initGames()"><i class="bi bi-controller i18n" i18nTag="gaming"></i><span>遊戲</span></a>
+        <a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper i18n" i18nTag="news"></i><span>新聞</span></a>
+        <a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill i18n" i18nTag="index"></i><span>首頁</span></a>
+        <a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt i18n" i18nTag="bills"></i><span>帳務資訊</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots i18n" i18nTag="more"></i><span>更多</span></a>
     </div>
 
     <!-- Page Content - Only Page Elements Here-->
@@ -38,8 +38,8 @@
         <div class="pt-3">
             <div class="page-title d-flex">
                 <div class="align-self-center me-auto">
-                    <p class="color-highlight">隨時掌握最新快訊</p>
-                    <h1 class="color-theme">區塊鏈新聞</h1>
+                    <p class="color-highlight i18n" i18nTag="keep_up_to_latest_updates">隨時掌握最新快訊</p>
+                    <h1 class="color-theme i18n" i18nTag="blockchain_news">區塊鏈新聞</h1>
                 </div>
             </div>
         </div>
@@ -49,9 +49,9 @@
             <div class="content">
                 <div class="tabs tabs-pill" id="tab-group-2">
                     <div class="tab-controls rounded-m p-1 overflow-visible">
-                        <a class="font-13 rounded-m shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#recent" aria-expanded="true">最新</a>
-                        <a class="font-13 rounded-m shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#crypto" aria-expanded="false">加密貨幣市場</a>
-                        <a class="font-13 rounded-m shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#market" aria-expanded="false">市場分析</a>
+                        <a class="font-13 rounded-m shadow-bg shadow-bg-s i18n" data-bs-toggle="collapse" href="#recent" aria-expanded="true" i18nTag="new">最新</a>
+                        <a class="font-13 rounded-m shadow-bg shadow-bg-s i18n" data-bs-toggle="collapse" href="#crypto" aria-expanded="false" i18nTag="crypto_market">加密貨幣市場</a>
+                        <a class="font-13 rounded-m shadow-bg shadow-bg-s i18n" data-bs-toggle="collapse" href="#market" aria-expanded="false" i18nTag="market_analysis">市場分析</a>
                     </div>
                     <div class="mt-3"></div>
                     <!-- Tab Group 1 -->
