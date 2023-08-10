@@ -24,23 +24,27 @@ function closePreloader() {
 async function initSite() {
     $("#ibot-preloader h2").html("Loading...");
     $("#ibot-preloader").show();
+    console.log(1);
     try {
         let url = new URL(location.href)
         if(url.host.indexOf("dev") > -1) {
             eruda.init();
         }
+        console.log(2);
         let resp = await fetch("scripts/site.json", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             }
         });
+        console.log(3);
         let data = await resp.json();
         if(data[url.host]) {
             site = data[url.host];
         } else {
             site = data["127.0.0.1"];
         }
+        console.log(4);
         // Load Site Info
         let resp2 = await fetch("https://" + site.apiUrl + "/site", {
             method: 'GET',
@@ -48,6 +52,7 @@ async function initSite() {
                 'Content-Type': 'application/json',
             }
         });
+        console.log(5);
         siteInfo = await resp2.json();
     } catch(e) {
         $("#ibot-preloader h2").html("Network Error");
