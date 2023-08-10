@@ -37,7 +37,7 @@ async function transfer() {
     Telegram.WebApp.close();
 }
 
-function loadMasterCoinList() {
+function loadMasterCoinList(selector) {
     $.ajax({
         url: "https://" + site.apiUrl + "/api/coin/list",
         type: "POST",
@@ -45,10 +45,10 @@ function loadMasterCoinList() {
         success: function (data) {
             if (data.success) {
                 var coinList = data.data;
-                $("#transferCoin").html("");
-                $("#transferCoin").append("<option value='0'>請選擇幣種</option>");
+                $(selector).html("");
+                $(selector).append("<option value='0'>請選擇幣種</option>");
                 for (var i = 0; i < coinList.length; i++) {
-                    $("#transferCoin").append("<option value='" + coinList[i].id + "'>" + coinList[i].symbol + "</option>");
+                    $(selector).append("<option value='" + coinList[i].id + "'>" + coinList[i].symbol + "</option>");
                 }
             }
         },

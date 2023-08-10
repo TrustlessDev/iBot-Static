@@ -304,7 +304,7 @@
       var transferMenu = document.getElementById('menu-transfer')
       transferMenu.addEventListener('shown.bs.offcanvas', function () {
         Telegram.WebApp.expand();
-        loadMasterCoinList();
+        loadMasterCoinList("#transferCoin");
         $("#transferCoin").change(function () {
           let masterCoinId = $("#transferCoin").val();
           loadChainList(masterCoinId, "#transferChain");
@@ -314,7 +314,7 @@
       var transferFriendsMenu = document.getElementById('menu-friends-transfer')
       transferFriendsMenu.addEventListener('shown.bs.offcanvas', function () {
         Telegram.WebApp.expand();
-        loadMasterCoinList();
+        loadMasterCoinList("#transferFriendCoin");
         $("#transferFriendCoin").change(function () {
           let masterCoinId = $("#transferFriendCoin").val();
           loadChainList(masterCoinId, "#transferFriendChain");
