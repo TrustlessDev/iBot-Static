@@ -37,6 +37,34 @@ async function transfer() {
     Telegram.WebApp.close();
 }
 
+async function transferToFriend() {
+    let transferAmount = $("#transferFriendAmount").val();
+    let transferTo = $("#transferFriendTo").val();
+    let transferCoin = $("#transferFriendCoin").val();
+    let transferChain = $("#transferFriendChain").val();
+
+    if (transferAmount == "" || transferAmount == null || transferAmount == undefined || isNaN(transferAmount) || transferAmount <= 0) {
+        indexAlert("錯誤", "請輸入轉帳金額");
+        return;
+    }
+    if (transferCoin == 0) {
+        indexAlert("錯誤", "請選擇幣種");
+        return;
+    }
+    if (transferChain == 0) {
+        indexAlert("錯誤", "請選擇鏈");
+        return;
+    }
+
+    callAPI("Transfer", {
+        transferAmount: transferAmount,
+        transferTo: transferTo,
+        transferCoin: transferCoin,
+        transferChain: transferChain
+    });
+    Telegram.WebApp.close();
+}
+
 function loadMasterCoinList(selector) {
     $.ajax({
         url: "https://" + site.apiUrl + "/api/coin/list",

@@ -321,6 +321,10 @@
           $("#transferFriendSymbol").text(symbol);
           loadChainList(masterCoinId, "#transferFriendChain");
         });
+        $("#transferFriendChain").change(function () {
+          let chainId = $("#transferFriendChain").val();
+          alert(chainId);
+        });
       });
 
       var requestMenu = document.getElementById('menu-request')

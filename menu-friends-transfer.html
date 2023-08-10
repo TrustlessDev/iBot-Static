@@ -32,10 +32,17 @@
             <label for="transferFriendChain" class="form-label-always-active color-highlight font-11 i18n" i18nTag="transfer_network">轉帳網路</label>
         </div>
         <div class="pb-3"></div>
+        <div class="transferOut form-custom form-label form-icon">
+            <i class="bi bi-code-square font-14"></i>
+            <input id="transferFriendTo" type="text" class="form-control rounded-xs" placeholder="" />
+            <label for="transferFriendTo" class="form-label-always-active color-highlight font-11 i18n" i18ntag="recipient_account">收款帳戶</label>
+            <span class="font-10 i18n" i18nTag="required_field">(必填)</span>
+        </div>
+        <div class="pb-3"></div>
         <div class="form-custom form-label form-icon">
             <i class="bi bi-code-square font-14"></i>
-            <input type="number" class="form-control rounded-xs" id="c4a" placeholder="150.00"/>
-            <label for="c4a" class="form-label-always-active color-highlight font-11 i18n" i18ntag="amount">金額</label>
+            <input type="number" class="form-control rounded-xs" id="transferFriendAmount" placeholder="10"/>
+            <label for="transferFriendAmount" class="form-label-always-active color-highlight font-11 i18n" i18ntag="amount">金額</label>
             <span id="transferFriendSymbol" class="font-10"></span>
         </div>
         <div class="pb-2"></div>
@@ -46,5 +53,5 @@
             <i class="is-unchecked color-green-dark font-14 bi bi-circle"></i>
         </div>
     </div>
-    <a href="#" data-bs-dismiss="offcanvas" class="mx-3 btn btn-full gradient-green shadow-bg shadow-bg-s">Transfer Funds</a>
+    <a onclick="transferToFriend()" href="#" data-bs-dismiss="offcanvas" class="mx-3 btn btn-full gradient-green shadow-bg shadow-bg-s">Transfer Funds</a>
 </div>
