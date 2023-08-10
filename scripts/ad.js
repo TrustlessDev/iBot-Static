@@ -62,7 +62,7 @@ function updateCalculation() {
         720: 2,
         1440: 1
     };
-    $(".dailyCount").text(times[frequence] + " 次");
+    $(".dailyCount").text(times[frequence] + i18n("times"));
     // 取得選擇的群組數
     let groupCount = allGroups.filter(group => group.checked).length;
     let amount = $("#redpacketAmount").val();
@@ -74,29 +74,29 @@ function updateCalculation() {
 
 async function createAd() {
     if(createAdLock) {
-        adAlert("錯誤", "請勿重複點擊");
+        adAlert(i18n(error), i18n("ad_do_not_click_repeatedly"));
     }
     createAdLock = true;
-    await adInfo("提示", "廣告建立中，請稍後...");
+    await adInfo(i18n("ad_tip"), i18n("ad_being_created"));
     let adData = getAdData();
     if(adData.adTitle == "") {
-        adAlert("錯誤", "請輸入廣告標題");
+        adAlert(i18n("error"), i18n("enter_ad_title"));
         return;
     }
     if(adData.groupIds.length == 0) {
-        adAlert("錯誤", "請選擇群組");
+        adAlert(i18n("error"), i18n("ad_select_group"));
         return;
     }
     if(adData.adContent == "") {
-        adAlert("錯誤", "請輸入廣告內容");
+        adAlert(i18n("error"), i18n("ad_enter_content"));
         return;
     }
     let rst = await callAPI("createAd", adData);
     if(rst.success) {
-        await adInfo("提示", "廣告建立成功");
+        await adInfo(i18n("ad_tip"), i18n("ad_created_successfully"));
         Telegram.WebApp.close();
     } else {
-        adAlert("錯誤", rst.message);
+        adAlert(i18n("error"), rst.message);
     }
     createAdLock = false;
 }
@@ -251,7 +251,7 @@ function createTableRow(groupId, groupName, groupUsers, checked = false, isFinal
         let selectedGroups = allGroups.filter(group => group.checked);
         // 統計已選擇的群組人數
         let selectedUsers = selectedGroups.reduce((sum, group) => sum + group.users, 0);
-        $("#selectedGroupInfo").html("目前已選擇 " + selectedGroups.length + " 群組，共觸及 " + selectedUsers + " 人");
+        $("#selectedGroupInfo").html(i18n("ad_select_group_now"));
         updateCalculation();
     });
 
@@ -315,12 +315,12 @@ function inputValidation() {
     var amount = $("#redpacketAmount").val();
     var limit = $("#redpacketLimit").val();
     if(amount < 1) {
-        adAlert("金額不可小於1");
+        adAlert(i18n("ad_amount_min"));
         amount = 1;
         $("#redpacketAmount").val(amount);
     }
     if(limit < 1) {
-        adAlert("數量不可小於1");
+        adAlert(i18n("ad_limit_min"));
         limit = 1;
         $("#redpacketLimit").val(limit);
     }
