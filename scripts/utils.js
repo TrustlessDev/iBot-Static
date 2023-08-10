@@ -1,5 +1,3 @@
-let lang = {};
-let site = {};
 
 async function callAPI(method, params = {}) {
     let initData = Telegram.WebApp.initData;
