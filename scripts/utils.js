@@ -22,31 +22,36 @@ function closePreloader() {
 }
 
 async function initSite() {
+    $("#ibot-preloader h2").html("Loading...");
     $("#ibot-preloader").show();
-    let url = new URL(location.href)
-    if(url.host.indexOf("dev") > -1) {
-        eruda.init();
-    }
-    let resp = await fetch("scripts/site.json", {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
+    try {
+        let url = new URL(location.href)
+        if(url.host.indexOf("dev") > -1) {
+            eruda.init();
         }
-    });
-    let data = await resp.json();
-    if(data[url.host]) {
-        site = data[url.host];
-    } else {
-        site = data["127.0.0.1"];
-    }
-    // Load Site Info
-    let resp2 = await fetch("https://" + site.apiUrl + "/site", {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
+        let resp = await fetch("scripts/site.json", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        let data = await resp.json();
+        if(data[url.host]) {
+            site = data[url.host];
+        } else {
+            site = data["127.0.0.1"];
         }
-    });
-    siteInfo = await resp2.json();
+        // Load Site Info
+        let resp2 = await fetch("https://" + site.apiUrl + "/site", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        siteInfo = await resp2.json();
+    } catch(e) {
+        $("#ibot-preloader h2").html("Network Error");
+    }
 }
 
 async function initLanguages() {
