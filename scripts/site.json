@@ -1,17 +1,17 @@
 {
     "127.0.0.1": {
-        "hello": "Dalton",
         "apiUrl": "api-dev.d8.run"
     },
     "127.0.0.1:8081": {
-        "hello": "Dalton",
         "apiUrl": "api-dev.d8.run"
     },
     "localhost:": {
         "hello": "kitty"
     },
     "ibot-dev.d8.run": {
-        "hello": "world",
+        "apiUrl": "api-dev.d8.run"
+    },
+    "evostake.d8.run": {
         "apiUrl": "api-dev.d8.run"
     }
 }
