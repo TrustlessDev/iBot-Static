@@ -58,31 +58,31 @@ function createAdListCard(adId, title, status, budget, used) {
     a.href = "#";
     a.onclick = async function() {
         let status = document.getElementById("adId" + adId).textContent;
-        if(status == "廣告已暫停") { // 進行 toggle
+        if(status == i18n("ad_stop")) { // 進行 toggle
             let cronStatus = await callAPI("startCron", {
                 adId: adId
             });
             if(cronStatus.success) {
-                document.getElementById("adId" + adId).textContent = "廣告投放中";
+                document.getElementById("adId" + adId).textContent = i18n("廣告投放中");
                 document.getElementById("adId" + adId).classList.remove("color-red-dark");
                 document.getElementById("adId" + adId).classList.add("color-green-dark");
                 document.getElementById("adIconId" + adId).classList.remove("bi-play-circle-fill", "color-green-dark");
                 document.getElementById("adIconId" + adId).classList.add("bi-pause-circle-fill", "color-red-dark");
             } else {
-                adAlert("失敗", cronStatus.message);
+                adAlert(i18n("failed"), cronStatus.message);
             }
         } else {
             let cronStatus = await callAPI("stopCron", {
                 adId: adId
             });
             if(cronStatus.success) {
-                document.getElementById("adId" + adId).textContent = "廣告已暫停";
+                document.getElementById("adId" + adId).textContent = i18n("ad_stop");
                 document.getElementById("adId" + adId).classList.remove("color-green-dark");
                 document.getElementById("adId" + adId).classList.add("color-red-dark");
                 document.getElementById("adIconId" + adId).classList.remove("bi-pause-circle-fill", "color-red-dark");
                 document.getElementById("adIconId" + adId).classList.add("bi-play-circle-fill", "color-green-dark");
             } else {
-                adAlert("失敗", cronStatus.message);
+                adAlert(i18n("failed"), cronStatus.message);
             }
             
         }
@@ -98,7 +98,9 @@ function createAdListCard(adId, title, status, budget, used) {
 
     let p = document.createElement('p');
     // 塞入 HTML
-    p.innerHTML = "廣告預算金額： " + budget + " <b>USDT</b> 目前已使用： " + used + " <b>USDT</b><br>剩餘預算金額： " + (budget - used) + " <b>USDT</b>";
+    let remainingBudget = budget - used;
+    p.innerHTML = i18n("ad_budget_info", {budget: budget, used: used});
+    p.innerHTML += i18n("remaining_budget", {remaining: remainingBudget});
 
     let cardBottom = document.createElement('div');
     cardBottom.className = "card-bottom mx-3 mb-3";
@@ -128,7 +130,7 @@ function createAdListCard(adId, title, status, budget, used) {
     let addButton = document.createElement('a');
     addButton.href = "#";
     addButton.className = "btn-full btn bg-green-dark";
-    addButton.textContent = "儲值";
+    addButton.textContent = i18n("ad_recharge");
     addButton.onclick = function() { 
         showAddBudget(adId);
     };
@@ -139,14 +141,14 @@ function createAdListCard(adId, title, status, budget, used) {
     let removeButton = document.createElement('a');
     removeButton.href = "#";
     removeButton.className = "btn-full btn bg-red-dark";
-    removeButton.textContent = "刪除";
+    removeButton.textContent = i18n("delete");
     removeButton.onclick = async function() { 
         let removeStatus = await callAPI("removeAd", { adId: adId });
         if(removeStatus.success) {
-            await adInfo("成功", "廣告已刪除");
+            await adInfo(i18n("success"), i18n("ad_delete"));
             initAdList(adId);
         } else {
-            await adAlert("失敗", removeStatus.message);
+            await adAlert(i18n("failed"), removeStatus.message);
         }
     };
 
@@ -156,18 +158,18 @@ function createAdListCard(adId, title, status, budget, used) {
     let infoButton = document.createElement('a');
     infoButton.href = "page-ad-info.html";
     infoButton.className = "btn-full btn bg-blue-dark";
-    infoButton.textContent = "效益";
+    infoButton.textContent = i18n("efficacy");
     infoButton.onclick = function() {
         initAdInfo(adId);
     };
 
     // Add specific classes and content based on status and percent
     if (status === "paused") {
-        h6.textContent = "廣告已暫停";
+        h6.textContent = i18n("ad_stop");
         h6.className += " color-red-dark";
         i.className += " bi-play-circle-fill color-green-dark";
     } else if (status === "playing") {
-        h6.textContent = "廣告投放中";
+        h6.textContent = i18n("ad_start");
         h6.className += " color-green-dark";
         i.className += " bi-pause-circle-fill color-red-dark";
     }
@@ -266,9 +268,9 @@ async function callAddBudget() {
     let amount = $("#budgetAmount").val();
     let addStatus = await callAPI("addAdBudget", { adId: this.AdId, amount: amount });
     if(addStatus.success) {
-        await adInfo("成功", "預算已添加");
+        await adInfo(i18n("success"), i18n("ad_budget_been_added"));
         initAdList();
     } else {
-        await adAlert("失敗", addStatus.message);
+        await adAlert(i18n("failed"), addStatus.message);
     }
 }

@@ -156,7 +156,7 @@ async function updatePersonalRepacketInfo() {
     $(".personalRealTotalAmount").html(parseFloat(realTotalAmount) + " <b>USDT</b>");
     $(".personalEatAmount").html(parseFloat(eatAmount) + " <b>USDT</b>");
     if(realEachAmount < 0.01) {
-        await indexAlert("發送金額過小", "每個紅包金額不得小於 0.01 USDT");
+        await indexAlert(i18n("amount_sent_too_small"), i18n("amount_sent_too_small_message"));
     }
 }
 

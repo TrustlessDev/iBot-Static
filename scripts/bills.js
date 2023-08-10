@@ -34,9 +34,9 @@ function setTxDetail(txType, txHash, txDate, txAmount, txUrl) {
     if(txHash.indexOf("internal:") == 0) {
         let realHash = txHash.replace("internal:", "");
         if(realHash == "0") {
-            $("#txHash").html("<a>轉帳至系統</a>");
+            $("#txHash").html(i18n("transfer_to_system"));
         } else {
-            $("#txHash").html("<a>內部交易</a>");
+            $("#txHash").html(i18n("internal_transfer"));
         }
     } else {
         $("#txHash").html("<a href='" + txUrl + "' target='_blank'>" + shorten(txHash, 6, 6) + "</a>");

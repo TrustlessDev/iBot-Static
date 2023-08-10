@@ -27,7 +27,7 @@ async function loadAdRedPacketInfo(adId) {
             let elem = createRedPacketListCard(redpacket.id, redpacket.chatName, redpacket.amount, redpacket.limit, redpacket.receivers, redpacket.users);
             $("#adInfoList").append(elem);
         }
-        $(".totalRedPacketInfo").text(totalReceivers + " / " + totalLimit + " 包");
+        $(".totalRedPacketInfo").text(totalReceivers + " / " + totalLimit + i18n("packets"));
         $(".totalRedPacketAmountInfo").text(totalReceiveAmount.toFixed(4) + " / " +  totalAmount.toFixed(4) + " USDT");
     }
 }
@@ -60,15 +60,16 @@ function createRedPacketListCard(redPacketId, title, amount, limit, received, us
     let h5 = document.createElement('h5');
     h5.id = "redpacketId" + redPacketId;
     h5.className = "mb-n1 opacity-80 color-green-dark";
-    h5.textContent = "群組人數：" + users + " 人";
+    h5.textContent = i18n("group_member_count", {users: users});
 
     let h3 = document.createElement('h3');
     h3.textContent = title;
 
     let p = document.createElement('p');
     // 塞入 HTML
-    p.innerHTML = "紅包金額： " + amountInfo.eachAmount + " <b>USDT</b> 領取進度： " + received + "/" + limit + " <b>包</b>";
-    p.innerHTML += "<br>剩餘金額： " + (limit-received) * amountInfo.eachAmount + " <b>USDT</b>";
+    let remainingAmount = (limit - received) * amountInfo.eachAmount;
+    p.innerHTML = i18n("redPacket_info", {eachAmount: amountInfo.eachAmount, received: received, limit: limit});
+    p.innerHTML += i18n("remaining_amount", {remaining: remainingAmount});
 
     let cardBottom = document.createElement('div');
     cardBottom.className = "card-bottom mx-3 mb-3";
