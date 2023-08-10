@@ -307,7 +307,7 @@
         loadMasterCoinList();
         $("#transferCoin").change(function () {
           let masterCoinId = $("#transferCoin").val();
-          loadChainList(masterCoinId);
+          loadChainList(masterCoinId, "#transferChain");
         });
       });
 
@@ -315,9 +315,9 @@
       transferFriendsMenu.addEventListener('shown.bs.offcanvas', function () {
         Telegram.WebApp.expand();
         loadMasterCoinList();
-        $("#transferCoin").change(function () {
-          let masterCoinId = $("#transferCoin").val();
-          loadChainList(masterCoinId);
+        $("#transferFriendCoin").change(function () {
+          let masterCoinId = $("#transferFriendCoin").val();
+          loadChainList(masterCoinId, "#transferFriendChain");
         });
       });
 

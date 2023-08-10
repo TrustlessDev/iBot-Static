@@ -58,7 +58,7 @@ function loadMasterCoinList() {
     });
 }
 
-function loadChainList(masterCoinId) {
+function loadChainList(masterCoinId, selector) {
     $("#transferChain").html("");
     $.ajax({
         url: "https://" + site.apiUrl + "/api/chain/list",
@@ -70,10 +70,10 @@ function loadChainList(masterCoinId) {
         success: function (data) {
             if (data.success) {
                 var chainList = data.data;
-                $("#transferChain").html("");
-                $("#transferChain").append("<option value='0'>請選擇鏈</option>");
+                $(selector).html("");
+                $(selector).append("<option value='0'>請選擇鏈</option>");
                 for (var i = 0; i < chainList.length; i++) {
-                    $("#transferChain").append("<option value='" + chainList[i].chainId + "'>" + chainList[i].chainName + "</option>");
+                    $(selector).append("<option value='" + chainList[i].chainId + "'>" + chainList[i].chainName + "</option>");
                 }
             }
         },
