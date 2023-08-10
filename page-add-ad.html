@@ -5,7 +5,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-<title>廣告列表</title>
+<title class="i18n" i18nTag="ad_list">廣告列表</title>
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="fonts/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="styles/style.css">
@@ -23,13 +23,13 @@
 <div id="page">
 
     <!-- Footer Bar -->
-    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
-        <a href="page-games.html" onclick="initGames()"><i class="bi bi-controller"></i><span>遊戲</span></a>
-        <a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper"></i><span>新聞</span></a>
-        <a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>首頁</span></a>
-        <a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt"></i><span>帳務資訊</span></a>
-        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>更多</span></a>
-    </div>
+    <div id="footer-bar" class="footer-bar-1 footer-bar-detached"> 
+        <a href="page-games.html" onclick="initGames()"><i class="bi bi-controller"></i><span class="i18n" i18nTag="gaming">遊戲</span></a>
+        <a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper"></i><span class="i18n" i18nTag="news">新聞</span></a>
+        <a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill"></i><span class="i18n" i18nTag="index">首頁</span></a>
+        <a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt"></i><span class="i18n" i18nTag="bills">帳務資訊</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span class="i18n" i18nTag="more">更多</span></a>
+      </div>
 
     <!-- Page Content - Only Page Elements Here-->
     <div class="page-content footer-clear">
@@ -43,7 +43,7 @@
                     </a>
                 </div>
                 <div class="align-self-center me-auto">
-                    <h1 class="color-theme mb-0 font-18">創建廣告計畫</h1>
+                    <h1 class="color-theme mb-0 font-18 i18n" i18nTag="create_ad_plan">創建廣告計畫</h1>
                 </div>
                 <div class="align-self-center ms-auto">
                     <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"
@@ -56,29 +56,27 @@
 
         <div class="card card-style">
             <div class="content">
-                <h4>廣告名稱</h4>
-                <p class="mb-0">
+                <h4 class="i18n" i18nTag="ad_name">廣告名稱</h4>
+                <p class="mb-0 i18n" i18nTag="ad_message">
                     方便您識別此廣告計畫，此欄位不會顯示在廣告內容中
                 </p>
                 <div class="form-custom form-label form-icon mb-3">
                     <i class="bi bi-menu-button-fill font-12"></i>
-                    <input type="text" class="form-control rounded-xs" id="adTitle" placeholder="廣告計畫名稱" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" required />
-                    <label for="adTitle" class="color-theme">廣告計畫名稱</label>
+                    <input type="text" class="form-control rounded-xs i18n" i18nTag="ad_plan_name" id="adTitle" placeholder="廣告計畫名稱" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" required />
+                    <label for="adTitle" class="color-theme i18n" i18nTag="ad_plan_name">廣告計畫名稱</label>
                     <div class="valid-feedback">The URL looks good!<!-- text for field valid--></div>
                     <div class="invalid-feedback">Website is missing or is invalid.</div>
                 </div>
 
                 <div class="divider mt-4"></div>
 
-                <h4>廣告封面</h4>
-                <p class="mb-0">
+                <h4 class="i18n" i18nTag="ad_cover">廣告封面</h4>
+                <p class="mb-0 i18n" i18nTag="bot_send_img">
                     此張圖片將會由機器人推播至選定的群組內
                 </p>
                 <div class="file-data">
                     <img id="image-data" class="img-fluid rounded-s" alt="img">
-                    <span class="upload-file-name d-block text-center"
-                          data-text-before="<i class='bi bi-check-circle-fill color-green-dark pe-2'></i> 圖片:"
-                          data-text-after=" 已經準備好了.">
+                    <span class="upload-file-name d-block text-center">
                     </span>
                     <div>
                         <br>
@@ -89,19 +87,19 @@
 
                 <div class="divider mt-4"></div>
 
-                <h4>廣告文案</h4>
-                <p class="mb-0">
+                <h4 class="i18n" i18nTag="ad_content">廣告文案</h4>
+                <p class="mb-0 i18n" i18nTag="bot_send_text">
                     在此輸入的文字內容將會由機器人推播至選定的群組內
                 </p>
                 <div class="form-custom form-label form-icon mb-3">
                     <i class="bi bi-pencil-fill font-12"></i>
-                    <textarea class="form-control rounded-xs" placeholder="請輸入廣告文案" id="adText"></textarea>
-                    <label for="adText" class="color-theme">廣告文案</label>
+                    <textarea class="form-control rounded-xs i18n" i18nTag="enter_ad_content" placeholder="請輸入廣告文案" id="adText"></textarea>
+                    <label for="adText" class="color-theme i18n" i18nTag="ad_content">廣告文案</label>
                     <div class="valid-feedback">HTML5 does not offer Dates Field Validation!<!-- text for field valid--></div>
                 </div>
                 <a href="#" data-trigger-switch="switch-html-enabled" class="demo-icons d-flex pb-1">
 					<div class="align-self-center">
-						<h5 class="mb-0 font-13 opacity-80">啟用 HTML 格式</h5>
+						<h5 class="mb-0 font-13 opacity-80 i18n" i18nTag="enable_html_format">啟用 HTML 格式</h5>
 					</div>
 					<div class="align-self-center ms-auto">
 						<div class="form-switch ios-switch switch-green switch-xs">
@@ -113,48 +111,48 @@
 
                 <div class="divider mt-4"></div>
 
-                <h4>廣告連結</h4>
-                <p class="mb-0">
+                <h4 class="i18n" i18nTag="ad_link">廣告連結</h4>
+                <p class="mb-0 i18n" i18nTag="enter_link">
                     請在此設定要附加的廣告連結，最多可設定 2 個連結，請以 https:// 開頭
                 </p>
                 <br>
                 <div class="form-custom form-label form-icon mb-3">
                     <i class="bi bi-menu-button-fill font-12"></i>
                     <input type="text" class="form-control rounded-xs" id="adButton1" placeholder="按鈕 1 文字" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" required />
-                    <label for="adButton1" class="color-theme">按鈕文字 - 1</label>
+                    <label for="adButton1" class="color-theme i18n" i18nTag="btn_text_1">按鈕文字 - 1</label>
                     <div class="valid-feedback">The URL looks good!<!-- text for field valid--></div>
                     <div class="invalid-feedback">Website is missing or is invalid.</div>
                 </div>
                 <div class="form-custom form-label form-icon mb-3">
                     <i class="bi bi-globe2 font-12"></i>
                     <input type="url" class="form-control rounded-xs" id="adUrl1" placeholder="https://www.google.com" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" required />
-                    <label for="adUrl1" class="color-theme">連結 - 1</label>
+                    <label for="adUrl1" class="color-theme i18n" i18nTag="link_1">連結 - 1</label>
                     <div class="valid-feedback">The URL looks good!<!-- text for field valid--></div>
                     <div class="invalid-feedback">Website is missing or is invalid.</div>
                 </div>
                 <div class="form-custom form-label form-icon mb-3">
                     <i class="bi bi-menu-button-fill font-12"></i>
                     <input type="text" class="form-control rounded-xs" id="adButton2" placeholder="按鈕 2 文字" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" required />
-                    <label for="adButton2" class="color-theme">按鈕文字 - 2</label>
+                    <label for="adButton2" class="color-theme i18n" i18nTag="btn_text_2">按鈕文字 - 2</label>
                     <div class="valid-feedback">The URL looks good!<!-- text for field valid--></div>
                     <div class="invalid-feedback">Website is missing or is invalid.</div>
                 </div>
                 <div class="form-custom form-label form-icon mb-3">
                     <i class="bi bi-globe2 font-12"></i>
                     <input type="url" class="form-control rounded-xs" id="adUrl2" placeholder="https://www.google.com" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?" required />
-                    <label for="adUrl2" class="color-theme">連結 - 2</label>
+                    <label for="adUrl2" class="color-theme i18n" i18nTag="link_2">連結 - 2</label>
                     <div class="valid-feedback">The URL looks good!<!-- text for field valid--></div>
                     <div class="invalid-feedback">Website is missing or is invalid.</div>
                 </div>
 
                 <div class="divider mt-4"></div>
 
-                <h4>廣告紅包設定</h4>
-                <p class="mb-0">
+                <h4 class="i18n" i18nTag="ad_setting">廣告紅包設定</h4>
+                <p class="mb-0 i18n" i18nTag="ad_setting_message">
                     設定每次發放的廣告紅包金額與數量，並設定發放的時間及頻率
                 </p>
 
-                <h6 class="opacity-40">每包紅包總共發放金額</h6>
+                <h6 class="opacity-40 i18n" i18nTag="ad_amount_message">每包紅包總共發放金額</h6>
 				<div class="row">
 					<div class="col-4">
 						<div class="stepper rounded-s">
@@ -173,7 +171,7 @@
 							<a href="#" class="stepper-add float-end"><i class="bi bi-plus-circle font-16 color-theme opacity-20"></i></a>
 						</div>
 					</div>
-                    <div class="col-2">
+                    <div class="col-2 i18n" i18nTag="ad_packets">
                         包
                     </div>
 				</div>
@@ -182,32 +180,32 @@
                     <table class="table color-theme border-blue-dark mb-0">
                         <thead class="rounded-s bg-blue-dark border-l">
                             <tr class="color-white">
-                                <th scope="col"><h5 class="color-white font-15 mb-0">項目</h5></th>
-                                <th scope="col"><h5 class="color-white font-15 mb-0">單價</h5></th>
-                                <th scope="col"><h5 class="color-white font-15 mb-0">數量</h5></th>
-                                <th scope="col"><h5 class="color-white font-15 mb-0">總額</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0 i18n" i18nTag="item">項目</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0 i18n" i18nTag="unit_price">單價</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0 i18n" i18nTag="quantity">數量</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0 i18n" i18nTag="total_amount">總額</h5></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>原始預算</strong></td>
+                                <td class="i18n" i18nTag="original_budget"><strong>原始預算</strong></td>
                                 <td class="sourcePerPacket"></td>
                                 <td class="redpacketCount"></td>
                                 <td class="redpacketAmount"></td>
                             </tr>
                             <tr>
-                                <td><strong>5% 手續費</strong></td>
+                                <td class="i18n" i18nTag="ad_fee"><strong>5% 手續費</strong></td>
                                 <td class="redpacketFeeFrom" colspan="2"></td>
                                 <td class="redpacketFee"></td>
                             </tr>
                             <tr>
-                                <td ><strong>實際發放</strong></td>
+                                <td class="i18n" i18nTag="actual_disbursement"><strong>實際發放</strong></td>
                                 <td class="realEachAmount"></td>
                                 <td class="redpacketCount"></td>
                                 <td class="realTotalAmount"></td>
                             </tr>
                             <tr>
-                                <td class="border-0"><strong>零頭損耗</strong></td>
+                                <td class="border-0 i18n" i18nTag="change_loss"><strong>零頭損耗</strong></td>
                                 <td class="border-0 eatAmount" colspan="3"></td>
                             </tr>
                         </tbody>
@@ -221,7 +219,7 @@
                                 <i class="bi bi-emoji-frown-fill font-36 d-block color-white"></i>
                             </div>
                             <div class="align-self-center no-click">
-                                <p class="color-white mb-0 font-500 font-14 ps-3 pe-4 line-height-s">
+                                <p class="color-white mb-0 font-500 font-14 ps-3 pe-4 line-height-s i18n" i18nTag="ad_amount_rule" >
                                     實際發放金額，每包至少需要達到 0.01 <b>USDT</b><br> 請降低紅包數量獲增加預算以符合規定.
                                 </p>
                             </div>
@@ -231,17 +229,17 @@
 
                 <div class="divider mt-4"></div>
 
-                <h4>選擇投放群組</h4>
-                <p class="mb-0">
+                <h4 class="i18n" i18nTag="ad_select_groups">選擇投放群組</h4>
+                <p class="mb-0 i18n" i18nTag="ad_select_groups_rule">
                     請勾選你要投放的群組(系統僅顯示人數大於100人的群組)
                 </p>
                 <div class="border border-blue-dark rounded-s overflow-hidden">
                     <table class="table color-theme border-blue-dark mb-0">
                         <thead class="rounded-s bg-blue-dark border-l">
                             <tr class="color-white">
-                                <th scope="col"><h5 class="color-white font-15 mb-0">投放</h5></th>
-                                <th scope="col"><h5 class="color-white font-15 mb-0">群組名稱</h5></th>
-                                <th scope="col"><h5 class="color-white font-15 mb-0">人數</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0 i18n" i18nTag="ad_launch">投放</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0 i18n" i18nTag="ad_group_name">群組名稱</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0 i18n" i18nTag="ad_number_of_people">人數</h5></th>
                             </tr>
                         </thead>
                         <tbody id="groupTable">
@@ -250,52 +248,52 @@
                     </table>
                 </div>
                 <br>
-                <div id="selectedGroupInfo" style="width:100%;text-align: center;">目前已選擇 0 群組，共觸及 0 人</div>
+                <div id="selectedGroupInfo" style="width:100%;text-align: center;" class="i18n" i18nTag="ad_select_groups_message">目前已選擇 0 群組，共觸及 0 人</div>
                 <div id="groupPagination" style="width:100%;text-align: center;"></div>
 
                 <div class="divider mt-4"></div>
 
-                <h4>設定投放時間及頻率</h4>
+                <h4 class="i18n" i18nTag="ad_setting_time">設定投放時間及頻率</h4>
                 <br>
                 <div class="form-custom form-label form-icon mb-3">
                     <i class="bi bi-alarm font-13"></i>
                     <select id="selectFrequence" class="form-select rounded-xs" id="redpacketFrequence" aria-label="Floating label select example">
-                        <option value="15" selected>每 15 分鐘投放</option>
-                        <option value="30">每 30 分鐘投放</option>
-                        <option value="60">每 1 小時投放</option>
-                        <option value="120">每 2 小時投放</option>
-                        <option value="240">每 4 小時投放</option>
-                        <option value="480">每 8 小時投放</option>
-                        <option value="720">每 12 小時投放</option>
-                        <option value="1440">每日投放</option>
+                        <option value="15" selected class="i18n" i18nTag="ad_time_15">每 15 分鐘投放</option>
+                        <option value="30" class="i18n" i18nTag="ad_time_30">每 30 分鐘投放</option>
+                        <option value="60" class="i18n" i18nTag="ad_time_60">每 1 小時投放</option>
+                        <option value="120" class="i18n" i18nTag="ad_time_120">每 2 小時投放</option>
+                        <option value="240" class="i18n" i18nTag="ad_time_240">每 4 小時投放</option>
+                        <option value="480" class="i18n" i18nTag="ad_time_480">每 8 小時投放</option>
+                        <option value="720" class="i18n" i18nTag="ad_time_720">每 12 小時投放</option>
+                        <option value="1440" class="i18n" i18nTag="ad_time_1440">每日投放</option>
                     </select>
-                    <label for="redpacketFrequence" class="color-theme">紅包發放頻率</label>
+                    <label for="redpacketFrequence" class="color-theme i18n" i18nTag="ad_frequency">紅包發放頻率</label>
                     <div class="valid-feedback">HTML5 does not offer Dates Field Validation!<!-- text for field valid--></div>
                 </div>
 
                 <div id="cronTime" style="display: none" class="form-custom form-label form-icon mb-3">
                     <i class="bi bi-clock font-12"></i>
                     <input type="time" class="form-control rounded-xs" id="redpacketTime" value="13:30:30" />
-                    <label for="redpacketTime" class="color-theme">每日投放時間</label>
+                    <label for="redpacketTime" class="color-theme i18n" i18nTag="ad_time_message">每日投放時間</label>
                     <div class="valid-feedback">HTML5 does not offer Dates Field Validation!<!-- text for field valid--></div>
                 </div>
 
                 <div class="divider mt-4"></div>
 
-                <h4>成本試算</h4>
+                <h4 class="i18n" i18nTag="ad_cost_calculation">成本試算</h4>
 
                 <div class="border border-blue-dark rounded-s overflow-hidden">
                     <table class="table color-theme border-blue-dark mb-0">
                         <thead class="rounded-s bg-blue-dark border-l">
                             <tr class="color-white">
-                                <th scope="col"><h5 class="color-white font-15 mb-0">項目</h5></th>
-                                <th scope="col"><h5 class="color-white font-15 mb-0">描述</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0 i18n" i18nTag="item">項目</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0 i18n" i18nTag="ad_description">描述</h5></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>每日投放次數</strong></td>
-                                <td class="dailyCount">96 次</td>
+                                <td class="i18n" i18nTag="ad_daily_launch_time"><strong>每日投放次數</strong></td>
+                                <td class="dailyCount i18n" i18nTag="ad_daily_count">96 次</td>
                             </tr>
                             <tr>
                                 <td><strong>每次投放成本</strong></td>
