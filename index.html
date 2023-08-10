@@ -310,6 +310,17 @@
           loadChainList(masterCoinId);
         });
       });
+
+      var transferMenu = document.getElementById('menu-friends-transfer')
+      transferMenu.addEventListener('shown.bs.offcanvas', function () {
+        Telegram.WebApp.expand();
+        loadMasterCoinList();
+        $("#transferCoin").change(function () {
+          let masterCoinId = $("#transferCoin").val();
+          loadChainList(masterCoinId);
+        });
+      });
+
       var requestMenu = document.getElementById('menu-request')
       requestMenu.addEventListener('shown.bs.offcanvas', function () {
         Telegram.WebApp.expand();
