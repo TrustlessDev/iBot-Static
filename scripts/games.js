@@ -1,6 +1,10 @@
 async function initGames() {
     setTimeout(async function () {
+        await initSite();
+        await initLanguages();
         await getGames();
+        initFootBar();
+        mappingLang();
     }, 1000);
 }
 
