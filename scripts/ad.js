@@ -46,6 +46,7 @@ function initAdPage() {
         initFootBar();
         // 載入語言
         mappingLang();
+        closePreloader();
     }, 300);
 }
 

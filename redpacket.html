@@ -76,7 +76,8 @@
                 playWrapper.style.display = "block";
                 return;
             }
-            await mappingLang();
+            mappingLang();
+            closePreloader();
         };
 
         async function initSite() {

@@ -5,6 +5,7 @@ async function initNews() {
         refreshCategoriesNews();
         initFootBar();
         mappingLang();
+        closePreloader();
     }, 300);
 }
 

@@ -16,7 +16,12 @@ async function callAPI(method, params = {}) {
     return data;
 }
 
+function closePreloader() {
+    $("#ibot-preloader").hide();
+}
+
 async function initSite() {
+    $("#ibot-preloader").show();
     let url = new URL(location.href)
     if(url.host.indexOf("dev") > -1) {
         eruda.init();

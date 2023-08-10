@@ -5,6 +5,7 @@ async function initGames() {
         await getGames();
         initFootBar();
         mappingLang();
+        closePreloader();
     }, 300);
 }
 

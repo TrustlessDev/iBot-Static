@@ -5,6 +5,7 @@ function initAdInfo(adId) {
         loadAdRedPacketInfo(adId);
         initFootBar();
         mappingLang();
+        closePreloader();
     }, 300);
 }
 

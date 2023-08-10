@@ -16,6 +16,7 @@ function initAdList() {
         }
         initFootBar();
         mappingLang();
+        closePreloader();
     }, 300);
 }
 
