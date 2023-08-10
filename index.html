@@ -29,11 +29,6 @@
   <div id="page">
     <!-- Footer Bar -->
     <div id="footer-bar" class="footer-bar-1 footer-bar-detached"> 
-      <a href="page-games.html" onclick="initGames()"><i class="bi bi-controller"></i><span class="i18n" i18nTag="gaming">遊戲</span></a>
-      <a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper"></i><span class="i18n" i18nTag="news">新聞</span></a>
-      <a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill"></i><span class="i18n" i18nTag="index">首頁</span></a>
-      <a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt"></i><span class="i18n" i18nTag="bills">帳務資訊</span></a>
-      <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span class="i18n" i18nTag="more">更多</span></a>
     </div>
 
     <!-- Page Content - Only Page Elements Here-->
@@ -250,8 +245,8 @@
   <script src="scripts/bills.js"></script>
   <script src="scripts/transfer.js"></script>
   <script src="scripts/news.js"></script>
-  <script src="scripts/games.js"></script>
-  <script src="scripts/ad.js?t=33"></script>
+  <script src="scripts/games.js?t=111"></script>
+  <script src="scripts/ad.js"></script>
   <script src="scripts/listAd.js"></script>
   <script src="scripts/adInfo.js"></script>
   <script src="scripts/prodAdd.js"></script>
@@ -300,6 +295,8 @@
           $(".transferOut").show();
         }
       });
+
+      initFootBar();
       mappingLang();
     }
 

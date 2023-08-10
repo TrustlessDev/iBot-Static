@@ -33,6 +33,14 @@ async function initSite() {
     } else {
         site = data["127.0.0.1"];
     }
+    // Load Site Info
+    let resp2 = await fetch("https://" + site.apiUrl + "/site", {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    siteInfo = await resp2.json();
 }
 
 async function initLanguages() {
@@ -47,6 +55,20 @@ async function initLanguages() {
     });
     let data = await resp.json();
     lang = data;
+}
+
+function initFootBar() {
+    $("#footer-bar").empty();
+    let footList = siteInfo.foot;
+    for(let i = 0; i < footList.length; i++) {
+        let tmp = footList[i];
+        let footItem = "<a href=\"" + tmp.url + "\" " + (tmp.onclick ? "onclick=\"" + tmp.onclick + "\"" : "") + " " + (tmp.bsToggle ? "data-bs-toggle=\"" + tmp.bsToggle + "\"" : "") + " " + (tmp.bsTarget ? "data-bs-target=\"" + tmp.bsTarget + "\"" : "") + "><i class=\"bi " + tmp.icon + "\"></i><span class=\"i18n\" i18nTag=\"" + tmp.lang + "\"></span></a>";
+        $("#footer-bar").append(footItem);
+        if(i == 1) {
+            let home = "<a href=\"index.html\" onclick=\"init()\" class=\"circle-nav-2\"><i class=\"bi bi-house-fill\"></i><span class=\"i18n\" i18nTag=\"index\"></span></a>";
+            $("#footer-bar").append(home);
+        }
+    }
 }
 
 function mappingLang() {

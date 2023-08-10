@@ -1,6 +1,10 @@
 async function initNews() {
-    setTimeout(() => {
+    setTimeout(async () => {
+        await initSite();
+        await initLanguages();
         refreshCategoriesNews();
+        initFootBar();
+        mappingLang();
     }, 1000);
 }
 
