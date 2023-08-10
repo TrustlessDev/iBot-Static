@@ -4,12 +4,6 @@ async function transfer() {
     let transferTo = $("#transferTo").val();
     let transferCoin = $("#transferCoin").val();
     let transferChain = $("#transferChain").val();
-    /*
-    if (transferType == 0) {
-        alert("請選擇轉帳類型");
-        return;
-    }
-    */
     if (transferAmount == "" || transferAmount == null || transferAmount == undefined || isNaN(transferAmount) || transferAmount <= 0) {
         alert(i18n("transfer_amount"));
         return;
@@ -45,6 +39,10 @@ async function transferToFriend() {
 
     if (transferAmount == "" || transferAmount == null || transferAmount == undefined || isNaN(transferAmount) || transferAmount <= 0) {
         indexAlert(i18n("error"), i18n("transfer_amount"));
+        return;
+    }
+    if (transferTo == "" || transferTo == null || transferTo == undefined) {
+        alert(i18n("transfer_to_who") + transferTo);
         return;
     }
     if (transferCoin == 0) {
