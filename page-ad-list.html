@@ -5,7 +5,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-<title>廣告列表</title>
+<title class="i18n" i18nTag="ad_list">廣告列表</title>
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="fonts/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="styles/style.css">
@@ -24,11 +24,11 @@
 
     <!-- Footer Bar -->
     <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
-		<a href="page-games.html" onclick="initGames()"><i class="bi bi-controller"></i><span>遊戲</span></a>
-		<a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper"></i><span>新聞</span></a>
-		<a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>首頁</span></a>
-		<a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt"></i><span>帳務資訊</span></a>
-		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>更多</span></a>
+		<a href="page-games.html" onclick="initGames()"><i class="bi bi-controller i18n" i18nTag="gaming"></i><span>遊戲</span></a>
+		<a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper i18n" i18nTag="news"></i><span>新聞</span></a>
+		<a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill i18n" i18nTag="index"></i><span>首頁</span></a>
+		<a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt i18n" i18nTag="bills"></i><span>帳務資訊</span></a>
+		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots i18n" i18nTag="more"></i><span>更多</span></a>
 	</div>
 
     <!-- Page Content - Only Page Elements Here-->
@@ -43,7 +43,7 @@
                     </a>
                 </div>
                 <div class="align-self-center me-auto">
-                    <h1 class="color-theme mb-0 font-18">我的廣告排程</h1>
+                    <h1 class="color-theme mb-0 font-18 i18n" i18nTag="ad_schedule">我的廣告排程</h1>
                 </div>
                 <div class="align-self-center ms-auto">
                     <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"
@@ -56,7 +56,7 @@
 
 		<div class="card card-style">
 			<div class="content">
-				<p class="mb-2">
+				<p class="mb-2 i18n" i18nTag="ad_schedule_message">
 					管理您所有的廣告排程，您可以在此執行、暫停或刪除廣告排程。預算消耗完畢後，廣告排程將自動停止。當廣告刪除時，若還有餘額，則會退還至您的帳戶。
 				</p>
 			</div>
@@ -92,7 +92,7 @@
 			<p id="ad-warning-content" class="font-14 mb-0">
 				There was an error processing your transfer. Please contact support for more details.
 			</p>
-			<a id="adAlertConfirm" href="#" class="btn btn-full gradient-red shadow-bg shadow-bg-xs">確定</a>
+			<a id="adAlertConfirm" href="#" class="btn btn-full gradient-red shadow-bg shadow-bg-xs i18n" i18nTag="ad_okay">確定</a>
             <a style="display:none" href="#" data-bs-toggle="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-xs">Okay</a>
 		</div>
 	</div>
@@ -104,7 +104,7 @@
 			<p id="ad-info-content" class="font-14 mb-0">
 				There was an error processing your transfer. Please contact support for more details.
 			</p>
-			<a id="adInfoConfirm" href="#" class="btn btn-full gradient-blue shadow-bg shadow-bg-xs">確定</a>
+			<a id="adInfoConfirm" href="#" class="btn btn-full gradient-blue shadow-bg shadow-bg-xs i18n" i18nTag="ad_okay">確定</a>
             <a style="display:none" href="#" data-bs-toggle="offcanvas" class="btn btn-full gradient-blue shadow-bg shadow-bg-xs">Okay</a>
 		</div>
 	</div>
