@@ -1,4 +1,6 @@
 async function initBills() {
+    await initSite();
+    await initLanguages();
     let rst = await callAPI("GetBills");
     if(rst.success) {
         let bills = rst.bills.sort((a, b) => {
@@ -20,6 +22,8 @@ async function initBills() {
             
         }
     }
+    initFootBar();
+    mappingLang();
 }
 
 function setTxDetail(txType, txHash, txDate, txAmount, txUrl) {
