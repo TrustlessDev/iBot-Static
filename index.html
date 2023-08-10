@@ -29,7 +29,7 @@
   <div id="page">
     <!-- Footer Bar -->
     <div id="footer-bar" class="footer-bar-1 footer-bar-detached"> 
-      <a href="page-games.html" onclick="initGames()"><i class="bi bi-controller"></i><span class="i18n" i18nTag="gaming">遊戲a</span></a>
+      <a href="page-games.html" onclick="initGames()"><i class="bi bi-controller"></i><span class="i18n" i18nTag="gaming">遊戲</span></a>
       <a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper"></i><span class="i18n" i18nTag="news">新聞</span></a>
       <a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill"></i><span class="i18n" i18nTag="index">首頁</span></a>
       <a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt"></i><span class="i18n" i18nTag="bills">帳務資訊</span></a>
@@ -43,7 +43,7 @@
         <div class="page-title d-flex">
           <div class="align-self-center me-auto">
             <p class="color-white opacity-80 header-date"></p>
-            <h1 class="color-white">歡迎</h1>
+            <h1 class="color-white i18n" i18nTag="welcome">歡迎</h1>
             <h2 id="user-identity"></h2>
           </div>
           <div class="align-self-center ms-auto">
@@ -100,23 +100,23 @@
             <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-transfer"
               class="icon icon-xxl rounded-m bg-theme shadow-m"><i
                 class="font-28 color-green-dark bi bi-arrow-up-circle"></i></a>
-            <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">轉帳</h6>
+            <h6 class="font-13 opacity-80 font-500 mb-0 pt-2 i18n" i18nTag="transfer">轉帳</h6>
           </div>
           <div class="m-auto">
             <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-request"
               class="icon icon-xxl rounded-m bg-theme shadow-m"><i
                 class="font-28 color-red-dark bi bi-arrow-down-circle"></i></a>
-            <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">收款</h6>
+            <h6 class="font-13 opacity-80 font-500 mb-0 pt-2 i18n" i18nTag="receive">收款</h6>
           </div>
           <div data-bs-toggle="offcanvas" data-bs-target="#menu-exchange" class="m-auto">
             <a href="#" class="icon icon-xxl rounded-m bg-theme shadow-m"><i
                 class="font-28 color-blue-dark bi bi-arrow-repeat"></i></a>
-            <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">閃兌</h6>
+            <h6 class="font-13 opacity-80 font-500 mb-0 pt-2 i18n" i18nTag="flash_swap">閃兌</h6>
           </div>
           <div class="ms-auto">
             <a href="page-payment-bill.html" onclick="initBills()" class="icon icon-xxl rounded-m bg-theme shadow-m"><i
                 class="font-28 color-brown-dark bi bi-filter-circle"></i></a>
-            <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">明細</h6>
+            <h6 class="font-13 opacity-80 font-500 mb-0 pt-2 i18n" i18nTag="details">明細</h6>
           </div>
         </div>
       </div>
@@ -141,7 +141,7 @@
               </h1>
             </div>
             <div class="align-self-center">
-              <h5 id="text_activity" class="color-white font-700 mb-0 mt-0 pt-1">
+              <h5 id="text_activity" class="color-white font-700 mb-0 mt-0 pt-1 i18n" i18nTag="send_redPacket">
                 發送紅包
               </h5>
             </div>
@@ -153,10 +153,10 @@
       <div class="content my-0 mt-n2 px-1">
         <div class="d-flex">
           <div class="align-self-center">
-            <h3 class="font-16 mb-2">區塊鏈新聞</h3>
+            <h3 class="font-16 mb-2 i18n" i18nTag="blockchain_news">區塊鏈新聞</h3>
           </div>
           <div class="align-self-center ms-auto">
-            <a href="page-activity.html" onclick="initNews()" class="font-12 pt-1">顯示全部</a>
+            <a href="page-activity.html" onclick="initNews()" class="font-12 pt-1 i18n" i18nTag="show_all">顯示全部</a>
           </div>
         </div>
       </div>
@@ -170,7 +170,7 @@
       <div class="content mb-0">
         <div class="d-flex">
           <div class="align-self-center">
-            <h3 class="font-16 mb-2">快速轉帳</h3>
+            <h3 class="font-16 mb-2 i18n" i18nTag="quick_transfer">快速轉帳</h3>
           </div>
           <!--
           <div class="align-self-center ms-auto">
@@ -234,7 +234,7 @@
         <p id="index-warning-content" class="font-14 mb-0">
           There was an error processing your transfer. Please contact support for more details.
         </p>
-        <a id="indexAlertConfirm" href="#" class="btn btn-full gradient-red shadow-bg shadow-bg-xs">確定</a>
+        <a id="indexAlertConfirm" href="#" class="btn btn-full gradient-red shadow-bg shadow-bg-xs i18n" i18nTag="confirm">確定</a>
               <a style="display:none" href="#" data-bs-toggle="offcanvas" class="btn btn-full gradient-red shadow-bg shadow-bg-xs">Okay</a>
       </div>
     </div>
@@ -373,7 +373,7 @@
     function showScanQrPopup(linksOnly = false, callback) {
       Telegram.WebApp.showScanQrPopup(
         {
-          text: "請掃描錢包位址",
+          text: i18n("scan_wallet_address"),
         },
         function (text) {
           callAPI("ScanQRCode", {
