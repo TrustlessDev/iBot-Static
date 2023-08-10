@@ -241,7 +241,7 @@
   <script src="scripts/custom.js?t=7314"></script>
   <script src="scripts/ibot.js"></script>
   <script src="scripts/bills.js"></script>
-  <script src="scripts/transfer.js?t=8888"></script>
+  <script src="scripts/transfer.js?t=8889"></script>
   <script src="scripts/news.js"></script>
   <script src="scripts/games.js"></script>
   <script src="scripts/ad.js"></script>
@@ -321,9 +321,16 @@
           $("#transferFriendSymbol").text(symbol);
           loadChainList(masterCoinId, "#transferFriendChain");
         });
-        $("#transferFriendChain").change(function () {
+        $("#transferFriendChain").change(async function () {
           let chainId = $("#transferFriendChain").val();
-          alert(chainId);
+          let resp = await callAPI("queryUserAddress", {
+            uid: friendId,
+            chainId: chainId
+          });
+          if(resp.success) {
+            let address = resp.address;
+            $("#transferFriendTo").val(address);
+          }
         });
       });
 
@@ -357,7 +364,8 @@
           let friend = friends[i];
           let card = createFriendElement(
             "https://" + site.apiUrl + "/img/telegram/" + friend.telegramId,
-            friend.firstName + " " + friend.lastName
+            friend.firstName + " " + friend.lastName,
+            friend
           );
           $("#quickTransfer").append(card);
         }
@@ -477,13 +485,17 @@
       return a;
     }
 
-    function createFriendElement(imageUrl, title) {
+    function createFriendElement(imageUrl, title, friend = {}) {
       // Create the outer 'div' element
       let divElement = document.createElement("div");
       divElement.classList.add("splide__slide");
 
       // Create the 'a' element and set required attributes
       let aElement = document.createElement("a");
+      // 設置 onclick
+      aElement.onclick = function () {
+        friendId = friend.id;
+      };
       aElement.setAttribute("href", "#");
       aElement.setAttribute("data-card-height", "60");
       aElement.setAttribute("data-bs-toggle", "offcanvas");
