@@ -311,8 +311,8 @@
         });
       });
 
-      var transferMenu = document.getElementById('menu-friends-transfer')
-      transferMenu.addEventListener('shown.bs.offcanvas', function () {
+      var transferFriendsMenu = document.getElementById('menu-friends-transfer')
+      transferFriendsMenu.addEventListener('shown.bs.offcanvas', function () {
         Telegram.WebApp.expand();
         loadMasterCoinList();
         $("#transferCoin").change(function () {
