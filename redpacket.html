@@ -25,7 +25,7 @@
             <section class="resultWrapper">
                 <img id="usdtLoading" src="/images/usdt.gif" width="70px" height="70px">
                 <article>
-                    <h3 id="openText1">Loading...</h3>
+                    <h3 id="openText1"></h3>
                     <h2 id="openText2"></h2>
                     <h4 id="openText3"></h4>
                 </article>
@@ -103,9 +103,9 @@
                 token: cloudflareToken
             });
             if(resp.success) {
-                $("#openText1").text("恭喜你獲得");
+                $("#openText1").text(i18n("redPacket_congratulations"));
                 $("#openText2").text(resp.data.eachAmount + " USDT");
-                $("#openText3").text("恭喜發財 大吉大利");
+                $("#openText3").text(i18n("wishing_text"));
             } else {
                 $("#openText1").text(resp.message);
                 $("#openText2").text("");
