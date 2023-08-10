@@ -119,6 +119,10 @@ Item Support: https://www.enableds.com/contact/
   background-color: #0f1117;
 }
 
+#ibot-preloader {
+  background-color: #0f1117;
+}
+
 /* Generating Color Pack*/
 .color-highlight {
   color: #4A89DC !important;
@@ -4537,6 +4541,17 @@ input[type=range] {
 .theme-light .offcanvas:after{background-color:rgba(255,255,255,0.2)!important;}
 */
 /*Prealoder*/
+
+#ibot-preloader {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 99999;
+  transition: all 200ms ease;
+}
+
 #preloader {
   position: fixed;
   top: 0px;
