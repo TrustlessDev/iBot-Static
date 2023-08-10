@@ -390,6 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         //Header Date
+        /*
         var headerLarge = document.querySelectorAll('.header-date')[0];
         if(headerLarge){
             var weekID = new Date();
@@ -401,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
             var daySuffix = '號';
             headerLarge.innerHTML += weekdayName[weekID.getDay()] + ' ' + monthNames[monthID.getMonth()] + ' ' +  dayName + daySuffix;
         }
-
+        */
         //Form Validation
         var bootstrapForms = document.querySelectorAll('.needs-validation')
           // Loop over them and prevent submission
