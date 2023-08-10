@@ -58,8 +58,7 @@ function mappingLang() {
         // 將 i18nTag 的 attribute 值當作 key 去 lang 物件中取值
         let text = i18n(i18nTag);
         // 判斷元素類型
-        if(i18nList[i].tagName == "INPUT") {
-            alert(text);
+        if(i18nList[i].tagName.toLowerCase() == "input") {
             i18nList[i].placeholder = text;
         } else {
             i18nList[i].innerHTML = text;
