@@ -5,7 +5,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-<title>廣告紅包效益</title>
+<title class="i18n" i18nTag="ad_redPacket_benefits">廣告紅包效益</title>
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="fonts/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="styles/style.css">
@@ -24,11 +24,11 @@
 
     <!-- Footer Bar -->
     <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
-		<a href="page-games.html" onclick="initGames()"><i class="bi bi-controller"></i><span>遊戲</span></a>
-		<a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper"></i><span>新聞</span></a>
-		<a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>首頁</span></a>
-		<a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt"></i><span>帳務資訊</span></a>
-		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>更多</span></a>
+		<a href="page-games.html" onclick="initGames()"><i class="bi bi-controller i18n" i18nTag="gaming"></i><span>遊戲</span></a>
+		<a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper i18n" i18nTag="news"></i><span>新聞</span></a>
+		<a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill i18n" i18nTag="index"></i><span>首頁</span></a>
+		<a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt i18n" i18ntag="bills"></i><span>帳務資訊</span></a>
+		<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots i18n" i18nTag="more"></i><span>更多</span></a>
 	</div>
 
     <!-- Page Content - Only Page Elements Here-->
@@ -43,7 +43,7 @@
                     </a>
                 </div>
                 <div class="align-self-center me-auto">
-                    <h1 class="color-theme mb-0 font-18">廣告紅包效益</h1>
+                    <h1 class="color-theme mb-0 font-18 i18n" i18nTag="ad_redPacket_benefits">廣告紅包效益</h1>
                 </div>
                 <div class="align-self-center ms-auto">
                     <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"
@@ -56,24 +56,24 @@
 
 		<div class="card card-style">
 			<div class="content">
-				<p class="mb-2">
+				<p class="mb-2 i18n" i18nTag="ad_redPacket_description">
 					這裡會列出這則廣告已發送出去的紅包，以及紅包被領取的數量。
 				</p>
                 <div class="border border-blue-dark rounded-s overflow-hidden">
                     <table class="table color-theme border-blue-dark mb-0">
                         <thead class="rounded-s bg-blue-dark border-l">
                             <tr class="color-white">
-                                <th scope="col"><h5 class="color-white font-15 mb-0">項目</h5></th>
-                                <th scope="col"><h5 class="color-white font-15 mb-0">明細</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0 i18n" i18nTag="item">項目</h5></th>
+                                <th scope="col"><h5 class="color-white font-15 mb-0 i18n" i18nTag="details">明細</h5></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>紅包數量明細</strong></td>
+                                <td class="i18n" i18nTag="redPacket_quantity_details"><strong>紅包數量明細</strong></td>
                                 <td class="totalRedPacketInfo">/</td>
                             </tr>
                             <tr>
-                                <td class="border-0"><strong>紅包金額明細</strong></td>
+                                <td class="border-0 i18n" i18nTag="redPacket_amount_details"><strong>紅包金額明細</strong></td>
                                 <td class="border-0 totalRedPacketAmountInfo"></td>
                             </tr>
                         </tbody>
