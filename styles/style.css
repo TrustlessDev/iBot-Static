@@ -4544,6 +4544,7 @@ input[type=range] {
 
 #ibot-preloader {
   position: fixed;
+  text-align: center;
   top: 0px;
   left: 0px;
   right: 0px;
