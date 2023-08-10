@@ -300,9 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('檔案大小超過 2MB，請重新上傳');
                     return;
                 }
-                const textBefore = document.getElementsByClassName('upload-file-name')[0].getAttribute('data-text-before');
-                const textAfter = document.getElementsByClassName('upload-file-name')[0].getAttribute('data-text-after');
-                document.getElementsByClassName('upload-file-name')[0].innerHTML =  textBefore + ' ' +  fileName + ' - ' + fileSize + ' - ' + textAfter;
+                document.getElementsByClassName('upload-file-name')[0].innerHTML = fileName + ' - ' + fileSize + ' - ';
                 document.getElementsByClassName('upload-file-name')[0].classList.add('pb-3');
             }
         }
