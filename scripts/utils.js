@@ -17,6 +17,7 @@ async function callAPI(method, params = {}) {
 }
 
 function closePreloader() {
+    $("#preloader").hide();
     $("#ibot-preloader").hide();
 }
 
