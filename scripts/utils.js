@@ -48,6 +48,23 @@ async function initLanguages() {
     lang = data;
 }
 
+function mappingLang() {
+    // 取出所有 class = i18n 的元素
+    let i18nList = document.getElementsByClassName("i18n");
+    for(let i = 0; i < i18nList.length; i++) {
+        // 取出 i18nTag 的 attribute
+        let i18nTag = i18nList[i].getAttribute("i18nTag");
+        // 將 i18nTag 的 attribute 值當作 key 去 lang 物件中取值
+        let text = i18n(i18nTag);
+        // 判斷元素類型
+        if(i18nList[i].tagName == "INPUT") {
+            i18nList[i].placeholder = text;
+        } else {
+            i18nList[i].innerHTML = text;
+        }
+    }
+}
+
 function i18n(key) {
     if(lang[key] ) {
         return lang[key];
