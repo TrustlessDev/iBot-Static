@@ -57,7 +57,7 @@ async function initLanguages() {
     lang = data;
 }
 
-async function initFootBar() {
+function initFootBar() {
     $("#footer-bar").empty();
     let footList = siteInfo.foot;
     for(let i = 0; i < footList.length; i++) {
