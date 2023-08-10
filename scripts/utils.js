@@ -60,19 +60,12 @@ async function initLanguages() {
 async function initFootBar() {
     $("#footer-bar").empty();
     let footList = siteInfo.foot;
-    /*
-      <a href="page-games.html" onclick="initGames()"><i class="bi bi-controller"></i><span class="i18n" i18nTag="gaming">遊戲</span></a>
-      <a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper"></i><span class="i18n" i18nTag="news">新聞</span></a>
-      <a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill"></i><span class="i18n" i18nTag="index"></span></a>
-      <a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt"></i><span class="i18n" i18nTag="bills">帳務資訊</span></a>
-      <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span class="i18n" i18nTag="more">更多</span></a>
-    */
     for(let i = 0; i < footList.length; i++) {
         let tmp = footList[i];
-        let footItem = "<a href=\"" + tmp.url + "\" onclick=\"" + tmp.onclick + "\"><i class=\"bi " + tmp.icon + "\"></i><span class=\"i18n\" i18nTag=\"" + tmp.lang + "\"></span></a>";
+        let footItem = "<a href=\"" + tmp.url + "\" " + (tmp.onclick ? "onclick=\"" + tmp.onclick + "\"" : "") + " " + (tmp.bsToggle ? "data-bs-toggle=\"" + tmp.bsToggle + "\"" : "") + " " + (tmp.bsTarget ? "data-bs-target=\"" + tmp.bsTarget + "\"" : "") + "><i class=\"bi " + tmp.icon + "\"></i><span class=\"i18n\" i18nTag=\"" + tmp.lang + "\"></span></a>";
         $("#footer-bar").append(footItem);
         if(i == 2) {
-            let home = "<a href=\"index.html\" onclick=\"init()\" class=\"circle-nav-2\"><i class=\"bi bi-house-fill\"></i><span class="i18n\" i18nTag=\"index\"></span></a>";
+            let home = "<a href=\"index.html\" onclick=\"init()\" class=\"circle-nav-2\"><i class=\"bi bi-house-fill\"></i><span class=\"i18n\" i18nTag=\"index\"></span></a>";
             $("#footer-bar").append(home);
         }
     }
