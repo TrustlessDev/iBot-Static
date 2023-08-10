@@ -15,12 +15,12 @@
                 <img id="userImg" src="/img/telegram/547539516" width="70px" height="70px">
                 <article>
                     <h3 id="packetFrom"></h3>
-                    <h4>發送了一個紅包</h4>
-                    <h4 id="packetText">恭喜發財 大吉大利</h4>
+                    <h4 class="i18n" i18nTag="sent_red_packet">發送了一個紅包</h4>
+                    <h4 id="packetText" class="i18n" i18ntag="wishing_text">恭喜發財 大吉大利</h4>
                 </article>
             </section>
             <div class="slide"></div>
-            <button id="btnOpenRedPacket" type="button" name="get">開</button>
+            <button id="btnOpenRedPacket" type="button" name="get" class="i18n" i18ntag="open">開</button>
             <div id="cloudflareCaptcha"></div>
             <section class="resultWrapper">
                 <img id="usdtLoading" src="/images/usdt.gif" width="70px" height="70px">
@@ -71,8 +71,8 @@
                 money = 10;
                 playWrapper.style.display = "block";
             } else {
-                $("#packetFrom").text("錯誤");
-                $("#packetText").text("請洽系統管理員");
+                $("#packetFrom").text(i18n("error"));
+                $("#packetText").text(i18n("contact_the_system_admin"));
                 playWrapper.style.display = "block";
                 return;
             }
