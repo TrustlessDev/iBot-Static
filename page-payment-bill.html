@@ -5,7 +5,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-<title>交易紀錄</title>
+<title class="i18n" i18nTag="transfer_log">交易紀錄</title>
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="fonts/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="styles/style.css">
@@ -24,11 +24,11 @@
     
     <!-- Footer Bar -->
     <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
-        <a href="page-games.html" onclick="initGames()"><i class="bi bi-controller"></i><span>遊戲</span></a>
-        <a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper"></i><span>動區新聞</span></a>
-        <a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>首頁</span></a>
-        <a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt"></i><span>帳務資訊</span></a>
-        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>更多</span></a>
+        <a href="page-games.html" onclick="initGames()"><i class="bi bi-controller i18n" i18nTag="gaming"></i><span>遊戲</span></a>
+        <a href="page-activity.html" onclick="initNews()"><i class="bi bi-newspaper i18n" i18nTag="news"></i><span>動區新聞</span></a>
+        <a href="index.html" onclick="init()" class="circle-nav-2"><i class="bi bi-house-fill i18n" i18nTag="index"></i><span>首頁</span></a>
+        <a href="page-payment-bill.html" onclick="initBills()"><i class="bi bi-receipt i18n" i18nTag="bills"></i><span>帳務資訊</span></a>
+        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots i18n" i18nTag="more"></i><span>更多</span></a>
     </div>
 
     <!-- Page Content - Only Page Elements Here-->
@@ -38,8 +38,8 @@
         <div class="pt-3">
             <div class="page-title d-flex">
                 <div class="align-self-center me-auto">
-                    <p class="color-highlight">查看您的</p>
-                    <h1 class="color-theme">交易紀錄</h1>
+                    <p class="color-highlight i18n" i18nTag="check_your">查看您的</p>
+                    <h1 class="color-theme i18n" i18nTag="transfer_log">交易紀錄</h1>
                 </div>
             </div>
         </div>
@@ -48,9 +48,9 @@
             <div class="content mb-0">
                 <div class="tabs tabs-pill" id="tab-group-2">
                     <div class="tab-controls rounded-m p-1 overflow-visible">
-                        <a class="font-13 rounded-s py-1 shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#tab-sumary" aria-expanded="true">所有交易</a>
-                        <a class="font-13 rounded-s py-1 shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#tab-in" aria-expanded="false">入帳明細</a>
-                        <a class="font-13 rounded-s py-1 shadow-bg shadow-bg-s" data-bs-toggle="collapse" href="#tab-out" aria-expanded="false">出帳明細</a>
+                        <a class="font-13 rounded-s py-1 shadow-bg shadow-bg-s i18n" data-bs-toggle="collapse" href="#tab-sumary" aria-expanded="true" i18nTag="all_transactions">所有交易</a>
+                        <a class="font-13 rounded-s py-1 shadow-bg shadow-bg-s i18n" data-bs-toggle="collapse" href="#tab-in" aria-expanded="false" i18nTag="incoming_details">入帳明細</a>
+                        <a class="font-13 rounded-s py-1 shadow-bg shadow-bg-s i18n" data-bs-toggle="collapse" href="#tab-out" aria-expanded="false" i18nTag="outgoing_details">出帳明細</a>
                     </div>
                     <div class="mt-3"></div>
                     <!-- Tab All -->
@@ -102,7 +102,7 @@
         <div class="menu-size" style="height:350px;">
             <div class="d-flex mx-3 mt-3 py-1">
                 <div class="align-self-center">
-                    <h1 class="mb-0">交易明細</h1>
+                    <h1 class="mb-0 i18n" i18nTag="transaction_details">交易明細</h1>
                 </div>
                 <div class="align-self-center ms-auto">
                     <a href="#" class="ps-4 shadow-0 me-n2" data-bs-dismiss="offcanvas">
@@ -113,27 +113,27 @@
             <div class="divider divider-margins mt-3 mb-2"></div>
             <div class="content mt-0">
                 <div class="d-flex">
-                    <h5 class="mb-0 font-600 font-14">交易類型</h5>
+                    <h5 class="mb-0 font-600 font-14 i18n" i18ntag="transaction_type">交易類型</h5>
                     <h5 id="txType" class="mb-0 ms-auto font-700 font-14 color-red-dark">--</h5>
                 </div>
                 <div class="divider my-2"></div>
                 <div class="d-flex">
-                    <h5 class="mb-0 font-600 font-14">交易序號(hash)</h5>
+                    <h5 class="mb-0 font-600 font-14 i18n" i18nTag="transaction_hash">交易序號(hash)</h5>
                     <h5 id="txHash" class="mb-0 ms-auto font-600 font-14">--</h5>
                 </div>
                 <div class="divider my-2"></div>
                 <div class="d-flex">
-                    <h5 class="mb-0 font-600 font-14">時間</h5>
+                    <h5 class="mb-0 font-600 font-14 i18n" i18nTag="time">時間</h5>
                     <h5 id="txDate" class="mb-0 ms-auto font-600 font-14">--</h5>
                 </div>
                 <div class="divider my-2"></div>
                 <div class="d-flex">
-                    <h5 class="mb-0 font-600 font-14">數量</h5>
+                    <h5 class="mb-0 font-600 font-14 i18n" i18ntag="quantity">數量</h5>
                     <h5 id="txAmount" class="mb-0 ms-auto font-700 font-14 color-blue-dark">--</h5>
                 </div>
                 <div class="divider my-2"></div>
             </div>
-            <a href="#" data-bs-dismiss="offcanvas" class="mx-3 btn btn-full gradient-blue shadow-bg shadow-bg-s">關閉</a>
+            <a href="#" data-bs-dismiss="offcanvas" class="mx-3 btn btn-full gradient-blue shadow-bg shadow-bg-s i18n" i18nTag="close">關閉</a>
         </div>
     </div>
     
