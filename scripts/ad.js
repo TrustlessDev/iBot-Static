@@ -6,6 +6,8 @@ let createAdLock = false;
 function initAdPage() {
     //Stepper
     setTimeout(async function () {
+        await initSite();
+        await initLanguages();
         var stepperAdd = document.querySelectorAll('.stepper-add');
         var stepperSub = document.querySelectorAll('.stepper-sub');
         if(stepperAdd.length){
@@ -41,6 +43,8 @@ function initAdPage() {
         await loadGroups();
         // 初始化表格
         updateTable();
+        // 載入語言
+        mappingLang();
     }, 1000);
 }
 

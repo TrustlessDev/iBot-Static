@@ -38,6 +38,9 @@ async function initSite() {
 }
 
 async function initLanguages() {
+    if(!site.apiUrl) {
+        await initSite();
+    }
     let resp = await fetch("https://" + site.apiUrl + "/lang", {
         method: 'GET',
         headers: {
