@@ -70,6 +70,7 @@ async function initFootBar() {
     for(let i = 0; i < footList.length; i++) {
         let tmp = footList[i];
         let footItem = "<a href=\"" + tmp.url + "\" onclick=\"" + tmp.onclick + "\"><i class=\"bi " + tmp.icon + "\"></i><span class=\"i18n\" i18nTag=\"" + tmp.lang + "\"></span></a>";
+        $("#footer-bar").append(footItem);
         if(i == 2) {
             let home = "<a href=\"index.html\" onclick=\"init()\" class=\"circle-nav-2\"><i class=\"bi bi-house-fill\"></i><span class="i18n\" i18nTag=\"index\"></span></a>";
             $("#footer-bar").append(home);
