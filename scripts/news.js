@@ -11,8 +11,8 @@ async function initNews() {
 
 async function refreshCategoriesNews() {
     await appendToNewsBlock("#recent", []);
-    await appendToNewsBlock("#crypto", ["Web3.0","Web3","加密貨幣市場","區塊鏈商業應用","幣安","解鎖代幣","加密貨幣","挖礦","比特幣","礦工","區塊鏈活動"]);
-    await appendToNewsBlock("#market", ["加密貨幣市場", "金融市場","納斯達克"]);
+    await appendToNewsBlock("#crypto", ["Web3.0","Web3",i18n("crypto_market"),i18n("blockchain_applications"),i18n("binance"),i18n("unlock_token"),i18n("cryptocurrency"),i18n("mining"),i18n("bitcoin"),i18n("miner"),i18n("blockchain_events")]);
+    await appendToNewsBlock("#market", [i18n("crypto_market"), i18n("financial_market"),i18n("nasdaq")]);
 }
 
 async function appendToNewsBlock(selector, filter) {
