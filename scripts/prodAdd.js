@@ -1,7 +1,7 @@
 function initProductCreatePage() {
     //Stepper
     setTimeout(async function () {
-        alert("請注意，此為測試網站，請勿輸入真實資料");
+        alert(i18n("prodAdd_msg"));
         var stepperAdd = document.querySelectorAll('.stepper-add');
         var stepperSub = document.querySelectorAll('.stepper-sub');
         if(stepperAdd.length){
