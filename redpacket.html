@@ -56,6 +56,7 @@
             }));
             if(redpacket.success) {
                 redpacket = redpacket.data;
+                redpacket.token = id;
                 let fromTelegramId = redpacket.fromTelegramId;
                 $("#packetFrom").text(redpacket.from);
                 let text = redpacket.text;
@@ -102,7 +103,7 @@
             open.style.display = "none";
             resultWrapper.style.display = "block";
             let resp = await callAPI("receiveRedPacket", {
-                redpacketId: redpacket.id,
+                redpacketId: redpacket.token,
                 token: cloudflareToken
             });
             if(resp.success) {
