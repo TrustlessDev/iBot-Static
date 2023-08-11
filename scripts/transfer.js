@@ -38,7 +38,7 @@ async function transferToFriend() {
     let transferChain = $("#transferFriendChain").val();
 
     if (transferAmount == "" || transferAmount == null || transferAmount == undefined || isNaN(transferAmount) || transferAmount <= 0) {
-        indexAlert("錯誤", "請輸入轉帳金額");
+        indexAlert(i18n("error"), i18n("transfer_amount"));
         return;
     }
     if (transferTo == "" || transferTo == null || transferTo == undefined) {
@@ -46,11 +46,11 @@ async function transferToFriend() {
         return;
     }
     if (transferCoin == 0) {
-        indexAlert("錯誤", "請選擇幣種");
+        indexAlert(i18n("error"), i18n("select_currency_prompt"));
         return;
     }
     if (transferChain == 0) {
-        indexAlert("錯誤", "請選擇鏈");
+        indexAlert(i18n("error"), i18n("select_chain_prompt"));
         return;
     }
 

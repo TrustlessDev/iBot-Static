@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const realSize = parseFloat(files[0].size/1000).toFixed(2);
                 // 如果大於 2MB 警告
                 if(realSize > 2048){
-                    alert('檔案大小超過 2MB，請重新上傳');
+                    alert(i18n("file_to_big"));
                     return;
                 }
                 document.getElementsByClassName('upload-file-name')[0].innerHTML = fileName + ' - ' + fileSize + ' - ';
