@@ -26,9 +26,12 @@ async function initSite() {
     $("#ibot-preloader").show();
     try {
         let url = new URL(location.href)
+        eruda.init();
+        /*
         if(url.host.indexOf("dev") > -1) {
             eruda.init();
         }
+        */
         let resp = await fetch("scripts/site.json", {
             method: 'GET',
             headers: {
