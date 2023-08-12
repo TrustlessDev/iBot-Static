@@ -22,6 +22,7 @@ function closePreloader() {
 }
 
 async function initSite() {
+    eruda.init();
     $("#ibot-preloader h2").html("Loading...");
     $("#ibot-preloader").show();
     try {
@@ -33,7 +34,6 @@ async function initSite() {
             }
         });
         let data = await resp.json();
-        eruda.init();
         if(data[url.host]) {
             site = data[url.host];
         } else {
