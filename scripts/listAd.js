@@ -63,7 +63,7 @@ function createAdListCard(adId, title, status, budget, used) {
                 adId: adId
             });
             if(cronStatus.success) {
-                document.getElementById("adId" + adId).textContent = i18n("廣告投放中");
+                document.getElementById("adId" + adId).textContent = i18n("ad_start");
                 document.getElementById("adId" + adId).classList.remove("color-red-dark");
                 document.getElementById("adId" + adId).classList.add("color-green-dark");
                 document.getElementById("adIconId" + adId).classList.remove("bi-play-circle-fill", "color-green-dark");
