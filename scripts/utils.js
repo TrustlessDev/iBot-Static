@@ -36,7 +36,7 @@ async function initSite() {
         if(data[url.host]) {
             site = data[url.host];
         } else {
-            site = data["127.0.0.1"];
+            eruda.init();
         }
         // Load Site Info
         let resp2 = await fetch("https://" + site.apiUrl + "/site", {
