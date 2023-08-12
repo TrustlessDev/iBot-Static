@@ -22,7 +22,6 @@ function closePreloader() {
 }
 
 async function initSite() {
-    eruda.init();
     $("#ibot-preloader h2").html("Loading...");
     $("#ibot-preloader").show();
     try {
