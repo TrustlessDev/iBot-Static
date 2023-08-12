@@ -33,6 +33,8 @@ async function initSite() {
             }
         });
         let data = await resp.json();
+        alert(url.host);
+        eruda.init();
         if(data[url.host]) {
             site = data[url.host];
         } else {
