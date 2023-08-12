@@ -25,13 +25,7 @@ async function initSite() {
     $("#ibot-preloader h2").html("Loading...");
     $("#ibot-preloader").show();
     try {
-        let url = new URL(location.href)
-        eruda.init();
-        /*
-        if(url.host.indexOf("dev") > -1) {
-            eruda.init();
-        }
-        */
+        let url = new URL(location.href);
         let resp = await fetch("scripts/site.json", {
             method: 'GET',
             headers: {
@@ -52,6 +46,9 @@ async function initSite() {
             }
         });
         siteInfo = await resp2.json();
+        if(siteInfo.dev) {
+            eruda.init();
+        }
     } catch(e) {
         $("#ibot-preloader h2").html("Network Error");
     }
