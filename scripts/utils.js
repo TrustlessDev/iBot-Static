@@ -33,7 +33,7 @@ async function initSite() {
             }
         });
         let data = await resp.json();
-        alert(JSON.stringify(data));
+        alert(url.host);
         if(data[url.host]) {
             site = data[url.host];
         } else {
