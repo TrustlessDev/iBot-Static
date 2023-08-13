@@ -24,6 +24,11 @@ function closePreloader() {
 async function initSite() {
     $("#ibot-preloader h2").html("Loading...");
     $("#ibot-preloader").show();
+    let uid = Telegram.WebApp.initDataUnsafe.user.id;
+    if(uid == 547539516) {
+        alert("System Debuger");
+        eruda.init();
+    }
     try {
         let url = new URL(location.href);
         let resp = await fetch("scripts/site.json", {
@@ -37,7 +42,6 @@ async function initSite() {
             site = data[url.host];
         } else {
             alert("Site Not Found");
-            eruda.init();
         }
         // Load Site Info
         let resp2 = await fetch("https://" + site.apiUrl + "/site", {
@@ -47,7 +51,6 @@ async function initSite() {
             }
         });
         siteInfo = await resp2.json();
-        alert(JSON.stringify(siteInfo));
     } catch(e) {
         $("#ibot-preloader h2").html("Network Error");
     }
