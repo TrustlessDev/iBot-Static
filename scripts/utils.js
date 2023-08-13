@@ -33,7 +33,6 @@ async function initSite() {
             }
         });
         let data = await resp.json();
-        alert(url.host);
         if(data[url.host]) {
             site = data[url.host];
         } else {
@@ -48,6 +47,7 @@ async function initSite() {
             }
         });
         siteInfo = await resp2.json();
+        alert(JSON.stringify(siteInfo));
     } catch(e) {
         $("#ibot-preloader h2").html("Network Error");
     }
