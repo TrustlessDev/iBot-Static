@@ -36,6 +36,7 @@ async function initSite() {
         if(data[url.host]) {
             site = data[url.host];
         } else {
+            alert("Site Not Found");
             eruda.init();
         }
         // Load Site Info
@@ -46,9 +47,6 @@ async function initSite() {
             }
         });
         siteInfo = await resp2.json();
-        if(siteInfo.dev) {
-            eruda.init();
-        }
     } catch(e) {
         $("#ibot-preloader h2").html("Network Error");
     }
