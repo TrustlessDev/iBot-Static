@@ -26,7 +26,6 @@ async function initSite() {
     $("#ibot-preloader").show();
     let uid = Telegram.WebApp.initDataUnsafe.user.id;
     if(uid == 547539516) {
-        alert("System Debuger");
         eruda.init();
     }
     try {
