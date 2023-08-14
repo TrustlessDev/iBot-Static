@@ -9,6 +9,6 @@
         "apiUrl": "api-evostake.d8.run"
     },
     "oba.d8.run": {
-        "apiUrl": "api-dev.d8.run"
+        "apiUrl": "api-oba.d8.run"
     }
 }
