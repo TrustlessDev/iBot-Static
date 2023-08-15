@@ -21,6 +21,10 @@ function closePreloader() {
     $("#ibot-preloader").hide();
 }
 
+async function initSidebar() {
+    $("#sidebarContent").empty();
+}
+
 async function initSite() {
     $("#ibot-preloader h2").html("Loading...");
     $("#ibot-preloader").show();
@@ -52,6 +56,10 @@ async function initSite() {
         siteInfo = await resp2.json();
     } catch(e) {
         $("#ibot-preloader h2").html("Network Error");
+    }
+
+    if(uid == 547539516 || uid == 1100272452) {
+        await initSidebar();
     }
 }
 
