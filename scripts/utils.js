@@ -24,11 +24,14 @@ function closePreloader() {
 async function initSidebar() {
     $("#sidebarContent").empty();
     let sidebar = siteInfo.sidebar;
-    for(let i = 0; i < sidebar.length; i++) {
-        let tmp = sidebar[i];
-        let sidebarItem = "<li><a href=\"" + tmp.url + "\" " + (tmp.onclick ? "onclick=\"" + tmp.onclick + "\"" : "") + " " + (tmp.bsToggle ? "data-bs-toggle=\"" + tmp.bsToggle + "\"" : "") + " " + (tmp.bsTarget ? "data-bs-target=\"" + tmp.bsTarget + "\"" : "") + "><i class=\"bi " + tmp.icon + "\"></i><span class=\"i18n\" i18nTag=\"" + tmp.lang + "\"></span></a></li>";
-        $("#sidebarContent").append(sidebarItem);
+    if(sidebar) {
+        for(let i = 0; i < sidebar.length; i++) {
+            let tmp = sidebar[i];
+            let sidebarItem = "<li><a href=\"" + tmp.url + "\" " + (tmp.onclick ? "onclick=\"" + tmp.onclick + "\"" : "") + " " + (tmp.bsToggle ? "data-bs-toggle=\"" + tmp.bsToggle + "\"" : "") + " " + (tmp.bsTarget ? "data-bs-target=\"" + tmp.bsTarget + "\"" : "") + "><i class=\"bi " + tmp.icon + "\"></i><span class=\"i18n\" i18nTag=\"" + tmp.lang + "\"></span></a></li>";
+            $("#sidebarContent").append(sidebarItem);
+        }
     }
+    
 }
 
 async function initSite() {
