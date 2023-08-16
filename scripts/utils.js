@@ -31,7 +31,6 @@ async function initSidebar() {
             $("#sidebarContent").append(sidebarItem);
         }
     }
-    
 }
 
 async function initSite() {
