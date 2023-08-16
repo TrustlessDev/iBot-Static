@@ -249,7 +249,7 @@
   <script src="scripts/listAd.js"></script>
   <script src="scripts/adInfo.js"></script>
   <script src="scripts/prodAdd.js"></script>
-  <script src="scripts/utils.js?t=2235"></script>
+  <!--<script src="scripts/utils.js?t=2235"></script>-->
   <script type="application/javascript">
     let currentCardId = 1;
     let userData = {};
@@ -258,6 +258,7 @@
 
     async function init() {
       setTimeout(async function() {
+        await loadJS("scripts/utils.js");
         await initSite();
         await initOffCanvasEvent();
         await refreshNews();
