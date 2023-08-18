@@ -30,7 +30,7 @@ async function initSidebar() {
             let tmp = sidebar[i];
             let sidebarItem = "";
             if(tmp.type == "SUBMENU") {
-                sidebarItem = "<a href=\"#\" data-submenu=\"" + rndId + "\" class=\"list-group-item\"><i class=\"bi " + tmp.color + " shadow-bg shadow-bg-xs " + tmp.icon + "\"></i><div class=\"i18n\" i18nTag=\"" + tmp.name + "\"></div><i class=\"bi bi-plus font-18\"></i></a>";
+                sidebarItem = "<a href=\"#\" onclick=\"" + tmp.onclick + "\" data-submenu=\"" + rndId + "\" class=\"list-group-item\"><i class=\"bi " + tmp.color + " shadow-bg shadow-bg-xs " + tmp.icon + "\"></i><div class=\"i18n\" i18nTag=\"" + tmp.name + "\"></div><i class=\"bi bi-plus font-18\"></i></a>";
             } else if(tmp.type == "LINK") {
 
             }
@@ -42,7 +42,7 @@ async function initSidebar() {
                     let dataSubmenu = "<div class=\"list-submenu\" id=\"" + rndId + "\">";
                     for(let j = 0; j < submenu.length; j++) {
                         let submenuItem = submenu[j];
-                        dataSubmenu += "<a href=\"" + submenuItem.link + "\" id=\"nav-waves\" class=\"list-group-item\">";
+                        dataSubmenu += "<a href=\"" + submenuItem.link + "\" onclick=\"" + submenuItem.onclick + "\" id=\"nav-waves\" class=\"list-group-item\">";
                         dataSubmenu += "<div class=\"ps-4 i18n\" i18nTag=\"" + submenuItem.name + "\"></div>";
                         dataSubmenu += "</a>";
                     }
