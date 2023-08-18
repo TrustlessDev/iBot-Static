@@ -42,6 +42,7 @@ async function initSidebar() {
                     let dataSubmenu = "<div class=\"list-submenu\" id=\"" + rndId + "\">";
                     for(let j = 0; j < submenu.length; j++) {
                         let submenuItem = submenu[j];
+                        console.log(submenuItem);
                         dataSubmenu += "<a href=\"" + submenuItem.link + "\" onclick=\"" + submenuItem.onclick + "\" id=\"nav-waves\" class=\"list-group-item\">";
                         dataSubmenu += "<div class=\"ps-4 i18n\" i18nTag=\"" + submenuItem.name + "\"></div>";
                         dataSubmenu += "</a>";
