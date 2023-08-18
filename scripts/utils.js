@@ -26,11 +26,42 @@ async function initSidebar() {
     let sidebar = siteInfo.sidebar;
     if(sidebar) {
         for(let i = 0; i < sidebar.length; i++) {
+            let rndId = getRandomText(8);
             let tmp = sidebar[i];
-            let sidebarItem = "<li><a href=\"" + tmp.url + "\" " + (tmp.onclick ? "onclick=\"" + tmp.onclick + "\"" : "") + " " + (tmp.bsToggle ? "data-bs-toggle=\"" + tmp.bsToggle + "\"" : "") + " " + (tmp.bsTarget ? "data-bs-target=\"" + tmp.bsTarget + "\"" : "") + "><i class=\"bi " + tmp.icon + "\"></i><span class=\"i18n\" i18nTag=\"" + tmp.lang + "\"></span></a></li>";
+            let sidebarItem = "";
+            if(tmp.type == "SUBMENU") {
+                sidebarItem = "<a href=\"#\" data-submenu=\"" + rndId + "\" class=\"list-group-item\"><i class=\"bi " + tmp.color + " shadow-bg shadow-bg-xs " + tmp.icon + "\"></i><div class=\"i18n\" i18nTag=\"" + tmp.name + "\"></div><i class=\"bi bi-plus font-18\"></i></a>";
+            } else if(tmp.type == "LINK") {
+
+            }
             $("#sidebarContent").append(sidebarItem);
+            // 若是 SUBMENU 則繼續處理
+            if(tmp.type == "SUBMENU") {
+                let submenu = tmp.submenu;
+                if(submenu.length > 0) {
+                    let dataSubmenu = "<div class=\"list-submenu\" id=\"" + rndId + "\">";
+                    for(let j = 0; j < submenu.length; j++) {
+                        let submenuItem = submenu[j];
+                        dataSubmenu += "<a href=\"" + submenuItem.link + "\" id=\"nav-waves\" class=\"list-group-item\">";
+                        dataSubmenu += "<div class=\"ps-4 i18n\" i18nTag=\"" + submenuItem.name + "\"></div>";
+                        dataSubmenu += "</a>";
+                    }
+                    dataSubmenu += "</div>";
+                    $("#sidebarContent").append(dataSubmenu);
+                }
+            }
         }
     }
+}
+
+function getRandomText(n) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    let randomText = '';
+    for (let i = 0; i < n; i++) {
+      const randomIndex = Math.floor(Math.random() * chars.length);
+      randomText += chars[randomIndex];
+    }
+    return randomText;
 }
 
 async function initSite() {
