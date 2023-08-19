@@ -657,6 +657,7 @@
                 let ticketId = urlParams.get('tgWebAppStartParam');
                 let payment = await callAPI("ticketInfo", {ticketId: ticketId});
                 if(payment.success) {
+                    payment = payment.payment;
                     $("#paymentIcon").attr("src", payment.companyIcon);
                     $("#paymentFrom").text(payment.companyName);
                     $("#paymentAmount").text(payment.amount);
