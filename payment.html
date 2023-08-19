@@ -650,7 +650,11 @@
             async function init() {
                 await loadJS("scripts/utils.js");
                 await initSite();
-                
+
+                let ticketId = urlParams.get('tgWebAppStartParam');
+                console.log(ticketId);
+                let payment = await callAPI("ticketInfo", {ticketId: ticketId});
+                console.log(payment);
             }
 
 
