@@ -669,6 +669,7 @@
             }
 
             async function confirmPay() {
+                let urlParams = new URLSearchParams(window.location.search);
                 let ticketId = urlParams.get('tgWebAppStartParam');
                 let rst = await callAPI("confirmPayment", {ticketId: ticketId});
                 if(rst.success) {
