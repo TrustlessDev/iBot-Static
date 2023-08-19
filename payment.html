@@ -557,9 +557,10 @@
             <fieldset>
                 <h2 class="fs-title">確認支付</h2>
                 <h3 class="fs-subtitle">按下確認支付後將無法取消</h3>
-                
+                <h4 id="alertMessage" style="color: red"></h4>
+                <h4 id="successMessage" style="color: green"></h4>
                 <input type="button" name="previous" class="previous action-button" value="上一步" />
-                <a href="https://twitter.com/GoktepeAtakan" class="submit action-button" target="_top">確認</a>
+                <input type="button" onclick="confirmPay()" class="submit action-button" value="確認" />
             </fieldset>
         </form>
         
@@ -667,6 +668,18 @@
                 }
             }
 
+            async function confirmPay() {
+                let ticketId = urlParams.get('tgWebAppStartParam');
+                let rst = await callAPI("confirmPayment", {ticketId: ticketId});
+                if(rst.success) {
+                    $("#successMessage").text("付款成功，三秒後畫面將關閉...");
+                    setTimeout(() => {
+                        TelegramWebApp.close();
+                    }, 3000);
+                } else {
+                    $("#alertMessage").text(rst.message);
+                }
+            }
 
             async function loadJS(url) {
                 return new Promise((resolve, reject) => {
