@@ -652,10 +652,8 @@
             
             async function init() {
                 await loadJS("scripts/utils.js");
-                eruda.init();
-                alert("init");
                 await initSite();
-                
+                let urlParams = new URLSearchParams(window.location.search);
                 let ticketId = urlParams.get('tgWebAppStartParam');
                 console.log(ticketId);
                 let payment = await callAPI("ticketInfo", {ticketId: ticketId});
