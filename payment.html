@@ -675,7 +675,7 @@
                 if(rst.success) {
                     $("#successMessage").text("付款成功，三秒後畫面將關閉...");
                     setTimeout(() => {
-                        TelegramWebApp.close();
+                        Telegram.WebApp.close();
                     }, 3000);
                 } else {
                     $("#alertMessage").text(rst.message);
