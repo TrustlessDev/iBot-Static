@@ -160,15 +160,15 @@
                 <h2 class="fs-title">第三方支付款項確認</h2>
                 <h3 class="fs-subtitle">請確認支付項目及款項金額</h3>
                 <section class="info">
-                    <img id="userImg" src="/img/telegram/14099344650125.jpg" width="70px" height="70px">
+                    <img id="companyIcon" src="/img/telegram/14099344650125.jpg" width="70px" height="70px">
                     <article>
-                        <h4 id="paymentFrom">杭州边锋网络技术有限公司</h4>
+                        <h4 id="paymentFrom"></h4>
                         <div>
                             <a style="font-size: small;">要求支付</a>
-                            <a style="font-size: xx-large;" id="packetText" class="i18n" i18ntag="wishing_text">0.5</a>
+                            <a style="font-size: xx-large;" id="paymentAmount" class="i18n" i18ntag="wishing_text">--</a>
                             <a style="font-size: small;">USDT</a>
                         </div>
-                        <h4 id="paymentFrom">Telegram 迷你小遊戲</h4>
+                        <h4 id="paymentReason"></h4>
                         <br>
                         <h4 class="dashed-border i18n" i18ntag="payment_notice">本支付透過 i-Bot 第三方金流支付，支付項目與i-Bot無關</h4>
                     </article>
@@ -655,9 +655,15 @@
                 await initSite();
                 let urlParams = new URLSearchParams(window.location.search);
                 let ticketId = urlParams.get('tgWebAppStartParam');
-                console.log(ticketId);
                 let payment = await callAPI("ticketInfo", {ticketId: ticketId});
-                console.log(payment);
+                if(payment.success) {
+                    $("#paymentIcon").attr("src", payment.companyIcon);
+                    $("#paymentFrom").text(payment.companyName);
+                    $("#paymentAmount").text(payment.amount);
+                    $("#paymentReason").text(payment.description);
+                } else {
+                    alert("無效的票券");
+                }
             }
 
 
