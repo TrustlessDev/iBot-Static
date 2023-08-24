@@ -237,7 +237,6 @@
     integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <!--<script src="scripts/utils.js"></script>-->
   <script src="scripts/bootstrap.min.js"></script>
   <script src="scripts/custom.js"></script>
   <script src="scripts/ibot.js?t=1122"></script>
@@ -248,8 +247,8 @@
   <script src="scripts/ad.js"></script>
   <script src="scripts/listAd.js"></script>
   <script src="scripts/adInfo.js"></script>
-  <script src="scripts/prodAdd.js?ttt=2235"></script>
-  <!--<script src="scripts/utils.js?t=2235"></script>-->
+  <!--<script src="scripts/prodAdd.js?ttt=2235"></script>
+  <script src="scripts/utils.js?t=2235"></script>-->
   <script type="application/javascript">
     let currentCardId = 1;
     let userData = {};
@@ -259,6 +258,7 @@
     async function init() {
       setTimeout(async function() {
         await loadJS("scripts/utils.js");
+        await loadJS("scripts/prodAdd.js");
         await initSite();
         await initOffCanvasEvent();
         await refreshNews();
