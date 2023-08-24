@@ -1,7 +1,9 @@
-function initProductCreatePage() {
+function initAddProductPage() {
     //Stepper
     setTimeout(async function () {
-        alert(i18n("prodAdd_msg"));
+        await loadJS("scripts/utils.js");
+        await initSite();
+        console.log("TEST");
         var stepperAdd = document.querySelectorAll('.stepper-add');
         var stepperSub = document.querySelectorAll('.stepper-sub');
         if(stepperAdd.length){
