@@ -30,7 +30,7 @@ async function initSidebar() {
             let tmp = sidebar[i];
             let sidebarItem = "";
             if(tmp.type == "SUBMENU") {
-                sidebarItem = "<a href=\"#\" onclick=\"" + (tmp.onclick ?? "") + "\" data-submenu=\"" + rndId + "\" class=\"list-group-item\"><i class=\"bi " + tmp.color + " shadow-bg shadow-bg-xs " + tmp.icon + "\"></i><div class=\"i18n\" i18nTag=\"" + tmp.name + "\"></div><i class=\"bi bi-plus font-18\"></i></a>";
+                sidebarItem = "<a href=\"#\"" + (tmp.onclick ? (" onclick=\"" + tmp.onclick + "\"") : "") + " data-submenu=\"" + rndId + "\" class=\"list-group-item\"><i class=\"bi " + tmp.color + " shadow-bg shadow-bg-xs " + tmp.icon + "\"></i><div class=\"i18n\" i18nTag=\"" + tmp.name + "\"></div><i class=\"bi bi-plus font-18\"></i></a>";
             } else if(tmp.type == "LINK") {
 
             }
