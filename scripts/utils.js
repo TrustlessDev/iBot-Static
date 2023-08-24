@@ -129,6 +129,37 @@ function initFootBar() {
     submenus();
 }
 
+function submenus(){
+    var subTrigger = document.querySelectorAll('[data-submenu]');
+    if(subTrigger.length){
+        var submenuActive = document.querySelectorAll('.submenu-active')[0];
+            if (submenuActive){
+            var subData = document.querySelectorAll('.submenu-active')[0].getAttribute('data-submenu');
+            var subId = document.querySelectorAll('#'+ subData);
+            var subIdNodes = document.querySelectorAll('#'+subData + ' a');
+            var subChildren = subIdNodes.length
+            var subHeight = subChildren * 43;
+            subId[0].style.height = subHeight + 'px';
+        }
+
+        subTrigger.forEach(el => el.addEventListener('click',e => {
+           const subData = el.getAttribute('data-submenu');
+           var subId = document.querySelectorAll('#'+ subData);
+           var subIdNodes = document.querySelectorAll('#'+subData + ' a');
+           var subChildren = subIdNodes.length
+           var subHeight = subChildren * 43;
+           if(el.classList.contains('submenu-active')){
+               subId[0].style.height = '0px';
+               el.classList.remove('submenu-active');
+           } else {
+               subId[0].style.height = subHeight + 'px';
+               el.classList.add('submenu-active');
+           }
+           return false
+        }));
+    }
+}
+
 function mappingLang() {
     // 取出所有 class = i18n 的元素
     let i18nList = document.getElementsByClassName("i18n");
