@@ -3,7 +3,6 @@ function initAddProductPage() {
     setTimeout(async function () {
         await loadJS("scripts/utils.js");
         await initSite();
-        console.log("TEST");
         var stepperAdd = document.querySelectorAll('.stepper-add');
         var stepperSub = document.querySelectorAll('.stepper-sub');
         if(stepperAdd.length){
@@ -21,6 +20,6 @@ function initAddProductPage() {
         }
         // 載入圖片
         $("#image-data").attr("src", "images/ad-demo.jpg");
-        
+        closePreloader();
     }, 400);
 }
