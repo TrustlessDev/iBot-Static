@@ -97,9 +97,7 @@ async function initSite() {
         $("#ibot-preloader h2").html("Network Error");
     }
 
-    if(uid == 547539516 || uid == 1100272452) {
-        //await initSidebar();
-    }
+    await initSidebar();
 }
 
 async function initLanguages() {
@@ -128,6 +126,7 @@ function initFootBar() {
             $(".footer-bar").append(home);
         }
     }
+    submenus();
 }
 
 function mappingLang() {
