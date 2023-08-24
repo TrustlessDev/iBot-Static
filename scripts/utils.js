@@ -98,7 +98,7 @@ async function initSite() {
     }
 
     if(uid == 547539516 || uid == 1100272452) {
-        await initSidebar();
+        //await initSidebar();
     }
 }
 
