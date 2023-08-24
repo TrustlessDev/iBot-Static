@@ -14,7 +14,6 @@ function initAdList() {
                 $("#adList").append(tmp);
             }
         }
-        initFootBar();
         mappingLang();
         closePreloader();
     }, 300);

@@ -3,7 +3,6 @@ async function initNews() {
         await initSite();
         await initLanguages();
         refreshCategoriesNews();
-        initFootBar();
         mappingLang();
         closePreloader();
     }, 300);

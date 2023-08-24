@@ -3,7 +3,6 @@ function initAdInfo(adId) {
         await initSite();
         await initLanguages();
         loadAdRedPacketInfo(adId);
-        initFootBar();
         mappingLang();
         closePreloader();
     }, 300);

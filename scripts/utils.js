@@ -98,7 +98,7 @@ async function initSite() {
     } catch(e) {
         $("#ibot-preloader h2").html("Network Error");
     }
-
+    initFootBar();
     await initSidebar();
 }
 

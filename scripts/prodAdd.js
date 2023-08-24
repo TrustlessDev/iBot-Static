@@ -18,7 +18,7 @@ function initAddProductPage() {
                 }
             }))
         }
-        initFootBar();
+        
         // 載入語言
         mappingLang();
         // 載入圖片

@@ -3,7 +3,6 @@ async function initGames() {
         await initSite();
         await initLanguages();
         await getGames();
-        initFootBar();
         mappingLang();
         closePreloader();
     }, 300);
