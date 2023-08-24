@@ -51,7 +51,9 @@ async function initSidebar() {
                 }
             }
         }
+        submenus();
     }
+
 }
 
 function getRandomText(n) {
@@ -126,7 +128,6 @@ function initFootBar() {
             $(".footer-bar").append(home);
         }
     }
-    submenus();
 }
 
 function submenus(){
