@@ -312,9 +312,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //Calling Functions Required After External Menus are Loaded
         var dataMenuLoad = document.querySelectorAll('[data-menu-load]')
+        
         dataMenuLoad.forEach(function(e){
             var menuLoad = e.getAttribute('data-menu-load')
-            fetch(menuLoad)
+            fetch(menuLoad + "?t=" + new Date().getTime())
             .then(data => data.text())
             .then(html => e.innerHTML = html)
             .then(data => {
@@ -324,6 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         submenus();
                         pageHighlights();
                         activatePage();
+                        
                     }
                 },500);
             }).catch(function() {
