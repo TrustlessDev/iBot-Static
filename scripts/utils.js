@@ -51,6 +51,7 @@ async function initSidebar() {
                 }
             }
         }
+        console.log("Sidebar Init Done");
         submenus();
     }
 
