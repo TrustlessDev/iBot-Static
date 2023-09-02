@@ -656,12 +656,8 @@
                 await initSite();
                 let urlParams = new URLSearchParams(window.location.search);
                 let ticketId = urlParams.get('tgWebAppStartParam');
-                // 取出前面 32 碼
-                let hash = ticketId.substring(0, 32);
-                // 取出後面剩下的
-                let data = ticketId.substring(32);
 
-                let payment = await callAPI("ticketInfo", {ticketId: hash + "-" + data});
+                let payment = await callAPI("ticketInfo", {ticketId: ticketId});
                 if(payment.success) {
                     payment = payment.payment;
                     $("#paymentIcon").attr("src", payment.companyIcon);
