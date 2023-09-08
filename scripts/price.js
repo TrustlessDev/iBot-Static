@@ -1,6 +1,7 @@
 let ws = null;
 let priceTimer = 0;
 let priceTable = [];
+let watchSymbols = [];
 
 async function setupWebSocket() {
     ws = new WebSocket('wss://' + site.apiUrl + '/ws');
@@ -9,9 +10,13 @@ async function setupWebSocket() {
             type: 'ping'
         });
     };
-    ws.onmessage = (event) => {
+    ws.onmessage = async (event) => {
         let data = JSON.parse(event.data);
         if (data.type === 'pong') {
+            let tmp = await fetch("https://" + site.apiUrl + "/symbolList");
+            let symbolList = await tmp.json();
+            watchSymbols = symbolList.data;
+            console.log(watchSymbols);
             priceTimer = setInterval(() => {
                 queryPrice();
             }, 1000);
@@ -42,4 +47,9 @@ function queryPrice() {
         type: 'price',
         data: ["ETH", "BTC", "BCH"]
     });
+}
+
+async function initPrice() {
+
+    setupWebSocket();
 }

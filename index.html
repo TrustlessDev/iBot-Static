@@ -132,10 +132,10 @@
       <div id="cryptoMarket" style="display: none;" class="content my-0 mt-n2 px-1">
         <div class="d-flex">
           <div class="align-self-center">
-            <h3 class="font-16 mb-2 i18n">行情</h3>
+            <h3 class="font-16 mb-2">行情</h3>
           </div>
           <div class="align-self-center ms-auto">
-            <a href="page-activity.html" onclick="initNews()" class="font-12 pt-1 i18n" i18nTag="show_all">顯示全部</a>
+            <a href="page-activity.html" onclick="initPrice()" class="font-12 pt-1 i18n" i18nTag="show_all">顯示全部</a>
           </div>
         </div>
       </div>
@@ -258,11 +258,7 @@
         await initOffCanvasEvent();
         await refreshNews();
         await initLanguages();
-        try {
-          setupWebSocket();
-        } catch (e) {
-          console.log(e);
-        }
+        await initPrice();
         
         document.querySelector("#user-identity").innerHTML = Telegram.WebApp.initDataUnsafe.user.first_name + " " + Telegram.WebApp.initDataUnsafe.user.last_name;
         userData = (await webLogin()).user;
