@@ -10,7 +10,7 @@ async function setupWebSocket() {
     ws.onmessage = (event) => {
         let data = JSON.parse(event.data);
         if (data.type === 'pong') {
-            console.log("WebSocket Connected");
+            queryPrice();
         }
     };
     ws.onclose = (event) => {
