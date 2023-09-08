@@ -265,6 +265,7 @@
         await refreshNews();
         await initLanguages();
         setupWebSocket();
+        sendMessage();
         
         document.querySelector("#user-identity").innerHTML = Telegram.WebApp.initDataUnsafe.user.first_name + " " + Telegram.WebApp.initDataUnsafe.user.last_name;
         userData = (await webLogin()).user;
