@@ -259,10 +259,12 @@
       setTimeout(async function() {
         await loadJS("scripts/utils.js");
         await loadJS("scripts/prodAdd.js");
+        await loadJS("scripts/price.js");
         await initSite();
         await initOffCanvasEvent();
         await refreshNews();
         await initLanguages();
+        setupWebSocket();
         
         document.querySelector("#user-identity").innerHTML = Telegram.WebApp.initDataUnsafe.user.first_name + " " + Telegram.WebApp.initDataUnsafe.user.last_name;
         userData = (await webLogin()).user;
