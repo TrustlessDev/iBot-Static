@@ -4,7 +4,9 @@ async function setupWebSocket() {
     ws = new WebSocket('wss://' + site.apiUrl + '/ws');
     ws.onopen = () => {
         console.log('Connected to WebSocket');
-        sendMessage();
+        sendMessage({
+            type: 'ping'
+        });
     };
     ws.onmessage = (event) => {
         console.log('Received from server:', event.data);
@@ -18,9 +20,9 @@ async function setupWebSocket() {
     };
 }
 
-function sendMessage() {
+function sendMessage(obj) {
     if (ws && ws.readyState === WebSocket.OPEN) {
-        ws.send('Hello from client!');
+        ws.send(JSON.stringify(obj));
     } else {
         console.error('WebSocket is not open. Cannot send message.');
     }
