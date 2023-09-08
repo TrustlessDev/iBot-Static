@@ -262,6 +262,7 @@
         await initSite();
         await initOffCanvasEvent();
         await refreshNews();
+        await refreshMarket();
         await initLanguages();
         await initPrice();
         
@@ -410,6 +411,23 @@
           );
         }
       });
+    }
+
+    async function refreshMarket() {
+      for (let i = 0; i < priceTable; i++) {
+        if (i != 0) {
+          $("#marketBlock").append(
+            '<div class="divider my-2 opacity-50"></div>'
+          );
+        }
+        let ele = createNewsElement(
+          '/images/crypto/' + priceTable[i].symbol + '.png',
+          priceTable[i].symbol,
+          priceTable[i].weightedAvgPrice,
+          priceTable[i].priceChangePercent
+        );
+        $("#marketBlock").append(ele);
+      }
     }
 
     async function refreshNews() {

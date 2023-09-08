@@ -18,7 +18,10 @@ async function setupWebSocket() {
             watchSymbols = symbolList.data;
             watchSymbols = watchSymbols.slice(0, 20);
             priceTimer = setInterval(() => {
-                queryPrice();
+                sendMessage({
+                    type: 'price',
+                    data: watchSymbols
+                });
             }, 1000);
         } else if (data.type === 'price') {
             priceTable = data.data;
@@ -42,14 +45,6 @@ function sendMessage(obj) {
     }
 }
 
-function queryPrice() {
-    sendMessage({
-        type: 'price',
-        data: watchSymbols
-    });
-}
-
 async function initPrice() {
-
     setupWebSocket();
 }
