@@ -23465,7 +23465,7 @@ cr.behaviors.lunarray_LiteTween = function(runtime)
 	{
     var x = JSON.parse(o["tweenlist"]);
     var tempObj = TweenObject.Load(x, x.name, x.tweened, x.easefunc, x.initialparam1+","+x.initialparam2, x.targetparam1+","+x.targetparam2, x.duration, x.enforce);
-    console.log(tempObj);
+    //console.log(tempObj);
 		this.tween_list["default"] = tempObj;
 	  this.playmode = o["playmode"];
 		this.active = o["active"];
