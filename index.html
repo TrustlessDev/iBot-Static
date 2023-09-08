@@ -5,8 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
   <title>i-Bot</title>
   <link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
   <link rel="stylesheet" type="text/css" href="fonts/bootstrap-icons.css" />
@@ -57,12 +56,6 @@
                 <path d="M12 9h2V8h-2v1Z" />
               </svg>
             </a>
-            <!--
-                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-notifications" class="icon bg-white color-theme rounded-m shadow-xl">
-                        <i class="bi bi-bell-fill color-black font-17"></i>
-                        <em class="badge bg-red-light color-white scale-box">3</em>
-                    </a>
-                    -->
           </div>
         </div>
       </div>
@@ -118,17 +111,6 @@
         </div>
       </div>
 
-      <!--
-      <div class="card card-style shadow-bg shadow-bg-s">
-        <div class="content">
-          <h4>帳戶餘額變動</h4>
-          <div class="align-self-center m-auto">
-            <div id="chart-balance" class="chart mt-n5 pt-4 ms-n3"></div>
-          </div>
-        </div>
-      </div>
-      -->
-
       <div class="card card-style gradient-red shadow-bg shadow-bg-s">
         <div class="content">
           <a href="#" onclick="callCreateRedPacket()" class="d-flex">
@@ -143,6 +125,18 @@
               </h5>
             </div>
           </a>
+        </div>
+      </div>
+
+      <!-- Recent Activity Title-->
+      <div style="display: none;" class="content my-0 mt-n2 px-1">
+        <div class="d-flex">
+          <div class="align-self-center">
+            <h3 class="font-16 mb-2 i18n" i18nTag="blockchain_news">區塊鏈新聞</h3>
+          </div>
+          <div class="align-self-center ms-auto">
+            <a href="page-activity.html" onclick="initNews()" class="font-12 pt-1 i18n" i18nTag="show_all">顯示全部</a>
+          </div>
         </div>
       </div>
 
