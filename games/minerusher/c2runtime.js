@@ -20,8 +20,10 @@ if (typeof Object.getPrototypeOf !== "function")
 (function(){
 	cr.logexport = function (msg)
 	{
-		if (window.console && window.console.log)
-			window.console.log(msg);
+		if (window.console && window.console.log) {
+			//window.console.log(msg);
+		}
+			
 	};
 	cr.logerror = function (msg)
 	{
