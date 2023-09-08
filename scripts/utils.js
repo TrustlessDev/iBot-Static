@@ -75,7 +75,7 @@ async function initSite() {
     let uid = Telegram.WebApp.initDataUnsafe.user.id;
     if(uid == 547539516) { //  || uid == 1100272452
         eruda.init();
-        $("#cryptoMarket").show();
+        $(".cryptoMarket").show();
     }
     try {
         let url = new URL(location.href);
