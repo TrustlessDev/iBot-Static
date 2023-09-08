@@ -264,7 +264,7 @@
         await initOffCanvasEvent();
         await refreshNews();
         await initLanguages();
-        setupWebSocket();
+        ws = await setupWebSocket();
         sendMessage();
         
         document.querySelector("#user-identity").innerHTML = Telegram.WebApp.initDataUnsafe.user.first_name + " " + Telegram.WebApp.initDataUnsafe.user.last_name;
