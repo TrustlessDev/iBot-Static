@@ -1,4 +1,6 @@
 let ws = null;
+let priceTimer = 0;
+let priceTable = [];
 
 async function setupWebSocket() {
     ws = new WebSocket('wss://' + site.apiUrl + '/ws');
@@ -10,15 +12,19 @@ async function setupWebSocket() {
     ws.onmessage = (event) => {
         let data = JSON.parse(event.data);
         if (data.type === 'pong') {
-            queryPrice();
+            priceTimer = setInterval(() => {
+                queryPrice();
+            }, 1000);
         } else if (data.type === 'price') {
-            console.log(data);
+            priceTable = data.data;
         }
     };
     ws.onclose = (event) => {
+        clearInterval(priceTimer);
         setTimeout(setupWebSocket, 1500);
     };
     ws.onerror = (error) => {
+        clearInterval(priceTimer);
         console.error('WebSocket Error:', error);
     };
 }
