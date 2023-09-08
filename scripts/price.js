@@ -28,3 +28,10 @@ function sendMessage(obj) {
         console.error('WebSocket is not open. Cannot send message.');
     }
 }
+
+function queryPrice() {
+    sendMessage({
+        type: 'price',
+        data: ["ETH", "BTC", "BCH"]
+    });
+}
