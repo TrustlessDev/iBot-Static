@@ -11,6 +11,8 @@ async function setupWebSocket() {
         let data = JSON.parse(event.data);
         if (data.type === 'pong') {
             queryPrice();
+        } else if (data.type === 'price') {
+            console.log(data);
         }
     };
     ws.onclose = (event) => {
