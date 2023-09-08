@@ -16,7 +16,7 @@ async function setupWebSocket() {
             let tmp = await fetch("https://" + site.apiUrl + "/symbolList");
             let symbolList = await tmp.json();
             watchSymbols = symbolList.data;
-            console.log(watchSymbols);
+            watchSymbols = watchSymbols.slice(0, 20);
             priceTimer = setInterval(() => {
                 queryPrice();
             }, 1000);
@@ -45,7 +45,7 @@ function sendMessage(obj) {
 function queryPrice() {
     sendMessage({
         type: 'price',
-        data: ["ETH", "BTC", "BCH"]
+        data: watchSymbols
     });
 }
 
