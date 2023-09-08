@@ -265,8 +265,7 @@
         await refreshNews();
         await initLanguages();
         try {
-          //ws = await setupWebSocket();
-          //sendMessage();
+          setupWebSocket();
         } catch (e) {
           console.log(e);
         }
