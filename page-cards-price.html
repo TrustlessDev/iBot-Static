@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="styles/style.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightweight-charts@latest/dist/lightweight-charts.standalone.production.css">
 <link rel="manifest" href="_manifest.json">
 <meta id="theme-check" name="theme-color" content="#FFFFFF">
 <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png"></head>
@@ -23,12 +24,7 @@
 <div id="page">
 
     <!-- Footer Bar -->
-    <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
-        <a href="page-wallet.html" class="active-nav"><i class="bi bi-wallet2"></i><span>Cards</span></a>
-        <a href="page-activity.html"><i class="bi bi-graph-up"></i><span>Activity</span></a>
-        <a href="index-waves.html" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
-        <a href="page-payments.html"><i class="bi bi-receipt"></i><span>Payments</span></a>
-        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i class="bi bi-three-dots"></i><span>More</span></a>
+    <div id="footer-bar" class="footer-bar footer-bar-1 footer-bar-detached"> 
     </div>
 
     <!-- Page Content - Only Page Elements Here-->
@@ -56,73 +52,9 @@
            </div>
        </div>
 
-        <!-- Card Stack - The Stack Height Below will be the card height-->
-        <div class="card-stack" data-stack-height="180">
-
-            <!-- Card Open on Click-->
-            <div class="card-stack-click"></div>
-
-            <!-- Card 1-->
-            <div class="card card-style bg-5">
-                <div class="card-top p-3">
-                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-card-more" class="icon icon-xxs bg-white color-black float-end"><i class="bi bi-three-dots font-18"></i></a>
-                </div>
-                <div class="card-center">
-                    <div class="bg-theme px-3 py-2 rounded-end d-inline-block">
-                        <h1 class="font-13 my-n1">
-                            <a class="color-theme" data-bs-toggle="collapse" href="#balance3" aria-controls="balance2">Click for Balance</a>
-                        </h1>
-                        <div class="collapse" id="balance3"><h2 class="color-theme font-26">$26,315</h2></div>
-                    </div>
-                </div>
-                <strong class="card-top no-click font-12 p-3 color-white font-monospace">Main Account</strong>
-                <strong class="card-bottom no-click p-3 text-start color-white font-monospace">1234 5678 1234 5661</strong>
-                <strong class="card-bottom no-click p-3 text-end color-white font-monospace">08 / 2025</strong>
-                <div class="card-overlay bg-black opacity-50"></div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="card card-style bg-7">
-                <div class="card-top p-3">
-                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-card-more" class="icon icon-xxs bg-white color-black float-end"><i class="bi bi-three-dots font-18"></i></a>
-                </div>
-                <div class="card-center">
-                    <div class="bg-theme px-3 py-2 rounded-end d-inline-block">
-                        <h1 class="font-13 my-n1">
-                            <a class="color-theme" data-bs-toggle="collapse" href="#balance1" aria-controls="balance1">Click for Balance</a>
-                        </h1>
-                        <div class="collapse" id="balance1"><h2 class="color-theme font-26">$65,500</h2></div>
-                    </div>
-                </div>
-                <strong class="card-top no-click font-12 p-3 color-white font-monospace">Company Account</strong>
-                <strong class="card-bottom no-click p-3 text-start color-white font-monospace">1234 5678 1234 5661</strong>
-                <strong class="card-bottom no-click p-3 text-end color-white font-monospace">08 / 2025</strong>
-                <div class="card-overlay bg-black opacity-50"></div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="card card-style bg-9">
-                <div class="card-top p-3">
-                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-card-more" class="icon icon-xxs bg-white color-black float-end"><i class="bi bi-three-dots font-18"></i></a>
-                </div>
-                <div class="card-center">
-                    <div class="bg-theme px-3 py-2 rounded-end d-inline-block">
-                        <h1 class="font-13 my-n1">
-                            <a class="color-theme" data-bs-toggle="collapse" href="#balance2" aria-controls="balance2">Click for Balance</a>
-                        </h1>
-                        <div class="collapse" id="balance2"><h2 class="color-theme font-26">$15,100</h2></div>
-                    </div>
-                </div>
-                <strong class="card-top no-click font-12 p-3 color-white font-monospace">Savings Account</strong>
-                <strong class="card-bottom no-click p-3 text-start color-white font-monospace">1234 5678 1234 5661</strong>
-                <strong class="card-bottom no-click p-3 text-end color-white font-monospace">08 / 2025</strong>
-                <div class="card-overlay bg-black opacity-50"></div>
-            </div>
-        </div>
-
-        <!-- Card Stack Info Message / Hides when deployed -->
-        <h6 class="btn-stack-info color-theme opacity-80 text-center mt-n2 mb-3">Tap the Cards to Expand your Wallet</h6>
-        <!-- Card Stack Button / shows when deployed -->
+       <div id="chart-container" style="width: 100%; height: 400px;"></div> 
+       
+       <!-- Card Stack Button / shows when deployed -->
         <a href="#" class="disabled btn-stack-click btn mx-3 mb-4 btn-full gradient-highlight shadow-bg shadow-bg-xs">Close my Wallet</a>
 
         <!-- Tabs-->
@@ -354,7 +286,50 @@
 
 </div>
 <!-- End of Page ID-->
-
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@latest/dist/lightweight-charts.standalone.production.js"></script>
 <script src="scripts/bootstrap.min.js"></script>
 <script src="scripts/custom.js"></script>
+<script>
+    const chart = LightweightCharts.createChart(document.getElementById('chart-container'), {
+        width: document.body.clientWidth,
+        height: 400,
+        layout: {
+            backgroundColor: '#FFFFFF',
+            textColor: 'rgba(33, 56, 77, 1)',
+        },
+        grid: {
+            vertLines: {
+                color: 'rgba(197, 203, 206, 0.5)',
+            },
+            horzLines: {
+                color: 'rgba(197, 203, 206, 0.5)',
+            },
+        },
+        crosshair: {
+            mode: LightweightCharts.CrosshairMode.Normal,
+        },
+        priceScale: {
+            borderColor: 'rgba(197, 203, 206, 1)',
+        },
+        timeScale: {
+            borderColor: 'rgba(197, 203, 206, 1)',
+        },
+    });
+    
+    const candlestickSeries = chart.addCandlestickSeries({
+        upColor: '#4BFF67',
+        downColor: '#FF4976',
+        borderDownColor: '#FF4976',
+        borderUpColor: '#4BFF67',
+        wickDownColor: '#FF4976',
+        wickUpColor: '#4BFF67',
+    });
+    
+    // Sample data
+    candlestickSeries.setData([
+        { time: '2022-01-01', open: 100, high: 105, low: 95, close: 104 },
+        { time: '2022-01-02', open: 104, high: 110, low: 99, close: 107 },
+        // ... more data
+    ]);
+</script>
 </body>
