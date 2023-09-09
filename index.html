@@ -429,7 +429,8 @@
         let ele = createMarketElement(
           priceTable[i].symbol,
           priceTable[i].weightedAvgPrice,
-          priceTable[i].priceChangePercent
+          priceTable[i].priceChangePercent,
+          priceTable[i].quoteVolume
         );
         $("#marketBlock").append(ele);
       }
