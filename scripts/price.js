@@ -101,22 +101,14 @@ async function loadKChart() {
         let date = new Date(data[0]);
         // 變成 ISO 8601
         let formattedDate = date.toISOString();
-        return {
-            time: formattedDate.toString(),
+        let d = {
             open: parseFloat(data[1]),
             high: parseFloat(data[2]),
             low: parseFloat(data[3]),
             close: parseFloat(data[4])
-        };
-    });
-    sampleData = sampleData.map(data => {
-        return {
-            time: data['M_'],
-            open: data.open,
-            high: data.high,
-            low: data.low,
-            close: data.close
-        };
+        }
+        d["time"] = formattedDate;
+        return d;
     });
     console.log(sampleData);
 
