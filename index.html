@@ -536,7 +536,11 @@
 
       let p = document.createElement("p");
       p.className = "mb-0 font-11 opacity-50";
-      p.textContent = "$" + quoteVolume + " 24H Volume";
+      quoteVolume = parseFloat(quoteVolume);
+      quoteVolume = quoteVolume / 10000;
+      quoteVolume = quoteVolume.toFixed(2);
+      quoteVolume = parseFloat(quoteVolume);
+      p.textContent = "成交量 $" + quoteVolume;
 
       div2.appendChild(h5);
       div2.appendChild(p);
