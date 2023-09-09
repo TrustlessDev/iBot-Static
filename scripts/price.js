@@ -89,7 +89,15 @@ async function loadKChart() {
         },
         handleScale: {
             vertTouchDrag: false,
-        }
+        },
+        watermark: {
+            color: 'rgba(11, 94, 29, 0.4)',
+            visible: true,
+            text: 'Your Watermark Here',
+            fontSize: 24,
+            horzAlign: 'left',
+            vertAlign: 'bottom'
+        },
     });
     chart.timeScale().fitContent();
     
