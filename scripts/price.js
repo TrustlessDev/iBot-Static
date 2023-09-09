@@ -113,17 +113,17 @@ async function loadKChart() {
     dataFirstTime = sampleData[0].time;
     dataLastTime = sampleData[sampleData.length - 1].time;
 
-    /*
     timeScale.subscribeVisibleTimeRangeChange((range) => {
         if (!range) return;
-    
+        let rangeDiff = range.to - range.from;
         if (range.from < dataFirstTime) {
-            timeScale.setVisibleRange({ from: dataFirstTime, to: range.to });
+            let newTo = dataFirstTime + rangeDiff;
+            timeScale.setVisibleRange({ from: dataFirstTime, to: newTo });
         } else if (range.to > dataLastTime) {
-            timeScale.setVisibleRange({ from: range.from, to: dataLastTime });
+            let newFrom = dataLastTime - rangeDiff;
+            timeScale.setVisibleRange({ from: newFrom, to: dataLastTime });
         }
     });
-    */
 
     // Sample data
     candlestickSeries.setData(sampleData);
