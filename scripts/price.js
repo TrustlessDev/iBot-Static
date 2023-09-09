@@ -134,18 +134,32 @@ async function loadKChart() {
     volumeSeries.setData(volumeData);
 
     const timeScale = chart.timeScale();
-    let dataLastTime;
+    let dataLastTime, dataFirstTime;
 
-    // Assuming your data is in an array called `data` and is sorted in ascending order by time
     dataLastTime = sampleData[sampleData.length - 1].time;
+    dataFirstTime = sampleData[0].time;
+
+    console.log(getAllMethods(timeScale));
 
     timeScale.subscribeVisibleTimeRangeChange((range) => {
         if (!range) return;
-
-        // Check if the right boundary of the visible range is beyond the last data point
         if (range.to > dataLastTime) {
             timeScale.scrollToRealTime();
         }
     });
     
+}
+
+function getAllMethods(obj) {
+    let props = [];
+    let objProto = obj;
+    
+    do {
+      props = props.concat(Object.getOwnPropertyNames(objProto));
+      objProto = Object.getPrototypeOf(objProto);
+    } while (objProto);
+  
+    return props.sort().filter((e, i, arr) => {
+      if (e !== arr[i + 1] && typeof obj[e] === 'function') return true;
+    });
 }
