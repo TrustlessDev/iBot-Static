@@ -110,6 +110,7 @@ async function loadKChart() {
         };
     });
     console.log(sampleData);
+    console.log("end");
 
     // Sample data
     candlestickSeries.setData(sampleData);
