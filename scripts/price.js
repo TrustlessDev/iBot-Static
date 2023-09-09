@@ -133,34 +133,19 @@ async function loadKChart() {
   
     volumeSeries.setData(volumeData);
 
-    const lineSeries = chart.addLineSeries();
-
     const timeScale = chart.timeScale();
-    console.log(timeScale.subscribeVisibleTimeRangeChange);
-    timeScale.subscribeVisibleTimeRangeChange(function() {
-        const visibleRange = timeScale.getVisibleRange();
-        if (!visibleRange) return;
+    let dataLastTime;
 
-        const visibleData = sampleData.filter(item => item.time >= visibleRange.from && item.time <= visibleRange.to);
-        if (visibleData.length === 0) return;
+    // Assuming your data is in an array called `data` and is sorted in ascending order by time
+    dataLastTime = data[data.length - 1].time;
 
-        const highest = visibleData.reduce((prev, curr) => curr.high > prev.high ? curr : prev);
-        const lowest = visibleData.reduce((prev, curr) => curr.low < prev.low ? curr : prev);
+    timeScale.subscribeVisibleTimeRangeChange((range) => {
+        if (!range) return;
 
-        lineSeries.setMarkers([
-            {
-                time: highest.time,
-                position: 'inBar',
-                color: 'green',
-                shape: 'arrowUp',
-            },
-            {
-                time: lowest.time,
-                position: 'inBar',
-                color: 'red',
-                shape: 'arrowDown',
-            }
-        ]);
+        // Check if the right boundary of the visible range is beyond the last data point
+        if (range.to > dataLastTime) {
+            timeScale.scrollToRealTime();
+        }
     });
     
 }
