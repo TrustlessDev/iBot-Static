@@ -64,25 +64,25 @@ async function loadKChart() {
         width: document.body.clientWidth,
         height: 400,
         layout: {
-            backgroundColor: '#253248',
+            backgroundColor: '#000000',
             textColor: 'rgba(255, 255, 255, 0.9)',
           },
           grid: {
             vertLines: {
-              color: '#334158',
+              color: '#ffffff',
             },
             horzLines: {
-              color: '#334158',
+              color: '#ffffff',
             },
           },
           crosshair: {
             mode: LightweightCharts.CrosshairMode.Normal,
           },
           priceScale: {
-            borderColor: '#485c7b',
+            borderColor: '#ffffff',
           },
           timeScale: {
-            borderColor: '#485c7b',
+            borderColor: '#ffffff',
           },
     });
     
