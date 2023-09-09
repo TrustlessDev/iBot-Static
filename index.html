@@ -263,6 +263,12 @@
         await initOffCanvasEvent();
         await refreshNews();
         await refreshMarket();
+        // 等待 priceTable 長度大於 0 或是超過 5 秒
+        let count = 0;
+        while(priceTable.length == 0 && count < 3) {
+          await sleep(1000);
+          count++;
+        }
         setInterval(function(){
           refreshMarket();
         }, 1000);
