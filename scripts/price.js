@@ -107,7 +107,7 @@ async function loadKChart() {
         };
     });
     // 只取最後 100 筆
-    sampleData = sampleData.slice(-20);
+    sampleData = sampleData.slice(-50);
 
     // Sample data
     candlestickSeries.setData(sampleData);
