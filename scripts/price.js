@@ -48,18 +48,19 @@ async function initPrice() {
     setupWebSocket();
 }
 
-async function initKChart() {
+async function initKChart(symbol) {
     setTimeout(async function () {
         await initSite();
         await initLanguages();
-        loadKChart();
+        let data = await fetch("https://" + site.apiUrl + "/klines?symbol=" + symbol);
+        loadKChart(data);
         mappingLang();
         closePreloader();
     }, 300);
     
 }
 
-async function loadKChart() {
+async function loadKChart(data) {
     const chart = LightweightCharts.createChart(document.getElementById('chart-container'), {
         width: document.body.clientWidth,
         height: 300,
@@ -110,8 +111,9 @@ async function loadKChart() {
         wickUpColor: '#4BFF67',
     });
     
-    let sampleData = await fetch("scripts/sampleData.json?t=1");
-    sampleData = await sampleData.json();
+    //let sampleData = await fetch("scripts/sampleData.json?t=1");
+    //sampleData = await sampleData.json();
+    let sampleData = data;
 
     // Sample data
     candlestickSeries.setData(sampleData);
