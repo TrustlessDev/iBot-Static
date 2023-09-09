@@ -114,7 +114,7 @@ async function loadKChart() {
     // Sample data
     candlestickSeries.setData(sampleData);
 
-    /*
+    
     let volumeData = await fetch("scripts/sampleData2.json");
     volumeData = await volumeData.json();
     const volumeSeries = chart.addHistogramSeries({
@@ -131,5 +131,5 @@ async function loadKChart() {
     });
   
     volumeSeries.setData(volumeData);
-    */
+    
 }
