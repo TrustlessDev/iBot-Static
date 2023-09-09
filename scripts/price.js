@@ -84,6 +84,12 @@ async function loadKChart() {
         },
         timeScale: {
             borderColor: '#485c7b',
+        },
+        handleScroll: {
+            vertTouchDrag: false,
+        },
+        handleScale: {
+            vertTouchDrag: false, 
         }
     });
     chart.timeScale().fitContent();
