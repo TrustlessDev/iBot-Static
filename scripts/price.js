@@ -73,24 +73,16 @@ async function loadKChart() {
             },
             horzLines: {
                 color: '#334158',
-            },
+            }
         },
         crosshair: {
-            mode: LightweightCharts.CrosshairMode.Normal,
+            mode: LightweightCharts.CrosshairMode.Normal
         },
         priceScale: {
             borderColor: '#485c7b',
-            autoScale: false,
         },
         timeScale: {
             borderColor: '#485c7b',
-        },
-        handleScroll: {
-            vertTouchDrag: false,
-        },
-        handleScale: {
-            vertTouchDrag: false,
-            horzTouchDrag: false
         }
     });
     chart.timeScale().fitContent();
