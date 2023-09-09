@@ -104,10 +104,10 @@ async function loadKChart() {
         const formattedDate = date.toISOString().split('T')[0];
         return {
             time: formattedDate,
-            open: data[1],
-            high: data[2],
-            low: data[3],
-            close: data[4]
+            open: parseFloat(data[1]),
+            high: parseFloat(data[2]),
+            low: parseFloat(data[3]),
+            close: parseFloat(data[4])
         };
     });
     //console.log(sampleData);
