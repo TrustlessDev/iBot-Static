@@ -64,25 +64,26 @@ async function loadKChart() {
         width: document.body.clientWidth,
         height: 400,
         layout: {
-            backgroundColor: '#FFFFFF',
-            textColor: 'rgba(33, 56, 77, 1)',
-        },
-        grid: {
+            backgroundColor: '#253248',
+            textColor: 'rgba(255, 255, 255, 0.9)',
+          },
+          grid: {
             vertLines: {
-                color: 'rgba(197, 203, 206, 0.5)',
+              color: '#334158',
             },
             horzLines: {
-                color: 'rgba(197, 203, 206, 0.5)',
+              color: '#334158',
             },
-        },
-        crosshair: {
-            mode: LightweightCharts.CrosshairMode.Normal,
-        },
-        timeScale: {
-            borderColor: 'rgba(197, 203, 206, 1)',
-            timeVisible: true,
-            secondsVisible: false,
-        }
+          },
+          crosshair: {
+            mode: CrosshairMode.Normal,
+          },
+          priceScale: {
+            borderColor: '#485c7b',
+          },
+          timeScale: {
+            borderColor: '#485c7b',
+          },
     });
     
     const candlestickSeries = chart.addCandlestickSeries({
@@ -111,4 +112,19 @@ async function loadKChart() {
 
     // Sample data
     candlestickSeries.setData(sampleData);
+
+    const volumeSeries = chart.addHistogramSeries({
+        color: '#182233',
+        lineWidth: 2,
+        priceFormat: {
+            type: 'volume',
+        },
+        overlay: true,
+        scaleMargins: {
+            top: 0.8,
+            bottom: 0,
+        },
+    });
+  
+    volumeSeries.setData(volumeData);
 }
