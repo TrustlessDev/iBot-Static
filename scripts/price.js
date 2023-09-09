@@ -47,3 +47,47 @@ function sendMessage(obj) {
 async function initPrice() {
     setupWebSocket();
 }
+
+async function initKChart() {
+    const chart = LightweightCharts.createChart(document.getElementById('chart-container'), {
+        width: document.body.clientWidth,
+        height: 400,
+        layout: {
+            backgroundColor: '#FFFFFF',
+            textColor: 'rgba(33, 56, 77, 1)',
+        },
+        grid: {
+            vertLines: {
+                color: 'rgba(197, 203, 206, 0.5)',
+            },
+            horzLines: {
+                color: 'rgba(197, 203, 206, 0.5)',
+            },
+        },
+        crosshair: {
+            mode: LightweightCharts.CrosshairMode.Normal,
+        },
+        priceScale: {
+            borderColor: 'rgba(197, 203, 206, 1)',
+        },
+        timeScale: {
+            borderColor: 'rgba(197, 203, 206, 1)',
+        },
+    });
+    
+    const candlestickSeries = chart.addCandlestickSeries({
+        upColor: '#4BFF67',
+        downColor: '#FF4976',
+        borderDownColor: '#FF4976',
+        borderUpColor: '#4BFF67',
+        wickDownColor: '#FF4976',
+        wickUpColor: '#4BFF67',
+    });
+    
+    // Sample data
+    candlestickSeries.setData([
+        { time: '2022-01-01', open: 100, high: 105, low: 95, close: 104 },
+        { time: '2022-01-02', open: 104, high: 110, low: 99, close: 107 },
+        // ... more data
+    ]);
+}
