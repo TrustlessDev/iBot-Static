@@ -101,17 +101,16 @@ async function loadKChart() {
         let date = new Date(data[0]);
         // 變成 ISO 8601
         let formattedDate = date.toISOString();
-        let d = {
+        return {
+            time: formattedDate,
             open: parseFloat(data[1]),
             high: parseFloat(data[2]),
             low: parseFloat(data[3]),
             close: parseFloat(data[4])
-        }
-        d["time"] = formattedDate;
-        return d;
+        };
     });
     // 只取最後 100 筆
-    sampleData = sampleData.slice(-100);
+    sampleData = sampleData.slice(-20);
 
     // Sample data
     candlestickSeries.setData(sampleData);
