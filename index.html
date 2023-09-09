@@ -522,7 +522,7 @@
       div1.className = "align-self-center";
 
       let img = document.createElement("img");
-      img.href = "https://" + site.apiUrl + "/images/crypto/" + symbol + ".png";
+      img.src = "https://" + site.apiUrl + "/images/crypto/" + symbol + ".png";
       div1.appendChild(img);
 
       let div2 = document.createElement("div");
@@ -544,7 +544,10 @@
 
       let h4 = document.createElement("h4");
       h4.className = "pt-1 mb-n1 color-red-dark";
-      h4.textContent = "$" + price;
+      let priceText = parseFloat(price).toFixed(4);
+      priceText = parseFloat(priceText);
+
+      h4.textContent = "$" + priceText;
 
       let p2 = document.createElement("p");
       p2.className = "mb-0 font-11";
