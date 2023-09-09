@@ -98,10 +98,16 @@ async function loadKChart() {
     let sampleData = await fetch("scripts/sampleData.json");
     sampleData = await sampleData.json();
     sampleData = sampleData.map(data => {
-        // data[0] 去掉後面三位
-        data[0] = data[0].toString().slice(0, -3);
+        const date = new Date(data[0]);
+        // 變成 yyyy-mm-dd 字串
+        const formattedDate = date.toLocaleDateString('zh-TW', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        }).replace(/\//g, '-');
+        
         return {
-            time: data[0],
+            time: formattedDate,
             open: data[1],
             high: data[2],
             low: data[3],
