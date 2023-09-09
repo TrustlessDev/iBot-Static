@@ -64,26 +64,26 @@ async function loadKChart() {
         width: document.body.clientWidth,
         height: 400,
         layout: {
-            backgroundColor: '#000000',
+            backgroundColor: '#253248',
             textColor: 'rgba(255, 255, 255, 0.9)',
-          },
-          grid: {
+        },
+        grid: {
             vertLines: {
-              color: '#ffffff',
+                color: '#334158',
             },
             horzLines: {
-              color: '#ffffff',
+                color: '#334158',
             },
-          },
-          crosshair: {
+        },
+        crosshair: {
             mode: LightweightCharts.CrosshairMode.Normal,
-          },
-          priceScale: {
-            borderColor: '#ffffff',
-          },
-          timeScale: {
-            borderColor: '#ffffff',
-          },
+        },
+        priceScale: {
+            borderColor: '#485c7b',
+        },
+        timeScale: {
+            borderColor: '#485c7b',
+        }
     });
     
     const candlestickSeries = chart.addCandlestickSeries({
