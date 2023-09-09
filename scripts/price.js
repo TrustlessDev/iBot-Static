@@ -76,7 +76,7 @@ async function loadKChart() {
             },
           },
           crosshair: {
-            mode: CrosshairMode.Normal,
+            mode: LightweightCharts.CrosshairMode.Normal,
           },
           priceScale: {
             borderColor: '#485c7b',
