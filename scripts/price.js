@@ -87,6 +87,21 @@ async function loadKChart() {
         }
     });
     chart.timeScale().fitContent();
+    const timeScale = chart.timeScale();
+    let dataFirstTime, dataLastTime;
+    
+    dataFirstTime = data[0].time;
+    dataLastTime = data[data.length - 1].time;
+
+    timeScale.subscribeVisibleTimeRangeChange((range) => {
+        if (!range) return;
+
+        if (range.from < dataFirstTime) {
+            timeScale.setVisibleRange({ from: dataFirstTime, to: range.to });
+        } else if (range.to > dataLastTime) {
+            timeScale.setVisibleRange({ from: range.from, to: dataLastTime });
+        }
+    });
     
     const candlestickSeries = chart.addCandlestickSeries({
         upColor: '#4BFF67',
