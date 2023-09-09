@@ -99,13 +99,9 @@ async function loadKChart() {
     sampleData = await sampleData.json();
     sampleData = sampleData.map(data => {
         const date = new Date(data[0]);
-        // 變成 yyyy-mm-dd 字串
-        const formattedDate = date.toLocaleDateString('zh-TW', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit'
-        }).replace(/\//g, '-');
-        
+        // 變成 ISO 8601
+        const formattedDate = date.toISOString().split('T')[0];
+
         return {
             time: formattedDate,
             open: data[1],
