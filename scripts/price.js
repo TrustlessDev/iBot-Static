@@ -99,7 +99,7 @@ async function loadKChart() {
     sampleData = await sampleData.json();
     sampleData = sampleData.map(data => {
         // data[0] 去掉後面三位
-        data[0] = data[0].slice(0, -3);
+        data[0] = data[0].toString().slice(0, -3);
         return {
             time: data[0],
             open: data[1],
