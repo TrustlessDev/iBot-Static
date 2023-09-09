@@ -98,9 +98,9 @@ async function loadKChart() {
     let sampleData = await fetch("scripts/sampleData.json");
     sampleData = await sampleData.json();
     sampleData = sampleData.map(data => {
-        const date = new Date(data[0]);
+        let date = new Date(data[0]);
         // 變成 ISO 8601
-        const formattedDate = date.toISOString().split('T')[0];
+        let formattedDate = date.toISOString();
         return {
             time: formattedDate,
             open: parseFloat(data[1]),
