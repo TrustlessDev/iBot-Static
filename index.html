@@ -491,7 +491,11 @@
 
       let p = document.createElement("p");
       p.className = "mb-0 font-11 opacity-50";
-      p.textContent = new Date(date);
+      let ndate = new Date(date);
+      if(ndate == "Invalid Date") {
+        ndate = date
+      }
+      p.textContent = new Date(ndate);
 
       let span = document.createElement("span");
       span.className = "copyright-year";
