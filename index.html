@@ -416,7 +416,8 @@
     }
 
     async function refreshMarket() {
-      for (let i = 0; i < priceTable; i++) {
+      $("#marketBlock").empty();
+      for (let i = 0; i < priceTable.length; i++) {
         if (i != 0) {
           $("#marketBlock").append(
             '<div class="divider my-2 opacity-50"></div>'
