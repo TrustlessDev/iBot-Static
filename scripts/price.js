@@ -80,6 +80,7 @@ async function loadKChart() {
         },
         priceScale: {
             borderColor: '#485c7b',
+            autoScale: false,
         },
         timeScale: {
             borderColor: '#485c7b',
