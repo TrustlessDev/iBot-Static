@@ -262,6 +262,7 @@
         await initSite();
         await initOffCanvasEvent();
         await refreshNews();
+        await refreshMarket();
         setInterval(function(){
           refreshMarket();
         }, 1000);
