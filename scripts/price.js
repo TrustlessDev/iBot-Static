@@ -105,16 +105,9 @@ async function loadKChart() {
     let sampleData = await fetch("scripts/sampleData.json?t=1");
     sampleData = await sampleData.json();
 
-    const timeScale = chart.timeScale();
-    let dataFirstTime, dataLastTime;
-    
-    dataFirstTime = sampleData[0].time;
-    dataLastTime = sampleData[sampleData.length - 1].time;
-
     // Sample data
     candlestickSeries.setData(sampleData);
 
-    
     let volumeData = await fetch("scripts/sampleData2.json");
     volumeData = await volumeData.json();
     const volumeSeries = chart.addHistogramSeries({
@@ -131,5 +124,34 @@ async function loadKChart() {
     });
   
     volumeSeries.setData(volumeData);
+
+    const lineSeries = chart.addLineSeries();
+
+    const timeScale = chart.timeScale();
+    timeScale.subscribeVisibleTimeRangeChange(function(range) {
+        const visibleRange = timeScale.getVisibleRange();
+        if (!visibleRange) return;
+
+        const visibleData = sampleData.filter(item => item.time >= visibleRange.from && item.time <= visibleRange.to);
+        if (visibleData.length === 0) return;
+
+        const highest = visibleData.reduce((prev, curr) => curr.high > prev.high ? curr : prev);
+        const lowest = visibleData.reduce((prev, curr) => curr.low < prev.low ? curr : prev);
+
+        lineSeries.setMarkers([
+            {
+                time: highest.time,
+                position: 'inBar',
+                color: 'green',
+                shape: 'arrowUp',
+            },
+            {
+                time: lowest.time,
+                position: 'inBar',
+                color: 'red',
+                shape: 'arrowDown',
+            }
+        ]);
+    });
     
 }
