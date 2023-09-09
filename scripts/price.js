@@ -97,6 +97,7 @@ async function loadKChart() {
     
     let sampleData = await fetch("scripts/sampleData.json");
     sampleData = await sampleData.json();
+    console.log(sampleData);
     sampleData = sampleData.map(data => {
         const date = new Date(data[0]);
         // 變成 ISO 8601
@@ -109,7 +110,7 @@ async function loadKChart() {
             close: data[4]
         };
     });
-    console.log(sampleData);
+    //console.log(sampleData);
 
     // Sample data
     candlestickSeries.setData(sampleData);
