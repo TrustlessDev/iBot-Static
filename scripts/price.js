@@ -101,7 +101,6 @@ async function loadKChart() {
         const date = new Date(data[0]);
         // 變成 ISO 8601
         const formattedDate = date.toISOString().split('T')[0];
-
         return {
             time: formattedDate,
             open: data[1],
@@ -110,6 +109,7 @@ async function loadKChart() {
             close: data[4]
         };
     });
+    console.log(sampleData);
 
     // Sample data
     candlestickSeries.setData(sampleData);
