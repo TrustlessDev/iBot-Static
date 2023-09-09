@@ -98,8 +98,10 @@ async function loadKChart() {
     let sampleData = await fetch("scripts/sampleData.json");
     sampleData = await sampleData.json();
     sampleData = sampleData.map(data => {
+        const date = new Date(data[0]);
+        const formattedDate = date.toISOString().replace('T', ' ').substring(0, 19);
         return {
-            time: new Date(data[0]),
+            time: formattedDate,
             open: data[1],
             high: data[2],
             low: data[3],
