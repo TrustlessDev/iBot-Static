@@ -136,7 +136,7 @@ async function loadKChart() {
     const lineSeries = chart.addLineSeries();
 
     const timeScale = chart.timeScale();
-    console.log(timeScale);
+    console.log(timeScale.subscribeVisibleTimeRangeChange);
     timeScale.subscribeVisibleTimeRangeChange(function() {
         const visibleRange = timeScale.getVisibleRange();
         if (!visibleRange) return;
