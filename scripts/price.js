@@ -49,6 +49,17 @@ async function initPrice() {
 }
 
 async function initKChart() {
+    setTimeout(async function () {
+        await initSite();
+        await initLanguages();
+        loadKChart();
+        mappingLang();
+        closePreloader();
+    }, 300);
+    
+}
+
+function loadKChart() {
     const chart = LightweightCharts.createChart(document.getElementById('chart-container'), {
         width: document.body.clientWidth,
         height: 400,
