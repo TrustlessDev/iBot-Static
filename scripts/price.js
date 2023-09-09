@@ -138,14 +138,9 @@ async function loadKChart() {
 
     dataLastTime = sampleData[sampleData.length - 1].time;
     dataFirstTime = sampleData[0].time;
-
-    console.log(getAllMethods(timeScale));
-
-    timeScale.subscribeVisibleTimeRangeChange((range) => {
-        if (!range) return;
-        if (range.to > dataLastTime) {
-            timeScale.scrollToRealTime();
-        }
+    
+    timeScale.subscribeVisibleTimeRangeChange(() => {
+        console.log("a");
     });
     
 }
