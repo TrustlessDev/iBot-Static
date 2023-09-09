@@ -137,7 +137,7 @@ async function loadKChart() {
     let dataLastTime;
 
     // Assuming your data is in an array called `data` and is sorted in ascending order by time
-    dataLastTime = data[data.length - 1].time;
+    dataLastTime = sampleData[sampleData.length - 1].time;
 
     timeScale.subscribeVisibleTimeRangeChange((range) => {
         if (!range) return;
