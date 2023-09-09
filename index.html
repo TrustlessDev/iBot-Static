@@ -513,7 +513,7 @@
       return a;
     }
 
-    function createMarketElement(symbol, price, change) {
+    function createMarketElement(symbol, price, change, quoteVolume) {
       let a = document.createElement("a");
       a.href = "#";
       a.className = "d-flex py-1";
@@ -535,7 +535,7 @@
 
       let p = document.createElement("p");
       p.className = "mb-0 font-11 opacity-50";
-      p.textContent = "14th March";
+      p.textContent = "$" + quoteVolume + " 24H Volume";
 
       div2.appendChild(h5);
       div2.appendChild(p);
