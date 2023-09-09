@@ -423,6 +423,9 @@
             '<div class="divider my-2 opacity-50"></div>'
           );
         }
+        if(!priceTable[i].symbol) {
+          continue;
+        }
         let ele = createNewsElement(
           '/images/crypto/' + priceTable[i].symbol + '.png',
           priceTable[i].symbol,
