@@ -86,6 +86,7 @@ async function loadKChart() {
             borderColor: '#485c7b',
         }
     });
+    chart.timeScale().fitContent();
     
     const candlestickSeries = chart.addCandlestickSeries({
         upColor: '#4BFF67',
