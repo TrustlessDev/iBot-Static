@@ -108,9 +108,6 @@ async function loadKChart() {
             close: parseFloat(data[4])
         };
     });
-    // 只取最後 100 筆
-    sampleData = sampleData.slice(-30);
-    console.log(sampleData);
 
     // Sample data
     candlestickSeries.setData(sampleData);
