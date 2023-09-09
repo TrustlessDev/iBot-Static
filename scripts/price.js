@@ -114,16 +114,16 @@ async function loadKChart(data) {
         wickDownColor: '#FF4976',
         wickUpColor: '#4BFF67',
     });
-    
-    //let sampleData = await fetch("scripts/sampleData.json?t=1");
-    //sampleData = await sampleData.json();
-    let sampleData = data;
 
     // Sample data
-    candlestickSeries.setData(sampleData);
+    candlestickSeries.setData(data);
 
-    let volumeData = await fetch("scripts/sampleData2.json");
-    volumeData = await volumeData.json();
+    let volumeData = data.map((item) => {
+        return {
+            time: item.time,
+            value: item.quantity
+        };
+    });
     const volumeSeries = chart.addHistogramSeries({
         color: '#182233',
         lineWidth: 2,
@@ -142,8 +142,8 @@ async function loadKChart(data) {
     const timeScale = chart.timeScale();
     let dataLastTime, dataFirstTime;
 
-    dataLastTime = new Date(sampleData[sampleData.length - 1].time);
-    dataFirstTime = new Date(sampleData[0].time);
+    dataLastTime = new Date(data[data.length - 1].time);
+    dataFirstTime = new Date(data[0].time);
 
     timeScale.subscribeVisibleTimeRangeChange((range) => {
         if (!range) return;
