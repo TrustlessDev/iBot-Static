@@ -89,7 +89,8 @@ async function loadKChart() {
             vertTouchDrag: false,
         },
         handleScale: {
-            vertTouchDrag: false, 
+            vertTouchDrag: false,
+            horzTouchDrag: false
         }
     });
     chart.timeScale().fitContent();
@@ -114,7 +115,7 @@ async function loadKChart() {
 
     timeScale.subscribeVisibleTimeRangeChange((range) => {
         if (!range) return;
-
+    
         if (range.from < dataFirstTime) {
             timeScale.setVisibleRange({ from: dataFirstTime, to: range.to });
         } else if (range.to > dataLastTime) {
