@@ -263,10 +263,10 @@
         await initOffCanvasEvent();
         await refreshNews();
         await refreshMarket();
-        // 等待 priceTable 長度大於 0 或是超過 5 秒
+        // 等待 priceTable 長度大於 0 或是超過 5 秒 (用 timestamp 判斷)
         let count = 0;
-        while(priceTable.length == 0 && count < 3) {
-          //await sleep(1000);
+        while(priceTable.length == 0 && count < 5) {
+          await sleep(1000);
           count++;
         }
         setInterval(function(){
@@ -309,6 +309,10 @@
         mappingLang();
         closePreloader();
       }, 300);
+    }
+
+    async function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     async function initOffCanvasEvent() {
