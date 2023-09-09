@@ -136,8 +136,8 @@ async function loadKChart() {
     const timeScale = chart.timeScale();
     let dataLastTime, dataFirstTime;
 
-    dataLastTime = sampleData[sampleData.length - 1].time;
-    dataFirstTime = sampleData[0].time;
+    dataLastTime = new Date(sampleData[sampleData.length - 1].time);
+    dataFirstTime = new Date(sampleData[0].time);
 
     timeScale.subscribeVisibleTimeRangeChange((range) => {
         if (!range) return;
