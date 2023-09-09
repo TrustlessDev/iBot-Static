@@ -62,7 +62,7 @@ async function initKChart() {
 async function loadKChart() {
     const chart = LightweightCharts.createChart(document.getElementById('chart-container'), {
         width: document.body.clientWidth,
-        height: 400,
+        height: 300,
         layout: {
             backgroundColor: '#253248',
             textColor: 'rgba(255, 255, 255, 0.9)',
