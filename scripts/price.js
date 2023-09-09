@@ -53,6 +53,10 @@ async function initKChart(symbol) {
         await initSite();
         await initLanguages();
         let data = await fetch("https://" + site.apiUrl + "/klines?symbol=" + symbol);
+        data = await data.json();
+        if(data.success) {
+            data = data.data;
+        }
         loadKChart(data);
         mappingLang();
         closePreloader();
