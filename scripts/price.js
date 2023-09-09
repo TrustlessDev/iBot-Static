@@ -138,23 +138,18 @@ async function loadKChart() {
 
     dataLastTime = sampleData[sampleData.length - 1].time;
     dataFirstTime = sampleData[0].time;
-    
-    timeScale.subscribeVisibleTimeRangeChange(() => {
-        console.log("a");
-    });
-    
-}
 
-function getAllMethods(obj) {
-    let props = [];
-    let objProto = obj;
-    
-    do {
-      props = props.concat(Object.getOwnPropertyNames(objProto));
-      objProto = Object.getPrototypeOf(objProto);
-    } while (objProto);
-  
-    return props.sort().filter((e, i, arr) => {
-      if (e !== arr[i + 1] && typeof obj[e] === 'function') return true;
+    timeScale.subscribeVisibleTimeRangeChange((range) => {
+        console.log(range);
+        if (!range) return;
+        // Check if the left boundary of the visible range is before the first data point
+        if (range.from < dataFirstTime) {
+            timeScale.scrollToRealTime(); // This will scroll to the latest data. You may want to adjust this behavior.
+        }
+        // Check if the right boundary of the visible range is beyond the last data point
+        else if (range.to > dataLastTime) {
+            timeScale.scrollToRealTime();
+        }
     });
+    
 }
