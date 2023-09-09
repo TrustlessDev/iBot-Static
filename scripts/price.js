@@ -59,7 +59,7 @@ async function initKChart() {
     
 }
 
-function loadKChart() {
+async function loadKChart() {
     const chart = LightweightCharts.createChart(document.getElementById('chart-container'), {
         width: document.body.clientWidth,
         height: 400,
@@ -95,10 +95,18 @@ function loadKChart() {
         wickUpColor: '#4BFF67',
     });
     
+    let sampleData = await fetch("scripts/sampleData.json");
+    sampleData = await sampleData.json();
+    sampleData = sampleData.map(data => {
+        return {
+            time: new Date(data[0]),
+            open: data[1],
+            high: data[2],
+            low: data[3],
+            close: data[4]
+        };
+    });
+
     // Sample data
-    candlestickSeries.setData([
-        { time: '2022-01-01', open: 100, high: 105, low: 95, close: 104 },
-        { time: '2022-01-02', open: 104, high: 110, low: 99, close: 107 },
-        // ... more data
-    ]);
+    candlestickSeries.setData(sampleData);
 }
