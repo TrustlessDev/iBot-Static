@@ -107,7 +107,7 @@ async function loadKChart() {
         };
     });
     // 只取最後 100 筆
-    sampleData = sampleData.slice(-40);
+    sampleData = sampleData.slice(-30);
     console.log(sampleData);
 
     // Sample data
