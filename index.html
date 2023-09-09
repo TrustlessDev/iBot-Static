@@ -540,6 +540,7 @@
       quoteVolume = quoteVolume / 10000;
       quoteVolume = quoteVolume.toFixed(2);
       quoteVolume = parseFloat(quoteVolume);
+      quoteVolume = quoteVolume.toLocaleString();
       p.textContent = "成交量 $" + quoteVolume + " 萬";
 
       div2.appendChild(h5);
