@@ -417,9 +417,13 @@
 
     async function refreshMarket() {
       $("#marketBlock").empty();
+      let count = 0;
       for (let i = 0; i < priceTable.length; i++) {
         if(!priceTable[i]) {
           continue;
+        }
+        if (count >= 20) {
+          break;
         }
         if (i != 0) {
           $("#marketBlock").append(
@@ -433,6 +437,7 @@
           priceTable[i].quoteVolume
         );
         $("#marketBlock").append(ele);
+        count++;
       }
     }
 
