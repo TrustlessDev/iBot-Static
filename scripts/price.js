@@ -95,20 +95,9 @@ async function loadKChart() {
         wickUpColor: '#4BFF67',
     });
     
-    let sampleData = await fetch("scripts/sampleData.json");
+    let sampleData = await fetch("scripts/sampleData.json?t=1");
     sampleData = await sampleData.json();
-    sampleData = sampleData.map(data => {
-        let date = new Date(data[0]);
-        // 變成 ISO 8601
-        let formattedDate = date.toISOString();
-        return {
-            time: formattedDate,
-            open: parseFloat(data[1]),
-            high: parseFloat(data[2]),
-            low: parseFloat(data[3]),
-            close: parseFloat(data[4])
-        };
-    });
+    
 
     // Sample data
     candlestickSeries.setData(sampleData);
