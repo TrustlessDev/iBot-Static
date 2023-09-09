@@ -418,16 +418,15 @@
     async function refreshMarket() {
       $("#marketBlock").empty();
       for (let i = 0; i < priceTable.length; i++) {
+        if(!priceTable[i]) {
+          continue;
+        }
         if (i != 0) {
           $("#marketBlock").append(
             '<div class="divider my-2 opacity-50"></div>'
           );
         }
-        if(!priceTable[i]) {
-          continue;
-        }
-        let ele = createNewsElement(
-          '/images/crypto/' + priceTable[i].symbol + '.png',
+        let ele = createMarketElement(
           priceTable[i].symbol,
           priceTable[i].weightedAvgPrice,
           priceTable[i].priceChangePercent
@@ -511,6 +510,53 @@
       a.appendChild(div1);
       a.appendChild(div2);
 
+      return a;
+    }
+
+    function createMarketElement(symbol, price, change) {
+      let a = document.createElement("a");
+      a.href = "#";
+      a.className = "d-flex py-1";
+
+      let div1 = document.createElement("div");
+      div1.className = "align-self-center";
+
+      let img = document.createElement("img");
+      img.href = "https://" + site.apiUrl + "/images/crypto/" + symbol + ".png";
+      div1.appendChild(img);
+
+      let div2 = document.createElement("div");
+      div2.className = "align-self-center ps-1";
+
+      let h5 = document.createElement("h5");
+      h5.className = "pt-1 mb-n1";
+      h5.textContent = symbol;
+
+      let p = document.createElement("p");
+      p.className = "mb-0 font-11 opacity-50";
+      p.textContent = "14th March";
+
+      div2.appendChild(h5);
+      div2.appendChild(p);
+
+      let div3 = document.createElement("div");
+      div3.className = "align-self-center ms-auto text-end";
+
+      let h4 = document.createElement("h4");
+      h4.className = "pt-1 mb-n1 color-red-dark";
+      h4.textContent = "$" + price;
+
+      let p2 = document.createElement("p");
+      p2.className = "mb-0 font-11";
+      p2.textContent = change + "%";
+
+      div3.appendChild(h4);
+      div3.appendChild(p2);
+
+      a.appendChild(div1);
+      a.appendChild(div2);
+      a.appendChild(div3);
+      
       return a;
     }
 
