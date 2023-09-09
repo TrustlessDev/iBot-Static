@@ -544,7 +544,7 @@
       div3.className = "align-self-center ms-auto text-end";
 
       let h4 = document.createElement("h4");
-      h4.className = "pt-1 mb-n1 color-red-dark";
+      h4.className = "pt-1 mb-n1 " + (change > 0 ? "color-green-dark" : "color-red-dark");
       let priceText = parseFloat(price).toFixed(4);
       priceText = parseFloat(priceText);
 
