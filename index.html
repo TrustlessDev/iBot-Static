@@ -262,18 +262,18 @@
         await initSite();
         await initOffCanvasEvent();
         await refreshNews();
-        await refreshMarket();
-        // 等待 priceTable 長度大於 0 或是超過 5 秒 (用 timestamp 判斷)
+        await initPrice();
+        setInterval(function(){
+          refreshMarket();
+        }, 1000);
         let count = 0;
         while(priceTable.length == 0 && count < 3) {
           await sleep(1000);
           count++;
         }
-        setInterval(function(){
-          refreshMarket();
-        }, 1000);
+        
         await initLanguages();
-        await initPrice();
+        
         
         document.querySelector("#user-identity").innerHTML = Telegram.WebApp.initDataUnsafe.user.first_name + " " + Telegram.WebApp.initDataUnsafe.user.last_name;
         userData = (await webLogin()).user;
