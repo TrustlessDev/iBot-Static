@@ -110,8 +110,8 @@ async function loadKChart() {
         d["time"] = formattedDate;
         return d;
     });
-    // 印出前面 10 筆
-    console.log(JSON.stringify(sampleData.slice(0, 10)));
+    // 只取最後 100 筆
+    sampleData = sampleData.slice(-100);
 
     // Sample data
     candlestickSeries.setData(sampleData);
