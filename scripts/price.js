@@ -80,7 +80,9 @@ async function loadKChart() {
         },
         timeScale: {
             borderColor: 'rgba(197, 203, 206, 1)',
-        },
+            timeVisible: true,
+            secondsVisible: false,
+        }
     });
     
     const candlestickSeries = chart.addCandlestickSeries({
