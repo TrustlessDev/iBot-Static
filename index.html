@@ -265,7 +265,7 @@
         await refreshMarket();
         // 等待 priceTable 長度大於 0 或是超過 5 秒 (用 timestamp 判斷)
         let count = 0;
-        while(priceTable.length == 0 && count < 5) {
+        while(priceTable.length == 0 && count < 3) {
           await sleep(1000);
           count++;
         }
