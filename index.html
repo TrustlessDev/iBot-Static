@@ -551,7 +551,7 @@
       h4.textContent = "$" + priceText;
 
       let span = document.createElement("span");
-      span.className = "badge rounded-xl" + (change > 0 ? " color-green-dark" : " color-red-dark");
+      span.className = "badge rounded-xl " + (change > 0 ? "bg-green-dark" : "bg-red-dark");
       span.textContent = change + "%";
 
       div3.appendChild(h4);
