@@ -140,14 +140,12 @@ async function loadKChart() {
     dataFirstTime = sampleData[0].time;
 
     timeScale.subscribeVisibleTimeRangeChange((range) => {
-        console.log(range);
         if (!range) return;
-        // Check if the left boundary of the visible range is before the first data point
         if (range.from < dataFirstTime) {
-            timeScale.scrollToRealTime(); // This will scroll to the latest data. You may want to adjust this behavior.
-        }
-        // Check if the right boundary of the visible range is beyond the last data point
-        else if (range.to > dataLastTime) {
+            console.log("range.from < dataFirstTime");
+            timeScale.scrollToRealTime();
+        } else if (range.to > dataLastTime) {
+            console.log("range.to > dataLastTime");
             timeScale.scrollToRealTime();
         }
     });
