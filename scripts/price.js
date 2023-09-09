@@ -78,9 +78,6 @@ async function loadKChart() {
         crosshair: {
             mode: LightweightCharts.CrosshairMode.Normal,
         },
-        priceScale: {
-            borderColor: 'rgba(197, 203, 206, 1)',
-        },
         timeScale: {
             borderColor: 'rgba(197, 203, 206, 1)',
         },
