@@ -93,10 +93,10 @@ async function loadKChart() {
         watermark: {
             color: 'rgba(11, 94, 29, 0.4)',
             visible: true,
-            text: 'Your Watermark Here',
+            text: 'i-Bot 加密助手',
             fontSize: 24,
             horzAlign: 'left',
-            vertAlign: 'bottom'
+            vertAlign: 'center'
         },
     });
     chart.timeScale().fitContent();
