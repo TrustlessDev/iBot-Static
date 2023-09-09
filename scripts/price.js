@@ -113,6 +113,7 @@ async function loadKChart() {
     dataFirstTime = sampleData[0].time;
     dataLastTime = sampleData[sampleData.length - 1].time;
 
+    /*
     timeScale.subscribeVisibleTimeRangeChange((range) => {
         if (!range) return;
     
@@ -122,6 +123,7 @@ async function loadKChart() {
             timeScale.setVisibleRange({ from: range.from, to: dataLastTime });
         }
     });
+    */
 
     // Sample data
     candlestickSeries.setData(sampleData);
