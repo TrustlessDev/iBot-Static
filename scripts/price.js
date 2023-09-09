@@ -87,21 +87,6 @@ async function loadKChart() {
         }
     });
     chart.timeScale().fitContent();
-    const timeScale = chart.timeScale();
-    let dataFirstTime, dataLastTime;
-    
-    dataFirstTime = data[0].time;
-    dataLastTime = data[data.length - 1].time;
-
-    timeScale.subscribeVisibleTimeRangeChange((range) => {
-        if (!range) return;
-
-        if (range.from < dataFirstTime) {
-            timeScale.setVisibleRange({ from: dataFirstTime, to: range.to });
-        } else if (range.to > dataLastTime) {
-            timeScale.setVisibleRange({ from: range.from, to: dataLastTime });
-        }
-    });
     
     const candlestickSeries = chart.addCandlestickSeries({
         upColor: '#4BFF67',
@@ -114,6 +99,22 @@ async function loadKChart() {
     
     let sampleData = await fetch("scripts/sampleData.json?t=1");
     sampleData = await sampleData.json();
+
+    const timeScale = chart.timeScale();
+    let dataFirstTime, dataLastTime;
+    
+    dataFirstTime = sampleData[0].time;
+    dataLastTime = sampleData[sampleData.length - 1].time;
+
+    timeScale.subscribeVisibleTimeRangeChange((range) => {
+        if (!range) return;
+
+        if (range.from < dataFirstTime) {
+            timeScale.setVisibleRange({ from: dataFirstTime, to: range.to });
+        } else if (range.to > dataLastTime) {
+            timeScale.setVisibleRange({ from: range.from, to: dataLastTime });
+        }
+    });
 
     // Sample data
     candlestickSeries.setData(sampleData);
