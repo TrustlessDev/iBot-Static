@@ -553,6 +553,7 @@
       h4.className = "pt-1 mb-n1 " + (change > 0 ? "color-green-dark" : "color-red-dark");
       let priceText = parseFloat(price).toFixed(4);
       priceText = parseFloat(priceText);
+      priceText = priceText.toLocaleString();
 
       h4.textContent = "$" + priceText;
 
