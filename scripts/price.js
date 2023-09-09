@@ -109,8 +109,16 @@ async function loadKChart() {
             close: parseFloat(data[4])
         };
     });
+    sampleData = sampleData.map(data => {
+        return {
+            time: data['M_'],
+            open: data.open,
+            high: data.high,
+            low: data.low,
+            close: data.close
+        };
+    });
     console.log(sampleData);
-    console.log("end");
 
     // Sample data
     candlestickSeries.setData(sampleData);
