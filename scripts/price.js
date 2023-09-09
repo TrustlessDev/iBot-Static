@@ -142,6 +142,7 @@ async function loadKChart() {
     timeScale.subscribeVisibleTimeRangeChange((range) => {
         if (!range) return;
         console.log(range);
+        console.log(dataFirstTime);
         if (range.from < dataFirstTime) {
             console.log("range.from < dataFirstTime");
             timeScale.scrollToRealTime();
