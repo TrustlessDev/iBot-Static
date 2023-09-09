@@ -98,7 +98,7 @@ async function loadKChart() {
     let sampleData = await fetch("scripts/sampleData.json?t=1");
     sampleData = await sampleData.json();
     
-    let volumeData = await fetch("scripts/volumeData2.json");
+    let volumeData = await fetch("scripts/sampleData2.json");
     volumeData = await volumeData.json();
 
     // Sample data
