@@ -128,7 +128,8 @@ async function loadKChart() {
     const lineSeries = chart.addLineSeries();
 
     const timeScale = chart.timeScale();
-    timeScale.subscribeVisibleTimeRangeChange(function(range) {
+    console.log(timeScale);
+    timeScale.subscribeVisibleTimeRangeChange(function() {
         const visibleRange = timeScale.getVisibleRange();
         if (!visibleRange) return;
 
