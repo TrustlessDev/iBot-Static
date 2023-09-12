@@ -79,7 +79,7 @@ async function loadKChartElem(symbol, kdata) {
         // 加總總額 quantity
         let total = kdata.reduce((a, b) => +a + +b.quantity, 0);
         let totalPrice = parseFloat((total * data.weightedAvgPrice).toFixed(2));
-        totalPrice = formatPrice(totalPrice) + " 萬";
+        totalPrice = formatPrice(totalPrice);
         $(".priceDynamic").removeClass("color-green-dark");
         $(".priceDynamic").removeClass("color-red-dark");
         $(".priceDynamic").addClass((data.priceChangePercent > 0 ? "color-green-dark" : "color-red-dark"));
