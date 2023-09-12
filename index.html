@@ -578,7 +578,7 @@
 
       let span = document.createElement("span");
       span.className = "badge rounded-xl " + (change > 0 ? "bg-green-dark" : "bg-red-dark");
-      span.textContent = change + "%";
+      span.textContent = (change > 0 ? "+" : "") + change + "%";
 
       div3.appendChild(h4);
       div3.appendChild(span);
