@@ -99,28 +99,26 @@ async function loadKChartElem(symbol, kdata) {
 }
 
 function formatPrice(number) {
-    // 將數字轉換為字符串，並反轉以便更容易處理
-    const numStr = String(number).split('').reverse().join('');
-    const result = [];
+    const units = [
+        { value: 10**8, label: '億' },
+        { value: 10**7, label: '千萬' },
+        { value: 10**6, label: '百萬' },
+        { value: 10**4, label: '萬' }
+    ];
+    let formattedStr = "";
+    let count = 0;
 
-    // 定義單位，您可以根據需要擴展此列表
-    const units = ['', '千', '百萬', '千萬', '億'];
-
-    for (let i = 0; i < numStr.length; i++) {
-        // 在每三位之後添加一個逗點，但不要在末尾添加
-        if (i % 3 === 0 && i !== 0) {
-            result.push(',');
-        }
-        // 添加數字
-        result.push(numStr[i]);
-        // 添加單位
-        if (i < units.length) {
-            result.push(units[i]);
+    for (let unit of units) {
+        if (number >= unit.value) {
+            if (count < 2) {
+                formattedStr += `${Math.floor(number / unit.value)}${unit.label}`;
+                count++;
+            }
+            number %= unit.value;
         }
     }
 
-    // 最後再次反轉，並連接成最終結果
-    return result.reverse().join('');
+    return formattedStr;
 }
 
 async function loadKChart(data) {
