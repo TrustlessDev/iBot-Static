@@ -60,23 +60,26 @@ async function initKChart(symbol) {
             data = data.data;
         }
         loadKChart(data);
-        loadKChartElem(symbol);
+        loadKChartElem(symbol,data);
         mappingLang();
         closePreloader();
     }, 300);
     
 }
 
-async function loadKChartElem(symbol) {
+async function loadKChartElem(symbol, kdata) {
     $(".showSymbol").text(symbol + "/USDT");
     clearInterval(kTimer);
     kTimer = setInterval(() => {
         let data = priceTable.find(item => item.symbol === symbol);
-        /*
-        let span = document.createElement("span");
-      span.className = "badge rounded-xl " + (change > 0 ? "bg-green-dark" : "bg-red-dark");
-      span.textContent = (change > 0 ? "+" : "") + change + "%";
-      */
+        // 找出最高的 high
+        let high = Math.max.apply(Math, kdata.map(function(o) { return o.high; }));
+        // 找出最低的 low
+        let low = Math.min.apply(Math, kdata.map(function(o) { return o.low; }));
+        // 加總總額 quantity
+        let total = kdata.reduce((a, b) => +a + +b.quantity, 0);
+        let totalPrice = parseFloat(total.toFixed(2)).toLocaleString();
+        totalPrice = totalPrice + " 萬";
         $(".priceDynamic").removeClass("color-green-dark");
         $(".priceDynamic").removeClass("color-red-dark");
         $(".priceDynamic").addClass((data.priceChangePercent > 0 ? "color-green-dark" : "color-red-dark"));
@@ -90,6 +93,8 @@ async function loadKChartElem(symbol) {
         let usdPrice = data.weightedAvgPrice;
         let percentPrice = parseFloat((parseFloat(data.priceChangePercent/100) * usdPrice).toFixed(2));
         $(".coinPriceInfo").html("≈" + parseFloat(parseFloat(usdPrice).toFixed(2)) + " USD  <span class=\"" + (percentPrice > 0 ? "color-green-light" : "color-red-light") + "\">" + (percentPrice > 0 ? "+" : "") + percentPrice + " USD</span>");
+    
+        $(".kInfo").html("24時高 " + parseFloat(parseFloat(high).toFixed(3)) + "  24時低 " + totalPrice + "24時額 " + );
     }, 1000);
 }
 
