@@ -68,7 +68,8 @@ async function initKChart(symbol) {
 async function loadKChartElem(symbol) {
     $(".showSymbol").text(symbol + "/USDT");
     setInterval(() => {
-        $(".priceDynamic").text(priceTable[symbol].weightedAvgPrice);
+        let data = priceTable.find(item => item.symbol === symbol);
+        $(".priceDynamic").text(data.weightedAvgPrice);
     }, 1000);
 }
 
