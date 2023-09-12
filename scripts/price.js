@@ -74,9 +74,9 @@ async function loadKChartElem(symbol) {
       span.className = "badge rounded-xl " + (change > 0 ? "bg-green-dark" : "bg-red-dark");
       span.textContent = (change > 0 ? "+" : "") + change + "%";
       */
-        $(".priceDynamic").removeClass("bg-green-dark");
-        $(".priceDynamic").removeClass("bg-red-dark");
-        $(".priceDynamic").addClass((data.priceChangePercent > 0 ? "bg-green-dark" : "bg-red-dark"));
+        $(".priceDynamic").removeClass("color-green-dark");
+        $(".priceDynamic").removeClass("color-red-dark");
+        $(".priceDynamic").addClass((data.priceChangePercent > 0 ? "color-green-dark" : "color-red-dark"));
         $(".priceDynamic").text(data.weightedAvgPrice);
 
     }, 1000);
