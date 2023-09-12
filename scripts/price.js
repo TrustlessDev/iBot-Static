@@ -1,6 +1,7 @@
 let ws = null;
 let priceTimer = 0;
 let kTimer = 0;
+let kUpdateTimer = 0;
 let priceTable = [];
 let watchSymbols = [];
 
@@ -59,7 +60,7 @@ async function initKChart(symbol) {
         if(data.success) {
             data = data.data;
         }
-        loadKChart(data);
+        loadKChart(symbol, data);
         loadKChartElem(symbol,data);
         mappingLang();
         closePreloader();
@@ -121,7 +122,7 @@ function formatPrice(number) {
     return formattedStr;
 }
 
-async function loadKChart(data) {
+async function loadKChart(symbol, kData) {
     const chart = LightweightCharts.createChart(document.getElementById('chart-container'), {
         width: document.body.clientWidth,
         height: 300,
@@ -173,9 +174,9 @@ async function loadKChart(data) {
     });
 
     // Sample data
-    candlestickSeries.setData(data);
+    candlestickSeries.setData(kData);
 
-    let volumeData = data.map((item) => {
+    let volumeData = kData.map((item) => {
         return {
             time: item.time,
             value: item.quantity
@@ -199,8 +200,8 @@ async function loadKChart(data) {
     const timeScale = chart.timeScale();
     let dataLastTime, dataFirstTime;
 
-    dataLastTime = new Date(data[data.length - 1].time);
-    dataFirstTime = new Date(data[0].time);
+    dataLastTime = new Date(kData[kData.length - 1].time);
+    dataFirstTime = new Date(kData[0].time);
 
     timeScale.subscribeVisibleTimeRangeChange((range) => {
         if (!range) return;
@@ -213,4 +214,26 @@ async function loadKChart(data) {
         }
     });
     
+    clearInterval(kUpdateTimer);
+
+    kUpdateTimer = setInterval(async () => {
+        let data = await fetch("https://" + site.apiUrl + "/klines?symbol=" + symbol);
+        data = await data.json();
+        if(data.success) {
+            data = data.data;
+        } else {
+            return;
+        }
+        // 取出 data 中與 kData 不一樣的部分
+        let newData = data.filter((item) => {
+            return !kData.some((item2) => {
+                return item.time === item2.time;
+            });
+        });
+        // 將 newData 加入 kData
+        kData = kData.concat(newData);
+        candlestickSeries.update({ data: newData });
+        candlestickSeries.applyNewData(newData);
+    }, 1000);
+
 }
