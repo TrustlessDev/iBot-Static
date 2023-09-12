@@ -83,6 +83,10 @@ async function loadKChartElem(symbol) {
         $(".updown").removeClass("bg-red-dark");
         $(".updown").addClass((data.priceChangePercent > 0 ? "bg-green-dark" : "bg-red-dark"));
         $(".updown").text((data.priceChangePercent > 0 ? "+" : "") + data.priceChangePercent + "%");
+
+        let usdPrice = data.weightedAvgPrice;
+        let percentPrice = parseFloat((parseFloat(data.priceChangePercent) * usdPrice).toFixed(2));
+        $(".coinPriceInfo").html("≈" + parseFloat(parseFloat(usdPrice).toFixed(2)) + " USD <span class=\"" + (percentPrice > 0 ? "color-green-dark" : "color-red-dark") + "\">" + (percentPrice > 0 ? "+" : "") + percentPrice + " USD</span>");
     }, 1000);
 }
 
