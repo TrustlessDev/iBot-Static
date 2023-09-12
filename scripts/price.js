@@ -78,7 +78,7 @@ async function loadKChartElem(symbol, kdata) {
         let low = Math.min.apply(Math, kdata.map(function(o) { return o.low; }));
         // 加總總額 quantity
         let total = kdata.reduce((a, b) => +a + +b.quantity, 0);
-        let totalPrice = parseFloat(total.toFixed(2)).toLocaleString();
+        let totalPrice = parseFloat((total * data.weightedAvgPrice).toFixed(2)).toLocaleString();
         totalPrice = totalPrice + " 萬";
         $(".priceDynamic").removeClass("color-green-dark");
         $(".priceDynamic").removeClass("color-red-dark");
