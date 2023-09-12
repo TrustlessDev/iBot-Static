@@ -78,8 +78,8 @@ async function loadKChartElem(symbol, kdata) {
         let low = Math.min.apply(Math, kdata.map(function(o) { return o.low; }));
         // 加總總額 quantity
         let total = kdata.reduce((a, b) => +a + +b.quantity, 0);
-        let totalPrice = parseFloat((total * data.weightedAvgPrice).toFixed(2)).toLocaleString();
-        totalPrice = totalPrice + " 萬";
+        let totalPrice = parseFloat((total * data.weightedAvgPrice).toFixed(2));
+        totalPrice = formatPrice(totalPrice) + " 萬";
         $(".priceDynamic").removeClass("color-green-dark");
         $(".priceDynamic").removeClass("color-red-dark");
         $(".priceDynamic").addClass((data.priceChangePercent > 0 ? "color-green-dark" : "color-red-dark"));
@@ -96,6 +96,31 @@ async function loadKChartElem(symbol, kdata) {
     
         $(".kInfo").html("24時高 " + parseFloat(parseFloat(high).toFixed(3)) + "  24時低 " + parseFloat(parseFloat(low).toFixed(3)) + "24時額 " + totalPrice);
     }, 1000);
+}
+
+function formatPrice(number) {
+    // 將數字轉換為字符串，並反轉以便更容易處理
+    const numStr = String(number).split('').reverse().join('');
+    const result = [];
+
+    // 定義單位，您可以根據需要擴展此列表
+    const units = ['', '千', '百萬', '千萬', '億'];
+
+    for (let i = 0; i < numStr.length; i++) {
+        // 在每三位之後添加一個逗點，但不要在末尾添加
+        if (i % 3 === 0 && i !== 0) {
+            result.push(',');
+        }
+        // 添加數字
+        result.push(numStr[i]);
+        // 添加單位
+        if (i < units.length) {
+            result.push(units[i]);
+        }
+    }
+
+    // 最後再次反轉，並連接成最終結果
+    return result.reverse().join('');
 }
 
 async function loadKChart(data) {
