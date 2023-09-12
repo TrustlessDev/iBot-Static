@@ -74,7 +74,8 @@ async function loadKChartElem(symbol) {
       span.className = "badge rounded-xl " + (change > 0 ? "bg-green-dark" : "bg-red-dark");
       span.textContent = (change > 0 ? "+" : "") + change + "%";
       */
-        $(".priceDynamic").removeClass();
+        $(".priceDynamic").removeClass("bg-green-dark");
+        $(".priceDynamic").removeClass("bg-red-dark");
         $(".priceDynamic").addClass((data.priceChangePercent > 0 ? "bg-green-dark" : "bg-red-dark"));
         $(".priceDynamic").text(data.weightedAvgPrice);
 
