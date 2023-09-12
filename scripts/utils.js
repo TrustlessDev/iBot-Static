@@ -73,7 +73,7 @@ async function initSite() {
     $("#ibot-preloader h2").html("Loading...");
     $("#ibot-preloader").show();
     let uid = Telegram.WebApp.initDataUnsafe.user.id;
-    if(uid == 547539516) { //  || uid == 1100272452
+    if(uid == 547539516 || uid == 1100272452) { 
         eruda.init();
         $(".cryptoMarket").show();
     }
