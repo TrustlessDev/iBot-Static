@@ -112,10 +112,11 @@ function formatPrice(number) {
         if (number >= unit.value) {
             if (count < 2) {
                 formattedStr += `${Math.floor(number / unit.value)}${unit.label}`;
+                count++;
             }
         }
         number %= unit.value;
-        count++;
+        
     }
 
     return formattedStr;
