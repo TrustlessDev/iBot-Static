@@ -77,7 +77,7 @@ async function loadKChartElem(symbol) {
         $(".priceDynamic").removeClass("color-green-dark");
         $(".priceDynamic").removeClass("color-red-dark");
         $(".priceDynamic").addClass((data.priceChangePercent > 0 ? "color-green-dark" : "color-red-dark"));
-        $(".priceDynamic").text(data.weightedAvgPrice);
+        $(".priceDynamic").text(parseFloat(data.priceChangePercent).toFixed(4));
 
         $(".updown").removeClass("bg-green-dark");
         $(".updown").removeClass("bg-red-dark");
