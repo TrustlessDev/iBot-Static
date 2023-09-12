@@ -86,7 +86,7 @@ async function loadKChartElem(symbol) {
 
         let usdPrice = data.weightedAvgPrice;
         let percentPrice = parseFloat((parseFloat(data.priceChangePercent/100) * usdPrice).toFixed(2));
-        $(".coinPriceInfo").html("≈" + parseFloat(parseFloat(usdPrice).toFixed(2)) + " USD  <span class=\"" + (percentPrice > 0 ? "color-green" : "color-red") + "\">" + (percentPrice > 0 ? "+" : "") + percentPrice + " USD</span>");
+        $(".coinPriceInfo").html("≈" + parseFloat(parseFloat(usdPrice).toFixed(2)) + " USD  <span class=\"" + (percentPrice > 0 ? "color-green-light" : "color-red-light") + "\">" + (percentPrice > 0 ? "+" : "") + percentPrice + " USD</span>");
     }, 1000);
 }
 
