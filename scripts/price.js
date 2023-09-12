@@ -94,7 +94,7 @@ async function loadKChartElem(symbol, kdata) {
         let percentPrice = parseFloat((parseFloat(data.priceChangePercent/100) * usdPrice).toFixed(2));
         $(".coinPriceInfo").html("≈" + parseFloat(parseFloat(usdPrice).toFixed(2)) + " USD  <span class=\"" + (percentPrice > 0 ? "color-green-light" : "color-red-light") + "\">" + (percentPrice > 0 ? "+" : "") + percentPrice + " USD</span>");
     
-        $(".kInfo").html("24時高 " + parseFloat(parseFloat(high).toFixed(3)) + "  24時低 " + totalPrice + "24時額 " + );
+        $(".kInfo").html("24時高 " + parseFloat(parseFloat(high).toFixed(3)) + "  24時低 " + parseFloat(parseFloat(low).toFixed(3)) + "24時額 " + totalPrice);
     }, 1000);
 }
 
