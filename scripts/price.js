@@ -58,10 +58,18 @@ async function initKChart(symbol) {
             data = data.data;
         }
         loadKChart(data);
+        loadKChartElem(symbol);
         mappingLang();
         closePreloader();
     }, 300);
     
+}
+
+async function loadKChartElem(symbol) {
+    $(".showSymbol").text(symbol + "/USDT");
+    setInterval(() => {
+        $(".priceDynamic").text(priceTable[symbol].weightedAvgPrice);
+    }, 1000);
 }
 
 async function loadKChart(data) {
@@ -147,8 +155,6 @@ async function loadKChart(data) {
 
     timeScale.subscribeVisibleTimeRangeChange((range) => {
         if (!range) return;
-        console.log(range);
-        console.log(dataFirstTime);
         if (range.from < dataFirstTime) {
             console.log("range.from < dataFirstTime");
             timeScale.scrollToRealTime();
