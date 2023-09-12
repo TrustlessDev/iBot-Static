@@ -1,11 +1,13 @@
 let ws = null;
 let priceTimer = 0;
+let kTimer = 0;
 let priceTable = [];
 let watchSymbols = [];
 
 async function setupWebSocket() {
     ws = new WebSocket('wss://' + site.apiUrl + '/ws');
     ws.onopen = () => {
+        clearInterval(priceTimer);
         sendMessage({
             type: 'ping'
         });
@@ -67,7 +69,8 @@ async function initKChart(symbol) {
 
 async function loadKChartElem(symbol) {
     $(".showSymbol").text(symbol + "/USDT");
-    setInterval(() => {
+    clearInterval(kTimer);
+    kTimer = setInterval(() => {
         let data = priceTable.find(item => item.symbol === symbol);
         /*
         let span = document.createElement("span");
