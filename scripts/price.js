@@ -79,6 +79,10 @@ async function loadKChartElem(symbol) {
         $(".priceDynamic").addClass((data.priceChangePercent > 0 ? "color-green-dark" : "color-red-dark"));
         $(".priceDynamic").text(data.weightedAvgPrice);
 
+        $(".updown").removeClass("bg-green-dark");
+        $(".updown").removeClass("bg-red-dark");
+        $(".updown").addClass((data.priceChangePercent > 0 ? "bg-green-dark" : "bg-red-dark"));
+        $(".updown").text((data.priceChangePercent > 0 ? "+" : "") + data.priceChangePercent + "%");
     }, 1000);
 }
 
