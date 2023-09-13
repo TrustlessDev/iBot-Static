@@ -144,7 +144,7 @@ function formatPrice(number) {
     return formattedStr;
 }
 
-async function loadDepthTable(symbol, precision = 0.1) {
+async function loadDepthTable(symbol, precision = 0.01) {
     clearInterval(depthTableTimer);
     depthTableTimer = setInterval(async () => {
         let data = await fetch("https://" + site.apiUrl + "/depth?&symbol=" + symbol + "&t=" + new Date().getTime());
@@ -210,12 +210,13 @@ async function loadDepthTable(symbol, precision = 0.1) {
             td1.classList.add("color-gray-dark");
             td1.classList.add("text-start");
             let td2 = document.createElement("td");
-            td1.classList.add("color-green-dark");
+            td2.classList.add("color-green-dark");
             let td3 = document.createElement("td");
-            td1.classList.add("color-red-dark");
+            td3.classList.add("color-red-dark");
             let td4 = document.createElement("td");
             td4.classList.add("color-gray-dark");
             td4.classList.add("text-end");
+
             td1.innerText = bidsTable[i].quantity.toFixed(6);
             // 價格依照 precision 顯示
             td2.innerText = parseFloat(bidsTable[i].price).toFixed(precision.toString().split(".")[1].length);
