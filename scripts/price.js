@@ -232,6 +232,7 @@ async function loadKChart(symbol, kData) {
         });
         // 將 newData 加入 kData
         kData = kData.concat(newData);
+        console.log(newData);
         candlestickSeries.update({ data: newData });
         candlestickSeries.applyNewData(newData);
     }, 1000);
