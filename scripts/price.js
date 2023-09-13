@@ -237,7 +237,6 @@ async function loadKChart(symbol, kData) {
             for(let i=0;i<newData.length;i++) {
                 candlestickSeries.update(newData[i]);
             }
-            candlestickSeries.applyNewData(newData);
         }
     }, 1000);
 
