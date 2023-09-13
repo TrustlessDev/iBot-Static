@@ -217,7 +217,7 @@ async function loadKChart(symbol, kData) {
     clearInterval(kUpdateTimer);
 
     kUpdateTimer = setInterval(async () => {
-        let data = await fetch("https://" + site.apiUrl + "/klines?interval=1m&symbol=" + symbol);
+        let data = await fetch("https://" + site.apiUrl + "/klines?interval=1m&symbol=" + symbol + "&t=" + new Date().getTime());
         data = await data.json();
         if(data.success) {
             data = data.data;
