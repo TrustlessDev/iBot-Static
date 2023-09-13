@@ -210,10 +210,11 @@ async function loadDepthTable(symbol, precision = 0.1) {
             let td2 = document.createElement("td");
             let td3 = document.createElement("td");
             let td4 = document.createElement("td");
-            td1.innerText = bidsTable[i].quantity;
-            td2.innerText = bidsTable[i].price;
-            td3.innerText = asksTable[i].price;
-            td4.innerText = asksTable[i].quantity;
+            td1.innerText = bidsTable[i].quantity.toFixed(6);
+            // 價格依照 precision 顯示
+            td2.innerText = parseFloat(bidsTable[i].price).toFixed(precision.toString().split(".")[1].length);
+            td3.innerText = parseFloat(asksTable[i].price).toFixed(precision.toString().split(".")[1].length);
+            td4.innerText = asksTable[i].quantity.toFixed(6);
             tr.appendChild(td1);
             tr.appendChild(td2);
             tr.appendChild(td3);
