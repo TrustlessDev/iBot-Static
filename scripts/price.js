@@ -213,6 +213,7 @@ async function loadDepthTable(symbol, precision = 0.01) {
         let asksTotal = asksTable.reduce((a, b) => a + b.quantity, 0);
         let total = bidsTotal + asksTotal;
         let bidsPercentage = bidsTotal / total * 100;
+        console.log(bidsPercentage.toFixed(0));
         setBidsProgress(bidsPercentage.toFixed(0));
         // 顯示
         $("#depth-block").empty();
