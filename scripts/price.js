@@ -106,7 +106,7 @@ async function loadKChartElem(symbol, kdata) {
         $(".priceDynamic").removeClass("color-green-dark");
         $(".priceDynamic").removeClass("color-red-dark");
         $(".priceDynamic").addClass((data.priceChangePercent > 0 ? "color-green-dark" : "color-red-dark"));
-        $(".priceDynamic").text(parseFloat(parseFloat(data.weightedAvgPrice).toFixed(4)));
+        // 價格在depth中計算
 
         $(".updown").removeClass("bg-green-dark");
         $(".updown").removeClass("bg-red-dark");
@@ -153,7 +153,7 @@ function setBidsProgress(bidsPercentage) {
     const asksPercentageText = document.querySelector('.asks-percentage');
     bidsPercentageText.innerHTML = `${bidsPercentage}%`;
     asksPercentageText.innerHTML = `${100 - bidsPercentage}%`;
-    
+
 }
 
 async function loadDepthTable(symbol, precision = 0.01) {
@@ -222,6 +222,9 @@ async function loadDepthTable(symbol, precision = 0.01) {
         setBidsProgress(bidsPercentage.toFixed(0));
         // 顯示
         $("#depth-block").empty();
+        // 以兩邊的第一筆資料的價格來計算均價
+        let avgPrice = (asksTable[0].price + bidsTable[0].price) / 2;
+        $(".priceDynamic").text(parseFloat(parseFloat(avgPrice).toFixed(4)));
         // 只顯示前 10 筆 使用 element 方式產生 tr td
         for(let i=0;i<10;i++) {
             let tr = document.createElement("tr");
