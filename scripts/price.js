@@ -142,6 +142,9 @@ function formatPrice(number) {
 }
 
 async function loadKChart(symbol, kData) {
+    if(kchartElement) {
+        kchartElement.remove();
+    }
     kchartElement = LightweightCharts.createChart(document.getElementById('chart-container'), {
         width: document.body.clientWidth,
         height: 300,
@@ -181,9 +184,9 @@ async function loadKChart(symbol, kData) {
             vertAlign: 'center'
         },
     });
-    chart.timeScale().fitContent();
+    kchartElement.timeScale().fitContent();
     
-    const candlestickSeries = chart.addCandlestickSeries({
+    const candlestickSeries = kchartElement.addCandlestickSeries({
         upColor: '#4BFF67',
         downColor: '#FF4976',
         borderDownColor: '#FF4976',
@@ -201,7 +204,7 @@ async function loadKChart(symbol, kData) {
             value: item.quantity
         };
     });
-    const volumeSeries = chart.addHistogramSeries({
+    const volumeSeries = kchartElement.addHistogramSeries({
         color: '#182233',
         lineWidth: 2,
         priceFormat: {
@@ -216,7 +219,7 @@ async function loadKChart(symbol, kData) {
   
     volumeSeries.setData(volumeData);
 
-    const timeScale = chart.timeScale();
+    const timeScale = kchartElement.timeScale();
     let dataLastTime, dataFirstTime;
 
     dataLastTime = new Date(kData[kData.length - 1].time);
