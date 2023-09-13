@@ -55,7 +55,7 @@ async function initKChart(symbol) {
     setTimeout(async function () {
         await initSite();
         await initLanguages();
-        let data = await fetch("https://" + site.apiUrl + "/klines?symbol=" + symbol);
+        let data = await fetch("https://" + site.apiUrl + "/klines?symbol=" + symbol + "&interval=1m&t=" + new Date().getTime());
         data = await data.json();
         if(data.success) {
             data = data.data;
