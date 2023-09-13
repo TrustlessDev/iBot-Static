@@ -208,10 +208,8 @@ async function loadKChart(symbol, kData) {
     timeScale.subscribeVisibleTimeRangeChange((range) => {
         if (!range) return;
         if (range.from < dataFirstTime) {
-            console.log("range.from < dataFirstTime");
             timeScale.scrollToRealTime();
         } else if (range.to > dataLastTime) {
-            console.log("range.to > dataLastTime");
             timeScale.scrollToRealTime();
         }
     });
@@ -235,7 +233,6 @@ async function loadKChart(symbol, kData) {
         // 將 newData 加入 kData
         kData = kData.concat(newData);
         if(newData.length>0) {
-            console.log(newData);
             for(let i=0;i<newData.length;i++) {
                 candlestickSeries.update(newData[i]);
             }
