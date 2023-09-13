@@ -236,7 +236,7 @@ async function loadKChart(symbol, kData) {
     });
 
     timeScale.applyOptions({
-        barSpacing: 12
+        barSpacing: 10
     });
     
     clearInterval(kUpdateTimer);
