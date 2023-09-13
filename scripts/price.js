@@ -142,6 +142,84 @@ function formatPrice(number) {
     return formattedStr;
 }
 
+async function loadDepthTable(symbol, precision = 0.1) {
+    setInterval(async () => {
+        let data = await fetch("https://" + site.apiUrl + "/depth?&symbol=" + symbol + "&t=" + new Date().getTime());
+        data = await data.json();
+        if(data.success) {
+            data = data.data;
+        } else {
+            return;
+        }
+        let asks = data.asks;
+        let bids = data.bids;
+        // 依據精度整理資料
+        let asksData = {};
+        let bidsData = {};
+        asks.forEach((item) => {
+            let price = parseFloat(item[0]);
+            let quantity = parseFloat(item[1]);
+            let key = Math.floor(price / precision) * precision;
+            if(asksData[key]) {
+                asksData[key] += quantity;
+            } else {
+                asksData[key] = quantity;
+            }
+        });
+        bids.forEach((item) => {
+            let price = parseFloat(item[0]);
+            let quantity = parseFloat(item[1]);
+            let key = Math.floor(price / precision) * precision;
+            if(bidsData[key]) {
+                bidsData[key] += quantity;
+            } else {
+                bidsData[key] = quantity;
+            }
+        });
+        // 整理資料
+        let asksTable = [];
+        let bidsTable = [];
+        for(let key in asksData) {
+            asksTable.push({
+                price: key,
+                quantity: asksData[key]
+            });
+        }
+        for(let key in bidsData) {
+            bidsTable.push({
+                price: key,
+                quantity: bidsData[key]
+            });
+        }
+        // 排序
+        asksTable.sort((a, b) => {
+            return a.price - b.price;
+        });
+        bidsTable.sort((a, b) => {
+            return b.price - a.price;
+        });
+        // 顯示
+        $("#depth-block").empty();
+        // 只顯示前 10 筆 使用 element 方式產生 tr td
+        for(let i=0;i<10;i++) {
+            let tr = document.createElement("tr");
+            let td1 = document.createElement("td");
+            let td2 = document.createElement("td");
+            let td3 = document.createElement("td");
+            let td4 = document.createElement("td");
+            td1.innerText = bidsTable[i].quantity;
+            td2.innerText = bidsTable[i].price;
+            td3.innerText = asksTable[i].price;
+            td4.innerText = asksTable[i].quantity;
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(td4);
+            $("#depth-block").append(tr);
+        }
+    }, 1000);
+}
+
 async function loadKChart(symbol, kData) {
     if(kchartElement) {
         kchartElement.remove();
