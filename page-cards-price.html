@@ -57,34 +57,34 @@
            </div>
        </div>
 
-       <div class="tabs tabs-pill" id="tab-group-2">
+       <div class="tabs tabs-pill" id="tab-group-interval">
             <div class="tab-controls p-1">
                 <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="changeInterval('1M')" href="#tab-1" aria-expanded="false">1月</a>
                 <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="changeInterval('1w')" href="#tab-2" aria-expanded="false">1週</a>
-                <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="changeInterval('1d')" href="#tab-3" aria-expanded="false">1日</a>
+                <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="changeInterval('1d')" href="#tab-3" aria-expanded="true">1日</a>
                 <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="changeInterval('8h')" href="#tab-4" aria-expanded="false">8時</a>
                 <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="changeInterval('4h')" href="#tab-5" aria-expanded="false">4時</a>
                 <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="changeInterval('1h')" href="#tab-6" aria-expanded="false">1時</a>
                 <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="changeInterval('15m')" href="#tab-7" aria-expanded="false">15分</a>
                 <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="changeInterval('1m')" href="#tab-8" aria-expanded="false">1分</a>
-                <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="changeInterval('1s')" href="#tab-9" aria-expanded="true">1秒</a>
+                <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="changeInterval('1s')" href="#tab-9" aria-expanded="false">1秒</a>
             </div>
             <div style="display: nonoe;">
-                <div class="collapse" id="tab-1" data-bs-parent="#tab-group-2"><p></p></div>
-                <div class="collapse" id="tab-2" data-bs-parent="#tab-group-2"><p></p></div>
-                <div class="collapse" id="tab-3" data-bs-parent="#tab-group-2"><p></p></div>
-                <div class="collapse" id="tab-4" data-bs-parent="#tab-group-2"><p></p></div>
-                <div class="collapse" id="tab-5" data-bs-parent="#tab-group-2"><p></p></div>
-                <div class="collapse" id="tab-6" data-bs-parent="#tab-group-2"><p></p></div>
-                <div class="collapse" id="tab-7" data-bs-parent="#tab-group-2"><p></p></div>
-                <div class="collapse" id="tab-8" data-bs-parent="#tab-group-2"><p></p></div>
-                <div class="collapse" id="tab-9" data-bs-parent="#tab-group-2"><p></p></div>
+                <div class="collapse" id="tab-1" data-bs-parent="#tab-group-interval"><p></p></div>
+                <div class="collapse" id="tab-2" data-bs-parent="#tab-group-interval"><p></p></div>
+                <div class="collapse" id="tab-3" data-bs-parent="#tab-group-interval"><p></p></div>
+                <div class="collapse" id="tab-4" data-bs-parent="#tab-group-interval"><p></p></div>
+                <div class="collapse" id="tab-5" data-bs-parent="#tab-group-interval"><p></p></div>
+                <div class="collapse" id="tab-6" data-bs-parent="#tab-group-interval"><p></p></div>
+                <div class="collapse" id="tab-7" data-bs-parent="#tab-group-interval"><p></p></div>
+                <div class="collapse" id="tab-8" data-bs-parent="#tab-group-interval"><p></p></div>
+                <div class="collapse" id="tab-9" data-bs-parent="#tab-group-interval"><p></p></div>
             </div>
         </div>
 
-        <div id="chart-container" style="width: 100%; height: 400px;"></div> 
+        <div id="chart-container" style="width: 100%;"></div> 
        
-        <div class="tabs tabs-pill" id="tab-group-2">
+        <div class="tabs tabs-pill" id="tab-group-trade-toolbar">
             <div class="tab-controls p-1">
                 <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="" href="#tab-trade" aria-expanded="false">交易</a>
                 <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="" href="#tab-deph" aria-expanded="true">買賣盤口</a>
@@ -92,10 +92,10 @@
                 <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="" href="#tab-dephGraph" aria-expanded="false">深度圖</a>
             </div>
             <div style="display: nonoe;">
-                <div class="collapse" id="tab-trade" data-bs-parent="#tab-group-2"><p></p></div>
-                <div class="collapse" id="tab-deph" data-bs-parent="#tab-group-2"><p></p></div>
-                <div class="collapse" id="tab-traded" data-bs-parent="#tab-group-2"><p></p></div>
-                <div class="collapse" id="tab-dephGraph" data-bs-parent="#tab-group-2"><p></p></div>
+                <div class="collapse" id="tab-trade" data-bs-parent="#tab-group-trade-toolbar"><p></p></div>
+                <div class="collapse" id="tab-deph" data-bs-parent="#tab-group-trade-toolbar"><p></p></div>
+                <div class="collapse" id="tab-traded" data-bs-parent="#tab-group-trade-toolbar"><p></p></div>
+                <div class="collapse" id="tab-dephGraph" data-bs-parent="#tab-group-trade-toolbar"><p></p></div>
             </div>
         </div>
 
@@ -107,7 +107,7 @@
             <div class="content mb-0">
 
                 <!-- Tab Wrapper-->
-                <div class="tabs tabs-pill" id="tab-group-2">
+                <div class="tabs tabs-pill" id="tab-group-interval">
                     <!-- Tab Controls -->
                     <div class="tab-controls rounded-m p-1">
                         <a class="font-13 rounded-m" data-bs-toggle="collapse" href="#tab-4" aria-expanded="true">Settings</a>
@@ -117,7 +117,7 @@
 
                     <!-- Tab 1 -->
                     <div class="mt-3"></div>
-                    <div class="collapse show" id="tab-4" data-bs-parent="#tab-group-2">
+                    <div class="collapse show" id="tab-4" data-bs-parent="#tab-group-interval">
                         <div class="list-group list-custom list-group-m list-group-flush rounded-xs px-1">
                             <a href="#" class="list-group-item pe-2" data-trigger-switch="switch-5">
                                 <i class="has-bg gradient-green color-white shadow-bg shadow-bg-xs rounded-xs bi bi-gear-fill"></i>
@@ -154,7 +154,7 @@
                     </div>
 
                     <!-- Tab 2-->
-                    <div class="collapse" id="tab-5" data-bs-parent="#tab-group-2">
+                    <div class="collapse" id="tab-5" data-bs-parent="#tab-group-interval">
                         <div class="form-custom form-label form-border form-icon mt-0 mb-0">
                             <i class="bi bi-check-circle font-13"></i>
                             <select class="form-select rounded-xs" id="c6" aria-label="Floating label select example">
@@ -209,7 +209,7 @@
                     </div>
 
                     <!-- Tab 3 -->
-                    <div class="collapse" id="tab-x" data-bs-parent="#tab-group-2">
+                    <div class="collapse" id="tab-x" data-bs-parent="#tab-group-interval">
                         <a href="page-activity.html" class="d-flex py-1">
                             <div class="align-self-center">
                                 <span class="icon rounded-s me-2 gradient-orange shadow-bg shadow-bg-xs"><i class="bi bi-google color-white"></i></span>
