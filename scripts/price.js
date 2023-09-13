@@ -4,6 +4,7 @@ let kTimer = 0;
 let kUpdateTimer = 0;
 let priceTable = [];
 let watchSymbols = [];
+const interval = "1s";
 
 async function setupWebSocket() {
     ws = new WebSocket('wss://' + site.apiUrl + '/ws');
@@ -55,7 +56,7 @@ async function initKChart(symbol) {
     setTimeout(async function () {
         await initSite();
         await initLanguages();
-        let data = await fetch("https://" + site.apiUrl + "/klines?symbol=" + symbol + "&interval=1m&t=" + new Date().getTime());
+        let data = await fetch("https://" + site.apiUrl + "/klines?symbol=" + symbol + "&interval=" + interval + "&t=" + new Date().getTime());
         data = await data.json();
         if(data.success) {
             data = data.data;
@@ -217,7 +218,7 @@ async function loadKChart(symbol, kData) {
     clearInterval(kUpdateTimer);
 
     kUpdateTimer = setInterval(async () => {
-        let data = await fetch("https://" + site.apiUrl + "/klines?interval=1m&symbol=" + symbol + "&t=" + new Date().getTime());
+        let data = await fetch("https://" + site.apiUrl + "/klines?interval=" + interval + "&symbol=" + symbol + "&t=" + new Date().getTime());
         data = await data.json();
         if(data.success) {
             data = data.data;
