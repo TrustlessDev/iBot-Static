@@ -2,6 +2,7 @@ let ws = null;
 let priceTimer = 0;
 let kTimer = 0;
 let kUpdateTimer = 0;
+let depthTableTimer = 0;
 let priceTable = [];
 let watchSymbols = [];
 let currentSymbol = "";
@@ -143,7 +144,8 @@ function formatPrice(number) {
 }
 
 async function loadDepthTable(symbol, precision = 0.1) {
-    setInterval(async () => {
+    clearInterval(depthTableTimer);
+    depthTableTimer = setInterval(async () => {
         let data = await fetch("https://" + site.apiUrl + "/depth?&symbol=" + symbol + "&t=" + new Date().getTime());
         data = await data.json();
         if(data.success) {
