@@ -168,8 +168,7 @@ async function loadKChart(symbol, kData) {
             borderColor: '#485c7b',
         },
         timeScale: {
-            borderColor: '#485c7b',
-            barSpacing: 12;
+            borderColor: '#485c7b'
         },
         handleScroll: {
             vertTouchDrag: false, 
@@ -234,6 +233,10 @@ async function loadKChart(symbol, kData) {
         } else if (range.to > dataLastTime) {
             timeScale.scrollToRealTime();
         }
+    });
+
+    timeScale.applyOptions({
+        barSpacing: 20
     });
     
     clearInterval(kUpdateTimer);
