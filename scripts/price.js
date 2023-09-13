@@ -7,7 +7,7 @@ let watchSymbols = [];
 let currentSymbol = "";
 let kchartElement = null;
 
-let interval = "1s";
+let interval = "1d";
 let intervals = [{tag: "1M", t: 60000}, {tag: "1w", t: 60000}, {tag: "1d", t: 60000}, {tag: "8h", t: 60000}, {tag: "4h", t: 60000}, {tag: "1h", t: 60000}, {tag: "15m", t: 60000}, {tag: "1m", t: 60000}, {tag: "1s", t: 1000}];
 
 async function setupWebSocket() {
