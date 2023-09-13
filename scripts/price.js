@@ -211,8 +211,10 @@ async function loadDepthTable(symbol, precision = 0.01) {
             td1.classList.add("text-start");
             let td2 = document.createElement("td");
             td2.classList.add("color-green-dark");
+            td2.classList.add("text-end");
             let td3 = document.createElement("td");
             td3.classList.add("color-red-dark");
+            td3.classList.add("text-start");
             let td4 = document.createElement("td");
             td4.classList.add("color-gray-dark");
             td4.classList.add("text-end");
