@@ -69,19 +69,36 @@
                 <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="changeInterval('1m')" href="#tab-8" aria-expanded="false">1分</a>
                 <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="changeInterval('1s')" href="#tab-9" aria-expanded="true">1秒</a>
             </div>
-            <div style="display: nonoe;" class="collapse" id="tab-1" data-bs-parent="#tab-group-2"><p></p></div>
-            <div style="display: nonoe;" class="collapse" id="tab-2" data-bs-parent="#tab-group-2"><p></p></div>
-            <div style="display: nonoe;" class="collapse" id="tab-3" data-bs-parent="#tab-group-2"><p></p></div>
-            <div style="display: nonoe;" class="collapse" id="tab-4" data-bs-parent="#tab-group-2"><p></p></div>
-            <div style="display: nonoe;" class="collapse" id="tab-5" data-bs-parent="#tab-group-2"><p></p></div>
-            <div style="display: nonoe;" class="collapse" id="tab-6" data-bs-parent="#tab-group-2"><p></p></div>
-            <div style="display: nonoe;" class="collapse" id="tab-7" data-bs-parent="#tab-group-2"><p></p></div>
-            <div style="display: nonoe;" class="collapse" id="tab-8" data-bs-parent="#tab-group-2"><p></p></div>
-            <div style="display: nonoe;" class="collapse" id="tab-9" data-bs-parent="#tab-group-2"><p></p></div>
+            <div style="display: nonoe;">
+                <div class="collapse" id="tab-1" data-bs-parent="#tab-group-2"><p></p></div>
+                <div class="collapse" id="tab-2" data-bs-parent="#tab-group-2"><p></p></div>
+                <div class="collapse" id="tab-3" data-bs-parent="#tab-group-2"><p></p></div>
+                <div class="collapse" id="tab-4" data-bs-parent="#tab-group-2"><p></p></div>
+                <div class="collapse" id="tab-5" data-bs-parent="#tab-group-2"><p></p></div>
+                <div class="collapse" id="tab-6" data-bs-parent="#tab-group-2"><p></p></div>
+                <div class="collapse" id="tab-7" data-bs-parent="#tab-group-2"><p></p></div>
+                <div class="collapse" id="tab-8" data-bs-parent="#tab-group-2"><p></p></div>
+                <div class="collapse" id="tab-9" data-bs-parent="#tab-group-2"><p></p></div>
+            </div>
         </div>
 
-       <div id="chart-container" style="width: 100%; height: 400px;"></div> 
+        <div id="chart-container" style="width: 100%; height: 400px;"></div> 
        
+        <div class="tabs tabs-pill" id="tab-group-2">
+            <div class="tab-controls p-1">
+                <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="" href="#tab-trade" aria-expanded="false">交易</a>
+                <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="" href="#tab-deph" aria-expanded="true">買賣盤口</a>
+                <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="" href="#tab-traded" aria-expanded="false">即時成交</a>
+                <a class="font-12 rounded-m" data-bs-toggle="collapse" onclick="" href="#tab-dephGraph" aria-expanded="false">深度圖</a>
+            </div>
+            <div style="display: nonoe;">
+                <div class="collapse" id="tab-trade" data-bs-parent="#tab-group-2"><p></p></div>
+                <div class="collapse" id="tab-deph" data-bs-parent="#tab-group-2"><p></p></div>
+                <div class="collapse" id="tab-traded" data-bs-parent="#tab-group-2"><p></p></div>
+                <div class="collapse" id="tab-dephGraph" data-bs-parent="#tab-group-2"><p></p></div>
+            </div>
+        </div>
+
        <!-- Card Stack Button / shows when deployed -->
         <a href="#" class="disabled btn-stack-click btn mx-3 mb-4 btn-full gradient-highlight shadow-bg shadow-bg-xs">Close my Wallet</a>
 
