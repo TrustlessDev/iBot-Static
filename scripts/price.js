@@ -144,6 +144,13 @@ function formatPrice(number) {
     return formattedStr;
 }
 
+function setBidsProgress(bidsPercentage) {
+    const greenDiv = document.querySelector('.bids-progress');
+    const redDiv = document.querySelector('.asks-progress');
+    greenDiv.style.width = `${bidsPercentage}%`;
+    redDiv.style.width = `${100 - bidsPercentage}%`;
+}
+
 async function loadDepthTable(symbol, precision = 0.01) {
     clearInterval(depthTableTimer);
     depthTableTimer = setInterval(async () => {
@@ -201,6 +208,12 @@ async function loadDepthTable(symbol, precision = 0.01) {
         bidsTable.sort((a, b) => {
             return b.price - a.price;
         });
+        // 以兩邊的傯量來計算 bidsPercentage
+        let bidsTotal = bidsTable.reduce((a, b) => a + b.quantity, 0);
+        let asksTotal = asksTable.reduce((a, b) => a + b.quantity, 0);
+        let total = bidsTotal + asksTotal;
+        let bidsPercentage = bidsTotal / total * 100;
+        setBidsProgress(bidsPercentage.toFixed(0));
         // 顯示
         $("#depth-block").empty();
         // 只顯示前 10 筆 使用 element 方式產生 tr td

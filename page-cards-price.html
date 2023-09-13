@@ -15,7 +15,24 @@
 <link rel="manifest" href="_manifest.json">
 <meta id="theme-check" name="theme-color" content="#FFFFFF">
 <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png"></head>
+<style>
+    .depth-progress-container {
+        width: 100%;
+        height: 20px;
+        display: flex;
+        background-color: #e0e0e0; /* 這是一個背景色，你可以根據需求更改 */
+    }
 
+    .depth-progress-container .bids-progress {
+        background-color: green;
+        height: 100%;
+    }
+
+    .depth-progress-container .asks-progress {
+        background-color: red;
+        height: 100%;
+    }
+</style>
 <body class="theme-light">
 
 <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
@@ -96,6 +113,10 @@
                     
                 </div>
                 <div class="collapse" id="tab-deph" data-bs-parent="#tab-group-trade-toolbar">
+                    <div class="depth-progress-container">
+                        <div class="bids-progress"></div>
+                        <div class="asks-progress"></div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table color-theme mb-2">
                         <thead>
