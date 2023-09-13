@@ -82,6 +82,7 @@ async function initKChart(symbol) {
         }
         loadKChart(symbol, data);
         loadKChartElem(symbol,data);
+        loadDepthTable(symbol);
         mappingLang();
         closePreloader();
     }, 300);
