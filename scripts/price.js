@@ -8,6 +8,7 @@ let currentSymbol = "";
 let kchartElement = null;
 
 let interval = "1s";
+let intervals = [{tag: "1M", t: 60000}, {tag: "1w", t: 60000}, {tag: "1d", t: 60000}, {tag: "8h", t: 60000}, {tag: "4h", t: 60000}, {tag: "1h", t: 60000}, {tag: "15m", t: 60000}, {tag: "1m", t: 60000}{tag: "1s", t: 1000}];
 
 async function setupWebSocket() {
     ws = new WebSocket('wss://' + site.apiUrl + '/ws');
@@ -236,6 +237,10 @@ async function loadKChart(symbol, kData) {
     
     clearInterval(kUpdateTimer);
 
+    let t = intervals.find((item) => {
+        return item.tag == interval;
+    }).t;
+
     kUpdateTimer = setInterval(async () => {
         let data = await fetch("https://" + site.apiUrl + "/klines?interval=" + interval + "&symbol=" + symbol + "&t=" + new Date().getTime());
         data = await data.json();
@@ -262,6 +267,6 @@ async function loadKChart(symbol, kData) {
                 volumeSeries.update(updateVData);
             }
         }
-    }, 1000);
+    }, t);
 
 }
