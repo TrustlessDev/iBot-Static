@@ -4,7 +4,10 @@ let kTimer = 0;
 let kUpdateTimer = 0;
 let priceTable = [];
 let watchSymbols = [];
-const interval = "1s";
+let currentSymbol = "";
+let kchartElement = null;
+
+let interval = "1s";
 
 async function setupWebSocket() {
     ws = new WebSocket('wss://' + site.apiUrl + '/ws');
@@ -48,11 +51,25 @@ function sendMessage(obj) {
     }
 }
 
+async function changeInterval(newInterval) {
+    if(interval == newInterval) {
+        return;
+    }
+    interval = newInterval;
+    let data = await fetch("https://" + site.apiUrl + "/klines?symbol=" + currentSymbol + "&interval=" + interval + "&t=" + new Date().getTime());
+    data = await data.json();
+    if(data.success) {
+        data = data.data;
+    }
+    loadKChart(currentSymbol, data);
+}
+
 async function initPrice() {
     setupWebSocket();
 }
 
 async function initKChart(symbol) {
+    currentSymbol = symbol;
     setTimeout(async function () {
         await initSite();
         await initLanguages();
@@ -125,7 +142,7 @@ function formatPrice(number) {
 }
 
 async function loadKChart(symbol, kData) {
-    const chart = LightweightCharts.createChart(document.getElementById('chart-container'), {
+    kchartElement = LightweightCharts.createChart(document.getElementById('chart-container'), {
         width: document.body.clientWidth,
         height: 300,
         layout: {
