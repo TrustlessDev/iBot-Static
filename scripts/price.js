@@ -169,6 +169,7 @@ async function loadKChart(symbol, kData) {
         },
         timeScale: {
             borderColor: '#485c7b',
+            barSpacing: 12;
         },
         handleScroll: {
             vertTouchDrag: false, 
