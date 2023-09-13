@@ -207,14 +207,14 @@ async function loadDepthTable(symbol, precision = 0.1) {
         for(let i=0;i<10;i++) {
             let tr = document.createElement("tr");
             let td1 = document.createElement("td");
-            td1.classList.add("color-gray-light");
+            td1.classList.add("color-gray-dark");
             td1.classList.add("text-start");
             let td2 = document.createElement("td");
-            td1.classList.add("color-green-light");
+            td1.classList.add("color-green-dark");
             let td3 = document.createElement("td");
-            td1.classList.add("color-red-light");
+            td1.classList.add("color-red-dark");
             let td4 = document.createElement("td");
-            td4.classList.add("color-gray-light");
+            td4.classList.add("color-gray-dark");
             td4.classList.add("text-end");
             td1.innerText = bidsTable[i].quantity.toFixed(6);
             // 價格依照 precision 顯示
