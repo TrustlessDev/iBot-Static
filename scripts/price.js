@@ -70,6 +70,7 @@ async function initKChart(symbol) {
 }
 
 async function loadKChartElem(symbol, kdata) {
+    $("#symbolIcon").attr("src", "images/crypto/" + symbol + ".png");
     $(".showSymbol").text(symbol + "/USDT");
     clearInterval(kTimer);
     kTimer = setInterval(() => {
