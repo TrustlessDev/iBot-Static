@@ -95,13 +95,11 @@
                     
                 </div>
                 <div class="collapse" id="tab-deph" data-bs-parent="#tab-group-trade-toolbar">
-                    <div style="display: flex;align-items: center;width: 100%;">
-                        <div class="bids-percentage" style="white-space: nowrap;color: white;"></div>
-                        <div style="height: 20px;width: 100%;display: flex;" class="depth-progress-container">
-                            <div style="width: 50%;height:100%" class="bids-progress bg-green-dark"></div>
-                            <div style="width: 50%;height:100%" class="asks-progress bg-red-dark"></div>
-                        </div>
-                        <div class="asks-percentage" stlye="white-space: nowrap;color: white"></div>
+                    <div style="height: 20px;width: 100%;display: flex;position: relative;" class="depth-progress-container">
+                        <div style="width: 50%;height:100%" class="bids-progress bg-green-dark"></div>
+                        <div style="width: 50%;height:100%" class="asks-progress bg-red-dark"></div>
+                        <div class="bids-percentage" style="white-space: nowrap;color: white;left: 5px;position: absolute;z-index: 10;top: 50%;"></div>
+                        <div class="asks-percentage" stlye="white-space: nowrap;color: white;right: 5px;position: absolute;z-index: 10;top: 50%;"></div>
                     </div>
                     
                     <div class="table-responsive">
