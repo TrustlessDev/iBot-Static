@@ -148,9 +148,7 @@ function setBidsProgress(bidsPercentage) {
     const greenDiv = document.querySelector('.bids-progress');
     const redDiv = document.querySelector('.asks-progress');
     greenDiv.style.width = `${bidsPercentage}%`;
-    greenDiv.style.backgroundColor = `green`;
     redDiv.style.width = `${100 - bidsPercentage}%`;
-    redDiv.style.backgroundColor = `red`;
 }
 
 async function loadDepthTable(symbol, precision = 0.01) {
