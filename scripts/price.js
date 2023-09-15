@@ -317,10 +317,11 @@ async function loadDepthTable(symbol, precision = 0.01) {
 
         let priceTradeVolume = {};
         aggTrades.forEach(trade => {
-            if (!priceTradeVolume[trade.p]) {
-                priceTradeVolume[trade.p] = 0;
+            let p = parseFloat(trade.p).toFixed(precision.toString().split(".")[1].length);
+            if (!priceTradeVolume[p]) {
+                priceTradeVolume[p] = 0;
             }
-            priceTradeVolume[trade.p] += parseFloat(trade.q);
+            priceTradeVolume[p] += parseFloat(trade.q);
         });
 
         for(let i=0;i<tmpAskTable.length;i++) {
@@ -337,14 +338,15 @@ async function loadDepthTable(symbol, precision = 0.01) {
             let td4 = document.createElement("td");
             td4.classList.add("color-gray-dark");
             td4.classList.add("text-end");
-
+            let bidPrice = parseFloat(bidsTable[i].price).toFixed(precision.toString().split(".")[1].length);
+            let askPrice = parseFloat(asksTable[i].price).toFixed(precision.toString().split(".")[1].length);
             td1.innerText = bidsTable[i].quantity.toFixed(6);
-            let bidWidth = (priceTradeVolume[bidsTable[i].price] / bidVolume) * 100;
-            let askWidth = (priceTradeVolume[asksTable[i].price] / askVolume) * 100;
+            let bidWidth = (priceTradeVolume[bidPrice] / bidVolume) * 100;
+            let askWidth = (priceTradeVolume[askPrice] / askVolume) * 100;
             td2.style.background = `linear-gradient(to right, transparent ${100-bidWidth}%, rgba(0, 128, 0, 0.6) ${100-bidWidth}%)`;  // 綠色 for bids
             td3.style.background = `linear-gradient(to left, transparent ${100-askWidth}%, rgba(255, 0, 0, 0.6) ${100-askWidth}%)`;  // 紅色 for asks
-            td2.innerText = parseFloat(bidsTable[i].price).toFixed(precision.toString().split(".")[1].length);
-            td3.innerText = parseFloat(asksTable[i].price).toFixed(precision.toString().split(".")[1].length);
+            td2.innerText = bidPrice;
+            td3.innerText = askPrice;
             td4.innerText = asksTable[i].quantity.toFixed(6);
             tr.appendChild(td1);
             tr.appendChild(td2);
