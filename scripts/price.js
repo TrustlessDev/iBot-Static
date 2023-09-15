@@ -60,7 +60,7 @@ async function listenRealTimeTrade(symbol) {
         let data = JSON.parse(event.data);
         if(data.e == "trade") {
             tradeQueue.push(data);
-            if(tradeQueue.length > 20) {
+            if(tradeQueue.length > 15) {
                 tradeQueue.shift();
             }
             $("#realtime-trade-block").empty();
