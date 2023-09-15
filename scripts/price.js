@@ -182,9 +182,9 @@ async function loadKChartElem(baseAsset, quoteAsset) {
         $(".updown").addClass((data.priceChangePercent > 0 ? "bg-green-dark" : "bg-red-dark"));
         $(".updown").text((data.priceChangePercent > 0 ? "+" : "") + data.priceChangePercent + "%");
 
-        let usdPrice = data.weightedAvgPrice;
+        let usdPrice = data.baseUSDTPrice;
         let percentPrice = parseFloat((parseFloat(data.priceChangePercent/100) * usdPrice).toFixed(2));
-        $(".coinPriceInfo").html("≈" + parseFloat(parseFloat(usdPrice).toFixed(2)) + " USD  <span class=\"" + (percentPrice > 0 ? "color-green-light" : "color-red-light") + "\">" + (percentPrice > 0 ? "+" : "") + percentPrice + " USD</span>");
+        $(".coinPriceInfo").html("≈$" + parseFloat(parseFloat(usdPrice).toFixed(2)) + "  <span class=\"" + (percentPrice > 0 ? "color-green-light" : "color-red-light") + "\">" + (percentPrice > 0 ? "+" : "") + percentPrice + " USD</span>");
     
         $(".kInfo").html("<b>24時高</b> " + parseFloat(parseFloat(high).toFixed(3)) + "  <b>24時低</b> " + parseFloat(parseFloat(low).toFixed(3)) + "  <b>24時額</b> " + totalPrice);
     }, 1000);
