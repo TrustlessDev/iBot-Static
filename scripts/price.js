@@ -335,7 +335,7 @@ async function loadDepthTable(symbol, precision = 0.01) {
             
             let td1Width = 0;
             let td2Width = 0;
-            let p1 = 100 - bidWidth;
+            let p1 = bidWidth;
             if (p1 > 50) {
                 td1Width = (p1 - 50) * 2;
                 td2Width = 100;
@@ -344,12 +344,12 @@ async function loadDepthTable(symbol, precision = 0.01) {
                 td2Width = p1 * 2;
             }
 
-            td1.style.background = `linear-gradient(to right, transparent ${td1Width}%, rgba(0, 128, 0, 0.2) ${td1Width}%)`;  // 綠色 for bids
-            td2.style.background = `linear-gradient(to right, transparent ${td2Width}%, rgba(0, 128, 0, 0.2) ${td2Width}%)`;  // 綠色 for bids
+            td1.style.background = `linear-gradient(to right, transparent ${100 - td1Width}%, rgba(0, 128, 0, 0.2) ${100 - td1Width}%)`;  // 綠色 for bids
+            td2.style.background = `linear-gradient(to right, transparent ${100 - td2Width}%, rgba(0, 128, 0, 0.2) ${100 - td2Width}%)`;  // 綠色 for bids
 
             let td3Width = 0;
             let td4Width = 0;
-            let p2 = 100 - askWidth;
+            let p2 = askWidth;
             if (p2 > 50) {
                 td3Width = 100;
                 td4Width = (p2 - 50) * 2;
