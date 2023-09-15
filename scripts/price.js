@@ -344,8 +344,8 @@ async function loadDepthTable(symbol, precision = 0.01) {
                 td2Width = p1 * 2;
             }
 
-            td1.style.background = `linear-gradient(to right, transparent ${td1Width}%, rgba(0, 128, 0, 0.4) ${td1Width}%)`;  // 綠色 for bids
-            td2.style.background = `linear-gradient(to right, transparent ${td2Width}%, rgba(0, 128, 0, 0.4) ${td2Width}%)`;  // 綠色 for bids
+            td1.style.background = `linear-gradient(to right, transparent ${td1Width}%, rgba(0, 128, 0, 0.2) ${td1Width}%)`;  // 綠色 for bids
+            td2.style.background = `linear-gradient(to right, transparent ${td2Width}%, rgba(0, 128, 0, 0.2) ${td2Width}%)`;  // 綠色 for bids
 
             let td3Width = 0;
             let td4Width = 0;
@@ -358,8 +358,8 @@ async function loadDepthTable(symbol, precision = 0.01) {
                 td4Width = 0;
             }
 
-            td3.style.background = `linear-gradient(to left, transparent ${td3Width}%, rgba(255, 0, 0, 0.4) ${td3Width}%)`;  // 紅色 for asks
-            td4.style.background = `linear-gradient(to left, transparent ${td4Width}%, rgba(255, 0, 0, 0.4) ${td4Width}%)`;  // 紅色 for asks
+            td3.style.background = `linear-gradient(to left, transparent ${td3Width}%, rgba(255, 0, 0, 0.2) ${td3Width}%)`;  // 紅色 for asks
+            td4.style.background = `linear-gradient(to left, transparent ${td4Width}%, rgba(255, 0, 0, 0.2) ${td4Width}%)`;  // 紅色 for asks
 
             td2.innerText = bidPrice;
             td3.innerText = askPrice;
