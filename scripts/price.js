@@ -319,12 +319,13 @@ async function loadDepthTable(symbol, precision = 0.01) {
             $("#depth-block").append(tr);
         }
         // 繪製深度圖
-        drawDepthChart("#tab-dephGraph", asksTable, bidsTable);
+        drawDepthChart("tab-dephGraph", asksTable, bidsTable, width, height);
     }, 1000);
 }
 
 function drawDepthChart(selector, asks, bids, width, height) {
     $(selector).empty();
+    const svg = d3.select(selector).append("svg").attr("viewBox", `0 0 ${width} ${height}`).attr("preserveAspectRatio", "xMidYMid meet");
     const x = d3.scaleLinear().domain([d3.min(bids, d => d.price), d3.max(asks, d => d.price)]).range([0, width]);
     const y = d3.scaleLinear().domain([0, d3.max([...bids, ...asks], d => d.quantity)]).range([height, 0]);
     for (let i = 1; i < bids.length; i++) {
