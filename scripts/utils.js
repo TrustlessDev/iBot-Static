@@ -1,3 +1,4 @@
+let version = "3314";
 
 async function callAPI(method, params = {}) {
     let initData = Telegram.WebApp.initData;
