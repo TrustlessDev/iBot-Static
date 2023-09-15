@@ -225,9 +225,6 @@ async function loadDepthTable(symbol, precision = 0.01) {
     const container = document.getElementById("chart-container");
     const width = container.clientWidth;
     const height = container.clientHeight;
-    console.log(width, height);
-    $("#tab-dephGraph").empty();
-    const svg = d3.select("#tab-dephGraph").append("svg").attr("viewBox", `0 0 ${width} ${height}`).attr("preserveAspectRatio", "xMidYMid meet");
     depthTableTimer = setInterval(async () => {
         let data = await fetch("https://" + site.apiUrl + "/depth?&symbol=" + symbol + "&t=" + new Date().getTime());
         data = await data.json();
@@ -322,11 +319,12 @@ async function loadDepthTable(symbol, precision = 0.01) {
             $("#depth-block").append(tr);
         }
         // 繪製深度圖
-        drawDepthChart(svg, asksTable, bidsTable, width, height);
+        drawDepthChart("#tab-dephGraph", asksTable, bidsTable);
     }, 1000);
 }
 
-function drawDepthChart(svg, asks, bids, width, height) {
+function drawDepthChart(selector, asks, bids, width, height) {
+    $(selector).empty();
     const x = d3.scaleLinear().domain([d3.min(bids, d => d.price), d3.max(asks, d => d.price)]).range([0, width]);
     const y = d3.scaleLinear().domain([0, d3.max([...bids, ...asks], d => d.quantity)]).range([height, 0]);
     for (let i = 1; i < bids.length; i++) {
