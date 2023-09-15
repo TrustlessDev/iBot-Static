@@ -230,13 +230,10 @@ async function loadDepthTable(symbol, precision = 0.01) {
     const width = container.clientWidth;
     const height = container.clientHeight;
     depthTableTimer = setInterval(async () => {
-        let aggTrades = [];
         let data = await fetch("https://" + site.apiUrl + "/depth?&symbol=" + symbol + "&t=" + new Date().getTime());
         data = await data.json();
         if(data.success) {
             data = data.data;
-            const response = await fetch("https://api.binance.com/api/v3/aggTrades?symbol=BTCUSDT");
-            aggTrades = await response.json();
         } else {
             return;
         }
@@ -303,26 +300,15 @@ async function loadDepthTable(symbol, precision = 0.01) {
         // 取出前面 15 筆資料
         let tmpAskTable = asksTable.slice(0, 15); 
         let tmpBidTable = bidsTable.slice(0, 15);
-        
-        let bidVolume = 0;
-        let askVolume = 0;
 
-        for (let trade of aggTrades) {
-            if (trade.m) {
-                askVolume += parseFloat(trade.q);
-            } else {
-                bidVolume += parseFloat(trade.q);
-            }
-        }
+        // 取出asks 和 bids 的總量
+        let askVolume = tmpAskTable.reduce((a, b) => a + b.quantity, 0);
+        let bidVolume = tmpBidTable.reduce((a, b) => a + b.quantity, 0);
+        let totalVolume = askVolume + bidVolume;
 
-        let priceTradeVolume = {};
-        aggTrades.forEach(trade => {
-            let p = parseFloat(trade.p).toFixed(precision.toString().split(".")[1].length);
-            if (!priceTradeVolume[p]) {
-                priceTradeVolume[p] = 0;
-            }
-            priceTradeVolume[p] += parseFloat(trade.q);
-        });
+        // 設計加總的物件
+        let asksVolumnCount = 0;
+        let bidsVolumnCount = 0;
 
         for(let i=0;i<tmpAskTable.length;i++) {
             let tr = document.createElement("tr");
@@ -341,8 +327,11 @@ async function loadDepthTable(symbol, precision = 0.01) {
             let bidPrice = parseFloat(bidsTable[i].price).toFixed(precision.toString().split(".")[1].length);
             let askPrice = parseFloat(asksTable[i].price).toFixed(precision.toString().split(".")[1].length);
             td1.innerText = bidsTable[i].quantity.toFixed(6);
-            let bidWidth = (priceTradeVolume[bidPrice] / bidVolume) * 100;
-            let askWidth = (priceTradeVolume[askPrice] / askVolume) * 100;
+            // 計算加總
+            bidsVolumnCount += bidsTable[i].quantity;
+            asksVolumnCount += asksTable[i].quantity;
+            let bidWidth = (bidsVolumnCount / totalVolume) * 100;
+            let askWidth = (asksVolumnCount / totalVolume) * 100;
             td2.style.background = `linear-gradient(to right, transparent ${100-bidWidth}%, rgba(0, 128, 0, 0.6) ${100-bidWidth}%)`;  // 綠色 for bids
             td3.style.background = `linear-gradient(to left, transparent ${100-askWidth}%, rgba(255, 0, 0, 0.6) ${100-askWidth}%)`;  // 紅色 for asks
             td2.innerText = bidPrice;
