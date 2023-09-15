@@ -342,7 +342,7 @@ async function loadDepthTable(symbol, precision = 0.01) {
                 let askPrice = parseFloat(asksTable[i].price).toFixed(precision.toString().split(".")[1].length);
                 return priceTmp == askPrice && item.m == true;
             });
-            
+            console.log(findBidPrice, findAskPrice);
             let bidWidth = (findBidPrice.q / bidVolume) * 100;
             let askWidth = (findAskPrice.q / askVolume) * 100;
             td2.style.background = `linear-gradient(to right, transparent ${100-bidWidth}%, rgba(0, 128, 0, 0.6) ${100-bidWidth}%)`;  // 綠色 for bids
