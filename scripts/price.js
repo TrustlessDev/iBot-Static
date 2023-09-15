@@ -222,7 +222,7 @@ function setBidsProgress(bidsPercentage) {
 
 async function loadDepthTable(symbol, precision = 0.01) {
     clearInterval(depthTableTimer);
-    const container = document.getElementById("depthChart");
+    const container = document.getElementById("tab-dephGraph");
     const width = container.clientWidth;
     const height = container.clientHeight;
     $("#tab-dephGraph").empty();
