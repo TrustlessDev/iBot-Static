@@ -315,6 +315,14 @@ async function loadDepthTable(symbol, precision = 0.01) {
             }
         }
 
+        let priceTradeVolume = {};
+        aggTrades.forEach(trade => {
+            if (!priceTradeVolume[trade.p]) {
+                priceTradeVolume[trade.p] = 0;
+            }
+            priceTradeVolume[trade.p] += parseFloat(trade.q);
+        });
+
         for(let i=0;i<tmpAskTable.length;i++) {
             let tr = document.createElement("tr");
             let td1 = document.createElement("td");
@@ -331,21 +339,8 @@ async function loadDepthTable(symbol, precision = 0.01) {
             td4.classList.add("text-end");
 
             td1.innerText = bidsTable[i].quantity.toFixed(6);
-            // 價格依照 precision 顯示
-            let findBidPrice = aggTrades.find((item) => {
-                let priceTmp = parseFloat(item.p).toFixed(precision.toString().split(".")[1].length);
-                let bidPrice = parseFloat(bidsTable[i].price).toFixed(precision.toString().split(".")[1].length);
-                console.log(priceTmp + " => " + bidPrice);
-                return priceTmp == bidPrice && item.m == false;
-            });
-            let findAskPrice = aggTrades.find((item) => {
-                let priceTmp = parseFloat(item.p).toFixed(precision.toString().split(".")[1].length);
-                let askPrice = parseFloat(asksTable[i].price).toFixed(precision.toString().split(".")[1].length);
-                console.log(priceTmp + " => " + askPrice);
-                return priceTmp == askPrice && item.m == true;
-            });
-            let bidWidth = (findBidPrice.q / bidVolume) * 100;
-            let askWidth = (findAskPrice.q / askVolume) * 100;
+            let bidWidth = (priceTradeVolume[bidsTable[i].price] / bidVolume) * 100;
+            let askWidth = (priceTradeVolume[asksTable[i].price] / askVolume) * 100;
             td2.style.background = `linear-gradient(to right, transparent ${100-bidWidth}%, rgba(0, 128, 0, 0.6) ${100-bidWidth}%)`;  // 綠色 for bids
             td3.style.background = `linear-gradient(to left, transparent ${100-askWidth}%, rgba(255, 0, 0, 0.6) ${100-askWidth}%)`;  // 紅色 for asks
             td2.innerText = parseFloat(bidsTable[i].price).toFixed(precision.toString().split(".")[1].length);
