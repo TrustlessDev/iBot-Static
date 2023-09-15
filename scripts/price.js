@@ -296,7 +296,7 @@ async function loadDepthTable(symbol, precision = 0.01) {
         let avgPrice = (parseFloat(asksTable[0].price) + parseFloat(bidsTable[0].price)) / 2;
         $(".priceDynamic").text(parseFloat(parseFloat(avgPrice).toFixed(4)));
         // 只顯示前 20 筆 使用 element 方式產生 tr td
-        for(let i=0;i<20 && i<bidsTable.length;i++) {
+        for(let i=0;i<15 && i<bidsTable.length;i++) {
             let tr = document.createElement("tr");
             let td1 = document.createElement("td");
             td1.classList.add("color-gray-dark");
@@ -307,6 +307,12 @@ async function loadDepthTable(symbol, precision = 0.01) {
             let td3 = document.createElement("td");
             td3.classList.add("color-red-dark");
             td3.classList.add("text-start");
+            let pricePercentage = document.createElement("span");
+            pricePercentage.style = "width: 30%;white-space: nowrap;color: white;left: 5px;position: absolute;z-index: 10;";
+            pricePercentage.classList.add("color-gray-light");
+            pricePercentage.classList.add("text-end");
+            let priceValue = document.createElement("span");
+            priceValue.innerText = parseFloat(asksTable[i].price).toFixed(precision.toString().split(".")[1].length);
             let td4 = document.createElement("td");
             td4.classList.add("color-gray-dark");
             td4.classList.add("text-end");
@@ -314,7 +320,9 @@ async function loadDepthTable(symbol, precision = 0.01) {
             td1.innerText = bidsTable[i].quantity.toFixed(6);
             // 價格依照 precision 顯示
             td2.innerText = parseFloat(bidsTable[i].price).toFixed(precision.toString().split(".")[1].length);
-            td3.innerText = parseFloat(asksTable[i].price).toFixed(precision.toString().split(".")[1].length);
+            td3.appendChild(pricePercentage);
+            td3.appendChild(priceValue);
+            
             td4.innerText = asksTable[i].quantity.toFixed(6);
             tr.appendChild(td1);
             tr.appendChild(td2);
