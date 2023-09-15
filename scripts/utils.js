@@ -72,7 +72,7 @@ function getRandomText(n) {
 async function initSite() {
     $("#ibot-preloader h2").html("Loading...");
     $("#ibot-preloader").show();
-    //activateDarkMode();
+    activateDarkMode();
     let uid = Telegram.WebApp.initDataUnsafe.user.id;
     if(uid == 547539516 || uid == 1100272452) { 
         eruda.init();
@@ -120,6 +120,9 @@ function activateDarkMode(){
         addTransitions();
     },650);
 }
+
+function removeTransitions(){document.body.classList.add('no-ani');}
+function addTransitions(){document.body.classList.remove('no-ani');}
 
 async function initLanguages() {
     if(!site.apiUrl) {
