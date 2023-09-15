@@ -378,12 +378,14 @@ async function loadDepthTable(symbol, precision = 0.01) {
 function drawDepthChart(selector, asks, bids, width, height) {
     $(selector).empty();
     const svg = d3.select(selector).append("svg").attr("viewBox", `0 0 ${width} ${height}`).attr("preserveAspectRatio", "xMidYMid meet");
-    const x = d3.scaleLinear()
-        .domain([d3.min(bids, d => d.price), d3.max(asks, d => d.price)])
-        .range([0, width]);
-    const y = d3.scaleLinear()
-        .domain([d3.min([...bids, ...asks], d => d.quantity), d3.max([...bids, ...asks], d => d.quantity)])
-        .range([height, 0]);
+    const x = d3.scaleLinear().rangeRound([0, width]);
+    const y = d3.scaleLinear().rangeRound([height, 0]);
+
+    x.domain([0, d3.max(bids.concat(asks), d => d.price)]);
+    y.domain([0, d3.max(bids.concat(asks), d => d.quantity)]);
+
+    const margin = {top: 20, right: 20, bottom: 30, left: 50};
+
     // 加入 X 軸
     svg.append("g")
         .attr("transform", `translate(0, ${height})`)
@@ -392,6 +394,16 @@ function drawDepthChart(selector, asks, bids, width, height) {
     // 加入 Y 軸
     svg.append("g")
         .call(d3.axisLeft(y).ticks(6)); // 同樣可以調整標籤的數量
+
+    // 定義和加入X軸
+    svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + (height + margin.top) + ")")
+    .call(d3.axisBottom(x));
+
+    // 定義和加入Y軸
+    svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .call(d3.axisLeft(y));
     
     for (let i = 1; i < bids.length; i++) {
         bids[i].quantity += bids[i-1].quantity;
@@ -419,16 +431,6 @@ function drawDepthChart(selector, asks, bids, width, height) {
         .x(d => x(d.price))
         .y(d => y(d.quantity))
     );
-
-    // 加入軸
-    svg.append("g")
-    .attr("transform", `translate(0, ${height})`)
-    .call(d3.axisBottom(x));
-
-    svg.append("g")
-    .call(d3.axisLeft(y));
-
-    const margin = {top: 20, right: 20, bottom: 30, left: 50};
 
     svg.append("g")			
     .attr("class", "grid")
