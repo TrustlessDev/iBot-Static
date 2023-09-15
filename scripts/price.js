@@ -326,53 +326,36 @@ async function loadDepthTable(symbol, precision = 0.01) {
     }, 1000);
 }
 
-function drawDepthChart(svg, asks, bids, width = 800, height = 400) {
-    const x = d3.scaleLinear()
-        .domain([0, d3.max(bids.concat(asks), d => d.price)])
-        .range([0, width]);
-
-    const y = d3.scaleLinear()
-        .domain([0, d3.max(bids.concat(asks), d => d.quantity)])
-        .range([height, 0]);
-
-    // 計算累計的數量
-    for (let i = 1; i < bids.length; i++) {
-        bids[i].quantity += bids[i-1].quantity;
-    }
-
-    for (let i = 1; i < asks.length; i++) {
-        asks[i].quantity += asks[i-1].quantity;
-    }
-
-    // 繪製 bids
+function drawDepthChart(svg, asks, bids, width, height) {
+    const x = d3.scaleLinear().domain([d3.min(bids, d => d.price), d3.max(asks, d => d.price)]).range([0, width]);
+    const y = d3.scaleLinear().domain([0, d3.max([...bids, ...asks], d => d.quantity)]).range([height, 0]);
+    // 繪製 bids 線
     svg.append("path")
-        .datum(bids)
-        .attr("fill", "green")
-        .attr("stroke", "green")
-        .attr("d", d3.area()
-            .x(d => x(d.price))
-            .y0(height)
-            .y1(d => y(d.quantity))
-        );
+    .datum(bids)
+    .attr("fill", "none")
+    .attr("stroke", "green")
+    .attr("d", d3.line()
+        .x(d => x(d.price))
+        .y(d => y(d.quantity))
+    );
 
-    // 繪製 asks
+    // 繪製 asks 線
     svg.append("path")
-        .datum(asks)
-        .attr("fill", "red")
-        .attr("stroke", "red")
-        .attr("d", d3.area()
-            .x(d => x(d.price))
-            .y0(height)
-            .y1(d => y(d.quantity))
-        );
+    .datum(asks)
+    .attr("fill", "none")
+    .attr("stroke", "red")
+    .attr("d", d3.line()
+        .x(d => x(d.price))
+        .y(d => y(d.quantity))
+    );
 
     // 加入軸
     svg.append("g")
-        .attr("transform", `translate(0, ${height})`)
-        .call(d3.axisBottom(x));
+    .attr("transform", `translate(0, ${height})`)
+    .call(d3.axisBottom(x));
 
     svg.append("g")
-        .call(d3.axisLeft(y));
+    .call(d3.axisLeft(y));
 }
 
 async function loadKChart(symbol, kData) {
