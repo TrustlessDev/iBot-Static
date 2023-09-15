@@ -302,6 +302,8 @@ async function loadDepthTable(symbol, precision = 0.01) {
         let tmpBidTable = bidsTable.slice(0, 15);
         let maxBid = Math.max(...tmpBidTable.map(bid => parseFloat(bid.quantity)));
         let maxAsk = Math.max(...tmpAskTable.map(ask => parseFloat(ask.quantity)));
+        let cumulativeBid = 0;
+        let cumulativeAsk = 0;
         for(let i=0;i<tmpAskTable.length;i++) {
             let tr = document.createElement("tr");
             let td1 = document.createElement("td");
@@ -319,13 +321,14 @@ async function loadDepthTable(symbol, precision = 0.01) {
 
             td1.innerText = bidsTable[i].quantity.toFixed(6);
             // 價格依照 precision 顯示
-            let bidWidth = (bidsTable[i].quantity / maxBid) * 100;
-            let askWidth = (asksTable[i].quantity / maxAsk) * 100;
+            cumulativeBid += bidsTable[i].quantity;
+            cumulativeAsk += asksTable[i].quantity;
+            let bidWidth = (cumulativeBid / maxBid) * 100;
+            let askWidth = (cumulativeAsk / maxAsk) * 100;
             td2.style.background = `linear-gradient(to right, transparent ${100-bidWidth}%, rgba(0, 128, 0, 0.6) ${100-bidWidth}%)`;  // 綠色 for bids
             td3.style.background = `linear-gradient(to left, transparent ${100-askWidth}%, rgba(255, 0, 0, 0.6) ${100-askWidth}%)`;  // 紅色 for asks
             td2.innerText = parseFloat(bidsTable[i].price).toFixed(precision.toString().split(".")[1].length);
             td3.innerText = parseFloat(asksTable[i].price).toFixed(precision.toString().split(".")[1].length);
-            
             td4.innerText = asksTable[i].quantity.toFixed(6);
             tr.appendChild(td1);
             tr.appendChild(td2);
