@@ -167,9 +167,9 @@ async function loadKChartElem(baseAsset, quoteAsset, kdata) {
     kTimer = setInterval(() => {
         let data = priceTable.find(item => item.symbol === baseAsset + quoteAsset);
         // 找出最高的 high
-        let high = Math.max.apply(Math, kdata.map(function(o) { return o.high; }));
+        let high = data.highPrice;
         // 找出最低的 low
-        let low = Math.min.apply(Math, kdata.map(function(o) { return o.low; }));
+        let low = data.lowPrice;
         // 加總總額 quantity
         let totalPrice = formatPrice(data.quoteVolume);
         $(".priceDynamic").removeClass("color-green-dark");
