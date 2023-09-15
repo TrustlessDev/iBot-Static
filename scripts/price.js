@@ -335,14 +335,15 @@ async function loadDepthTable(symbol, precision = 0.01) {
             let findBidPrice = aggTrades.find((item) => {
                 let priceTmp = parseFloat(item.p).toFixed(precision.toString().split(".")[1].length);
                 let bidPrice = parseFloat(bidsTable[i].price).toFixed(precision.toString().split(".")[1].length);
+                console.log(priceTmp + " => " + bidPrice);
                 return priceTmp == bidPrice && item.m == false;
             });
             let findAskPrice = aggTrades.find((item) => {
                 let priceTmp = parseFloat(item.p).toFixed(precision.toString().split(".")[1].length);
                 let askPrice = parseFloat(asksTable[i].price).toFixed(precision.toString().split(".")[1].length);
+                console.log(priceTmp + " => " + askPrice);
                 return priceTmp == askPrice && item.m == true;
             });
-            console.log(findBidPrice, findAskPrice);
             let bidWidth = (findBidPrice.q / bidVolume) * 100;
             let askWidth = (findAskPrice.q / askVolume) * 100;
             td2.style.background = `linear-gradient(to right, transparent ${100-bidWidth}%, rgba(0, 128, 0, 0.6) ${100-bidWidth}%)`;  // 綠色 for bids
