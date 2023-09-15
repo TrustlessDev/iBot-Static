@@ -304,14 +304,14 @@ async function loadDepthTable(symbol, precision = 0.01) {
         let tmpAskTable = asksTable.slice(0, 15); 
         let tmpBidTable = bidsTable.slice(0, 15);
         
-        let buyVolume = 0;
-        let sellVolume = 0;
+        let bidVolume = 0;
+        let askVolume = 0;
 
         for (let trade of aggTrades) {
             if (trade.m) {
-                sellVolume += parseFloat(trade.q);
+                askVolume += parseFloat(trade.q);
             } else {
-                buyVolume += parseFloat(trade.q);
+                bidVolume += parseFloat(trade.q);
             }
         }
 
@@ -343,8 +343,8 @@ async function loadDepthTable(symbol, precision = 0.01) {
                 return priceTmp == askPrice && item.m == true;
             });
             
-            let bidWidth = (findBidPrice.q / buyVolume) * 100;
-            let askWidth = (findAskPrice / sellVolume) * 100;
+            let bidWidth = (findBidPrice.q / bidVolume) * 100;
+            let askWidth = (findAskPrice.q / askVolume) * 100;
             td2.style.background = `linear-gradient(to right, transparent ${100-bidWidth}%, rgba(0, 128, 0, 0.6) ${100-bidWidth}%)`;  // 綠色 for bids
             td3.style.background = `linear-gradient(to left, transparent ${100-askWidth}%, rgba(255, 0, 0, 0.6) ${100-askWidth}%)`;  // 紅色 for asks
             td2.innerText = parseFloat(bidsTable[i].price).toFixed(precision.toString().split(".")[1].length);
