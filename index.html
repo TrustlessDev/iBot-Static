@@ -437,7 +437,6 @@
       $("#marketBlock").empty();
       let count = 0;
       for (let i = 0; i < priceTable.length; i++) {
-        console.log(priceTable[i]);
         if(!priceTable[i]) {
           continue;
         }
@@ -539,12 +538,12 @@
       return a;
     }
 
-    function createMarketElement(symbol, quoteAsset, price, change, quoteVolume) {
+    function createMarketElement(baseAsset, quoteAsset, price, change, quoteVolume) {
       let a = document.createElement("a");
       a.style = "margin-left: 7px;margin-right: 7px;"
       a.href = "page-cards-price.html?t=1213";
       a.onclick = function () {
-        initKChart(symbol);
+        initKChart((baseAsset + quoteAsset).toUpperCase());
       };
       a.className = "d-flex py-1";
 
@@ -553,7 +552,7 @@
 
       let img = document.createElement("img");
       img.width = "32";
-      img.src = "images/crypto/" + symbol + ".png";
+      img.src = "images/crypto/" + baseAsset + ".png";
       div1.appendChild(img);
 
       let div2 = document.createElement("div");
