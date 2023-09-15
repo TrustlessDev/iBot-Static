@@ -68,7 +68,11 @@ async function listenRealTimeTrade(symbol) {
                 let trade = tradeQueue[i];
                 // 時間
                 let time = new Date(trade.E);
-                let timeStr = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+                // 時分秒都必須是兩位數
+                let hStr = time.getHours() < 10 ? "0" + time.getHours() : time.getHours();
+                let mStr = time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes();
+                let sStr = time.getSeconds() < 10 ? "0" + time.getSeconds() : time.getSeconds();
+                let timeStr = hStr + ":" + mStr + ":" + sStr;
                 // 價格
                 let price = parseFloat(trade.p).toFixed(4);
                 // 數量
