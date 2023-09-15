@@ -222,8 +222,9 @@ function setBidsProgress(bidsPercentage) {
 
 async function loadDepthTable(symbol, precision = 0.01) {
     clearInterval(depthTableTimer);
-    const width = 800;
-    const height = 400;
+    const container = document.getElementById("depthChart");
+    const width = container.clientWidth;
+    const height = container.clientHeight;
     $("#tab-dephGraph").empty();
     const svg = d3.select("#tab-dephGraph").append("svg").attr("viewBox", `0 0 ${width} ${height}`).attr("preserveAspectRatio", "xMidYMid meet");
     depthTableTimer = setInterval(async () => {
