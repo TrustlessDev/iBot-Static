@@ -319,7 +319,7 @@ async function loadDepthTable(symbol, precision = 0.01) {
             $("#depth-block").append(tr);
         }
         // 繪製深度圖
-        drawDepthChart("tab-dephGraph", asksTable, bidsTable, width, height);
+        drawDepthChart("#tab-dephGraph", asksTable, bidsTable, width, height);
     }, 1000);
 }
 
