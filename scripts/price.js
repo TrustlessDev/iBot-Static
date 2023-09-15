@@ -89,7 +89,7 @@ async function listenRealTimeTrade(symbol) {
                 } else {
                     td2.classList.add("color-red-dark");
                 }
-                td2.classList.add("text-end");
+                td2.classList.add("text-center");
                 td2.innerText = price;
                 let td3 = document.createElement("td");
                 td3.classList.add("color-gray-dark");
