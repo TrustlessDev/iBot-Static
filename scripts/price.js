@@ -296,7 +296,13 @@ async function loadDepthTable(symbol, precision = 0.01) {
         let avgPrice = (parseFloat(asksTable[0].price) + parseFloat(bidsTable[0].price)) / 2;
         $(".priceDynamic").text(parseFloat(parseFloat(avgPrice).toFixed(4)));
         // 只顯示前 20 筆 使用 element 方式產生 tr td
-        for(let i=0;i<15 && i<bidsTable.length;i++) {
+        
+        // 取出前面 15 筆資料
+        let tmpAskTable = asksTable.slice(0, 15); 
+        let tmpBidTable = bidsTable.slice(0, 15);
+        let maxBid = Math.max(...tmpBidTable.map(bid => parseFloat(bid.quantity)));
+        let maxAsk = Math.max(...tmpAskTable.map(ask => parseFloat(ask.quantity)));
+        for(let i=0;i<tmpAskTable.length;i++) {
             let tr = document.createElement("tr");
             let td1 = document.createElement("td");
             td1.classList.add("color-gray-dark");
@@ -307,16 +313,18 @@ async function loadDepthTable(symbol, precision = 0.01) {
             let td3 = document.createElement("td");
             td3.classList.add("color-red-dark");
             td3.classList.add("text-start");
-            let priceValue = document.createElement("span");
-            priceValue.innerText = parseFloat(asksTable[i].price).toFixed(precision.toString().split(".")[1].length);
             let td4 = document.createElement("td");
             td4.classList.add("color-gray-dark");
             td4.classList.add("text-end");
 
             td1.innerText = bidsTable[i].quantity.toFixed(6);
             // 價格依照 precision 顯示
+            let bidWidth = (bidsTable[i].quantity / maxBid) * 100;
+            let askWidth = (asksTable[i].quantity / maxAsk) * 100;
+            td2.style.background = `linear-gradient(to right, transparent ${100-bidWidth}%, rgba(0, 128, 0, 0.6) ${100-bidWidth}%)`;  // 綠色 for bids
+            td3.style.background = `linear-gradient(to left, transparent ${100-askWidth}%, rgba(255, 0, 0, 0.6) ${100-askWidth}%)`;  // 紅色 for asks
             td2.innerText = parseFloat(bidsTable[i].price).toFixed(precision.toString().split(".")[1].length);
-            td3.appendChild(priceValue);
+            td3.innerText = parseFloat(asksTable[i].price).toFixed(precision.toString().split(".")[1].length);
             
             td4.innerText = asksTable[i].quantity.toFixed(6);
             tr.appendChild(td1);
