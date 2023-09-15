@@ -51,7 +51,7 @@ async function listenRealTimeTrade(symbol) {
     try {
         wsTrade.close();
     } catch(e) {}
-    let wssUrl = 'wss://stream.binance.com:9443/ws/' + (symbol + "USDT").toLowerCase() + '@trade';
+    let wssUrl = 'wss://stream.binance.com:9443/ws/' + symbol.toLowerCase() + '@trade';
     wsTrade = new WebSocket(wssUrl);
     wsTrade.onopen = () => {
         $("#realtime-trade-block").empty();
