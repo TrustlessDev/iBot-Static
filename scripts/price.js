@@ -222,6 +222,10 @@ function setBidsProgress(bidsPercentage) {
 
 async function loadDepthTable(symbol, precision = 0.01) {
     clearInterval(depthTableTimer);
+    const width = 800;
+    const height = 400;
+    $("#depthChart").empty();
+    const svg = d3.select("#depthChart").append("svg").attr("width", width).attr("height", height);
     depthTableTimer = setInterval(async () => {
         let data = await fetch("https://" + site.apiUrl + "/depth?&symbol=" + symbol + "&t=" + new Date().getTime());
         data = await data.json();
@@ -282,7 +286,6 @@ async function loadDepthTable(symbol, precision = 0.01) {
         let asksTotal = asksTable.reduce((a, b) => a + b.quantity, 0);
         let total = bidsTotal + asksTotal;
         let bidsPercentage = bidsTotal / total * 100;
-        console.log(bidsPercentage.toFixed(0));
         setBidsProgress(bidsPercentage.toFixed(0));
         // 顯示
         $("#depth-block").empty();
@@ -316,7 +319,58 @@ async function loadDepthTable(symbol, precision = 0.01) {
             tr.appendChild(td4);
             $("#depth-block").append(tr);
         }
+        // 繪製深度圖
+        drawDepthChart(svg, asksTable, bidsTable, width, height);
     }, 1000);
+}
+
+function drawDepthChart(svg, asks, bids, width = 800, height = 400) {
+    const x = d3.scaleLinear()
+        .domain([0, d3.max(bids.concat(asks), d => d.price)])
+        .range([0, width]);
+
+    const y = d3.scaleLinear()
+        .domain([0, d3.max(bids.concat(asks), d => d.quantity)])
+        .range([height, 0]);
+
+    // 計算累計的數量
+    for (let i = 1; i < bids.length; i++) {
+        bids[i].quantity += bids[i-1].quantity;
+    }
+
+    for (let i = 1; i < asks.length; i++) {
+        asks[i].quantity += asks[i-1].quantity;
+    }
+
+    // 繪製 bids
+    svg.append("path")
+        .datum(bids)
+        .attr("fill", "green")
+        .attr("stroke", "green")
+        .attr("d", d3.area()
+            .x(d => x(d.price))
+            .y0(height)
+            .y1(d => y(d.quantity))
+        );
+
+    // 繪製 asks
+    svg.append("path")
+        .datum(asks)
+        .attr("fill", "red")
+        .attr("stroke", "red")
+        .attr("d", d3.area()
+            .x(d => x(d.price))
+            .y0(height)
+            .y1(d => y(d.quantity))
+        );
+
+    // 加入軸
+    svg.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(d3.axisBottom(x));
+
+    svg.append("g")
+        .call(d3.axisLeft(y));
 }
 
 async function loadKChart(symbol, kData) {
