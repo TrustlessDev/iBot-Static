@@ -151,7 +151,7 @@ async function initKChart(baseAsset, quoteAsset) {
             data = data.data;
         }
         loadKChart(baseAsset, quoteAsset, data);
-        loadKChartElem(baseAsset, quoteAsset, data);
+        loadKChartElem(baseAsset, quoteAsset);
         loadDepthTable(symbol);
         listenRealTimeTrade(symbol);
         mappingLang();
@@ -160,7 +160,7 @@ async function initKChart(baseAsset, quoteAsset) {
     
 }
 
-async function loadKChartElem(baseAsset, quoteAsset, kdata) {
+async function loadKChartElem(baseAsset, quoteAsset) {
     $("#symbolIcon").attr("src", "images/crypto/" + baseAsset + ".png");
     $(".showSymbol").text(baseAsset + "/" +quoteAsset);
     clearInterval(kTimer);
