@@ -64,7 +64,7 @@ async function listenRealTimeTrade(symbol) {
                 tradeQueue.shift();
             }
             $("#realtime-trade-block").empty();
-            for(let i=0;i<tradeQueue.length;i++) {
+            for(let i=tradeQueue.length-1;i>=0;i--) {
                 let trade = tradeQueue[i];
                 // 時間
                 let time = new Date(trade.E);
