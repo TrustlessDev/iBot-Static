@@ -225,7 +225,7 @@ async function loadDepthTable(symbol, precision = 0.01) {
     const width = 800;
     const height = 400;
     $("#depthChart").empty();
-    const svg = d3.select("#depthChart").append("svg").attr("width", width).attr("height", height);
+    const svg = d3.select("#depthChart").append("svg").attr("viewBox", `0 0 ${width} ${height}`).attr("preserveAspectRatio", "xMidYMid meet");
     depthTableTimer = setInterval(async () => {
         let data = await fetch("https://" + site.apiUrl + "/depth?&symbol=" + symbol + "&t=" + new Date().getTime());
         data = await data.json();
