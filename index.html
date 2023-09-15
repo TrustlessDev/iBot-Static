@@ -450,6 +450,7 @@
         }
         let ele = createMarketElement(
           priceTable[i].baseAsset,
+          priceTable[i].quoteAsset,
           priceTable[i].lastPrice,
           priceTable[i].priceChangePercent,
           priceTable[i].quoteVolume
@@ -537,7 +538,7 @@
       return a;
     }
 
-    function createMarketElement(symbol, price, change, quoteVolume) {
+    function createMarketElement(symbol, quoteAsset, price, change, quoteVolume) {
       let a = document.createElement("a");
       a.style = "margin-left: 7px;margin-right: 7px;"
       a.href = "page-cards-price.html?t=1213";
@@ -559,7 +560,7 @@
 
       let h5 = document.createElement("h5");
       h5.className = "pt-1 mb-n1";
-      h5.innerHTML = symbol + "<span class=\"font-10 color-dark-light\"> / USDT</span>";
+      h5.innerHTML = symbol + "<span class=\"font-10 color-dark-light\"> / " + quoteAsset + "</span>";
 
       let p = document.createElement("p");
       p.className = "mb-0 font-11 opacity-80";
