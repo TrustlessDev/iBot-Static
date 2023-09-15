@@ -300,8 +300,10 @@ async function loadDepthTable(symbol, precision = 0.01) {
         // 取出前面 15 筆資料
         let tmpAskTable = asksTable.slice(0, 15); 
         let tmpBidTable = bidsTable.slice(0, 15);
-        let maxBid = Math.max(...tmpBidTable.map(bid => parseFloat(bid.quantity)));
-        let maxAsk = Math.max(...tmpAskTable.map(ask => parseFloat(ask.quantity)));
+        //let maxBid = Math.max(...tmpBidTable.map(bid => parseFloat(bid.quantity)));
+        //let maxAsk = Math.max(...tmpAskTable.map(ask => parseFloat(ask.quantity)));
+        let sumBid = tmpBidTable.reduce((a, b) => a + b.quantity, 0);
+        let sumAsk = tmpAskTable.reduce((a, b) => a + b.quantity, 0);
         let cumulativeBid = 0;
         let cumulativeAsk = 0;
         for(let i=0;i<tmpAskTable.length;i++) {
@@ -323,8 +325,8 @@ async function loadDepthTable(symbol, precision = 0.01) {
             // 價格依照 precision 顯示
             cumulativeBid += parseFloat(bidsTable[i].quantity);
             cumulativeAsk += parseFloat(asksTable[i].quantity);
-            let bidWidth = (cumulativeBid / maxBid) * 100;
-            let askWidth = (cumulativeAsk / maxAsk) * 100;
+            let bidWidth = (cumulativeBid / sumBid) * 100;
+            let askWidth = (cumulativeAsk / sumAsk) * 100;
             console.log(bidWidth, askWidth);
             td2.style.background = `linear-gradient(to right, transparent ${100-bidWidth}%, rgba(0, 128, 0, 0.6) ${100-bidWidth}%)`;  // 綠色 for bids
             td3.style.background = `linear-gradient(to left, transparent ${100-askWidth}%, rgba(255, 0, 0, 0.6) ${100-askWidth}%)`;  // 紅色 for asks
