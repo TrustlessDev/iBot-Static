@@ -1,4 +1,5 @@
 let ws = null;
+let wsTrade = null;
 let priceTimer = 0;
 let kTimer = 0;
 let kUpdateTimer = 0;
@@ -7,6 +8,7 @@ let priceTable = [];
 let watchSymbols = [];
 let currentSymbol = "";
 let kchartElement = null;
+let tradeQueue = [];
 
 let interval = "1d";
 let intervals = [{tag: "1M", t: 60000}, {tag: "1w", t: 60000}, {tag: "1d", t: 60000}, {tag: "8h", t: 60000}, {tag: "4h", t: 60000}, {tag: "1h", t: 60000}, {tag: "15m", t: 60000}, {tag: "1m", t: 60000}, {tag: "1s", t: 1000}];
@@ -41,6 +43,64 @@ async function setupWebSocket() {
     };
     ws.onerror = (error) => {
         clearInterval(priceTimer);
+        console.error('WebSocket Error:', error);
+    };
+}
+
+async function listenRealTimeTrade(symbol) {
+    try {
+        wsTrade.close();
+    } catch(e) {}
+    wsTrade = new WebSocket('wss://stream.binance.com:9443/ws/' + (symbol + "USDT").toLowerCase + '@trade');
+    wsTrade.onopen = () => {
+        $("#realtime-trade-block").empty();
+    };
+    wsTrade.onmessage = async (event) => {
+        let data = JSON.parse(event.data);
+        if(data.e == "trade") {
+            tradeQueue.push(data);
+            if(tradeQueue.length > 10) {
+                tradeQueue.shift();
+            }
+            $("#realtime-trade-block").empty();
+            for(let i=0;i<tradeQueue.length;i++) {
+                let trade = tradeQueue[i];
+                // 時間
+                let time = new Date(trade.E);
+                let timeStr = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+                // 價格
+                let price = parseFloat(trade.p).toFixed(4);
+                // 數量
+                let quantity = parseFloat(trade.q).toFixed(6);
+
+                let tr = document.createElement("tr");
+                let td1 = document.createElement("td");
+                td1.classList.add("color-gray-dark");
+                td1.classList.add("text-start");
+                td1.innerText = timeStr;
+                let td2 = document.createElement("td");
+                if(trade.m) {
+                    td2.classList.add("color-green-dark");
+                } else {
+                    td2.classList.add("color-red-dark");
+                }
+                td2.classList.add("text-end");
+                td2.innerText = price;
+                let td3 = document.createElement("td");
+                td3.classList.add("color-gray-dark");
+                td3.classList.add("text-end");
+                td3.innerText = quantity;
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                $("#realtime-trade-block").append(tr);
+            }
+        }
+    };
+    wsTrade.onclose = (event) => {
+        setTimeout(listenRealTimeTrade, 1500);
+    };
+    wsTrade.onerror = (error) => {
         console.error('WebSocket Error:', error);
     };
 }
@@ -83,6 +143,7 @@ async function initKChart(symbol) {
         loadKChart(symbol, data);
         loadKChartElem(symbol,data);
         loadDepthTable(symbol);
+        listenRealTimeTrade(symbol);
         mappingLang();
         closePreloader();
     }, 300);
