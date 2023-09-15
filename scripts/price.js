@@ -427,6 +427,30 @@ function drawDepthChart(selector, asks, bids, width, height) {
 
     svg.append("g")
     .call(d3.axisLeft(y));
+
+    const margin = {top: 20, right: 20, bottom: 30, left: 50};
+
+    svg.append("g")			
+    .attr("class", "grid")
+    .attr("transform", "translate(" + margin.left + "," + height + ")")
+    .call(d3.axisBottom(x)
+        .ticks(6) // 您可以根據需要調整這個值
+        .tickSize(-height)
+        .tickFormat("")
+    )
+    .selectAll("line")
+    .attr("stroke", "#e5e5e5");
+
+    svg.append("g")			
+    .attr("class", "grid")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .call(d3.axisLeft(y)
+        .ticks(6) // 您可以根據需要調整這個值
+        .tickSize(-width)
+        .tickFormat("")
+    )
+    .selectAll("line")
+    .attr("stroke", "#e5e5e5");
 }
 
 async function loadKChart(symbol, kData) {
