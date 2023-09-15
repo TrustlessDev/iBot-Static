@@ -225,6 +225,7 @@ async function loadDepthTable(symbol, precision = 0.01) {
     const container = document.getElementById("chart-container");
     const width = container.clientWidth;
     const height = container.clientHeight;
+    console.log(width, height);
     $("#tab-dephGraph").empty();
     const svg = d3.select("#tab-dephGraph").append("svg").attr("viewBox", `0 0 ${width} ${height}`).attr("preserveAspectRatio", "xMidYMid meet");
     depthTableTimer = setInterval(async () => {
