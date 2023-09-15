@@ -330,16 +330,16 @@ function drawDepthChart(selector, asks, bids, width, height) {
         .domain([d3.min(bids, d => d.price), d3.max(asks, d => d.price)])
         .range([0, width]);
     const y = d3.scaleLinear()
-        .domain([0, d3.max([...bids, ...asks], d => d.quantity)])
+        .domain([d3.min([...bids, ...asks], d => d.quantity), d3.max([...bids, ...asks], d => d.quantity)])
         .range([height, 0]);
     // 加入 X 軸
     svg.append("g")
         .attr("transform", `translate(0, ${height})`)
-        .call(d3.axisBottom(x).ticks(10)); // 您可以透過 ticks 方法調整標籤的數量
+        .call(d3.axisBottom(x).ticks(6)); // 您可以透過 ticks 方法調整標籤的數量
 
     // 加入 Y 軸
     svg.append("g")
-        .call(d3.axisLeft(y).ticks(10)); // 同樣可以調整標籤的數量
+        .call(d3.axisLeft(y).ticks(6)); // 同樣可以調整標籤的數量
     
     for (let i = 1; i < bids.length; i++) {
         bids[i].quantity += bids[i-1].quantity;
