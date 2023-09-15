@@ -375,12 +375,12 @@ async function loadDepthTable(symbol, precision = 0.01) {
     }, 1000);
 }
 
-function drawDepthChart(selector, asks, bids, width, height) {
+function drawDepthChart(selector, asks, bids, sWidth, sHeight) {
     $(selector).empty();
-    const svg = d3.select(selector).append("svg").attr("viewBox", `0 0 ${width} ${height}`).attr("preserveAspectRatio", "xMidYMid meet");
+    const svg = d3.select(selector).append("svg").attr("viewBox", `0 0 ${sWidth} ${sHeight}`).attr("preserveAspectRatio", "xMidYMid meet");
     const margin = {top: 20, right: 20, bottom: 30, left: 50};
-    const width = +svg.attr("width") - margin.left - margin.right;
-    const height = +svg.attr("height") - margin.top - margin.bottom;
+    const width = svg.attr("width") - margin.left - margin.right;
+    const height = svg.attr("height") - margin.top - margin.bottom;
 
     const x = d3.scaleLinear().rangeRound([0, width]);
     const y = d3.scaleLinear().rangeRound([height, 0]);
