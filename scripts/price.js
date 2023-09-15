@@ -321,8 +321,8 @@ async function loadDepthTable(symbol, precision = 0.01) {
 
             td1.innerText = bidsTable[i].quantity.toFixed(6);
             // 價格依照 precision 顯示
-            cumulativeBid += bidsTable[i].quantity;
-            cumulativeAsk += asksTable[i].quantity;
+            cumulativeBid += parseFloat(bidsTable[i].quantity);
+            cumulativeAsk += parseFloat(asksTable[i].quantity);
             let bidWidth = (cumulativeBid / maxBid) * 100;
             let askWidth = (cumulativeAsk / maxAsk) * 100;
             td2.style.background = `linear-gradient(to right, transparent ${100-bidWidth}%, rgba(0, 128, 0, 0.6) ${100-bidWidth}%)`;  // 綠色 for bids
