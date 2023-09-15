@@ -332,8 +332,35 @@ async function loadDepthTable(symbol, precision = 0.01) {
             asksVolumnCount += asksTable[i].quantity;
             let bidWidth = (bidsVolumnCount / totalVolume) * 100;
             let askWidth = (asksVolumnCount / totalVolume) * 100;
-            td2.style.background = `linear-gradient(to right, transparent ${100-bidWidth}%, rgba(0, 128, 0, 0.4) ${100-bidWidth}%)`;  // 綠色 for bids
-            td3.style.background = `linear-gradient(to left, transparent ${100-askWidth}%, rgba(255, 0, 0, 0.4) ${100-askWidth}%)`;  // 紅色 for asks
+            
+            let td1Width = 0;
+            let td2Width = 0;
+            let p1 = 100 - bidWidth;
+            if (p1 > 50) {
+                td1Width = (p1 - 50) * 2;
+                td2Width = 100;
+            } else {
+                td1Width = 0;
+                td2Width = p1 * 2;
+            }
+
+            td1.style.background = `linear-gradient(to right, transparent ${td1Width}%, rgba(0, 128, 0, 0.4) ${td1Width}%)`;  // 綠色 for bids
+            td2.style.background = `linear-gradient(to right, transparent ${td2Width}%, rgba(0, 128, 0, 0.4) ${td2Width}%)`;  // 綠色 for bids
+
+            let td3Width = 0;
+            let td4Width = 0;
+            let p2 = 100 - askWidth;
+            if (p2 > 50) {
+                td3Width = (p2 - 50) * 2;
+                td4Width = 100;
+            } else {
+                td3Width = 0;
+                td4Width = p2 * 2;
+            }
+
+            td3.style.background = `linear-gradient(to left, transparent ${td3Width}%, rgba(255, 0, 0, 0.4) ${td3Width}%)`;  // 紅色 for asks
+            td4.style.background = `linear-gradient(to left, transparent ${td4Width}%, rgba(255, 0, 0, 0.4) ${td4Width}%)`;  // 紅色 for asks
+
             td2.innerText = bidPrice;
             td3.innerText = askPrice;
             td4.innerText = asksTable[i].quantity.toFixed(6);
