@@ -230,10 +230,13 @@ async function loadDepthTable(symbol, precision = 0.01) {
     const width = container.clientWidth;
     const height = container.clientHeight;
     depthTableTimer = setInterval(async () => {
+        let aggTrades = [];
         let data = await fetch("https://" + site.apiUrl + "/depth?&symbol=" + symbol + "&t=" + new Date().getTime());
         data = await data.json();
         if(data.success) {
             data = data.data;
+            const response = await fetch("https://api.binance.com/api/v3/aggTrades?symbol=BTCUSDT");
+            aggTrades = await response.json();
         } else {
             return;
         }
@@ -300,12 +303,18 @@ async function loadDepthTable(symbol, precision = 0.01) {
         // 取出前面 15 筆資料
         let tmpAskTable = asksTable.slice(0, 15); 
         let tmpBidTable = bidsTable.slice(0, 15);
-        //let maxBid = Math.max(...tmpBidTable.map(bid => parseFloat(bid.quantity)));
-        //let maxAsk = Math.max(...tmpAskTable.map(ask => parseFloat(ask.quantity)));
-        let sumBid = tmpBidTable.reduce((a, b) => a + b.quantity, 0);
-        let sumAsk = tmpAskTable.reduce((a, b) => a + b.quantity, 0);
-        let cumulativeBid = 0;
-        let cumulativeAsk = 0;
+        
+        let buyVolume = 0;
+        let sellVolume = 0;
+
+        for (let trade of aggTrades) {
+            if (trade.m) {
+                sellVolume += parseFloat(trade.q);
+            } else {
+                buyVolume += parseFloat(trade.q);
+            }
+        }
+
         for(let i=0;i<tmpAskTable.length;i++) {
             let tr = document.createElement("tr");
             let td1 = document.createElement("td");
@@ -323,10 +332,19 @@ async function loadDepthTable(symbol, precision = 0.01) {
 
             td1.innerText = bidsTable[i].quantity.toFixed(6);
             // 價格依照 precision 顯示
-            cumulativeBid += parseFloat(bidsTable[i].quantity);
-            cumulativeAsk += parseFloat(asksTable[i].quantity);
-            let bidWidth = (cumulativeBid / sumBid) * 100;
-            let askWidth = (cumulativeAsk / sumAsk) * 100;
+            let findBidPrice = aggTrades.find((item) => {
+                let priceTmp = parseFloat(item.p).toFixed(precision.toString().split(".")[1].length);
+                let bidPrice = parseFloat(bidsTable[i].price).toFixed(precision.toString().split(".")[1].length);
+                return priceTmp == bidPrice;
+            });
+            let findAskPrice = aggTrades.find((item) => {
+                let priceTmp = parseFloat(item.p).toFixed(precision.toString().split(".")[1].length);
+                let askPrice = parseFloat(asksTable[i].price).toFixed(precision.toString().split(".")[1].length);
+                return priceTmp == askPrice;
+            });
+            
+            let bidWidth = (findBidPrice.q / buyVolume) * 100;
+            let askWidth = (findAskPrice / sellVolume) * 100;
             console.log(bidWidth, askWidth);
             td2.style.background = `linear-gradient(to right, transparent ${100-bidWidth}%, rgba(0, 128, 0, 0.6) ${100-bidWidth}%)`;  // 綠色 for bids
             td3.style.background = `linear-gradient(to left, transparent ${100-askWidth}%, rgba(255, 0, 0, 0.6) ${100-askWidth}%)`;  // 紅色 for asks
