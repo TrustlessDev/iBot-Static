@@ -1,6 +1,6 @@
 // To clear cache on devices, always increase APP_VER number after making changes.
 // The app will serve fresh content right away or after 2-3 refreshes (open / close)
-var APP_NAME = 'PayApp';
+var APP_NAME = 'iBot';
 var APP_VER = '1.2';
 var CACHE_NAME = APP_NAME + '-' + APP_VER;
 
