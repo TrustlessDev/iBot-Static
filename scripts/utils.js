@@ -110,15 +110,19 @@ async function initSite() {
 }
 
 function activateDarkMode(){
-    document.getElementById('theme-check').setAttribute('content','#1f1f1f')
-    document.body.classList.add('theme-dark');
-    document.body.classList.remove('theme-light', 'detect-theme');
-    for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked="checked"};
-    localStorage.setItem(pwaName+'-Theme', 'dark-mode');
-    removeTransitions();
-    setTimeout(function(){
-        addTransitions();
-    },650);
+    try {
+        document.getElementById('theme-check').setAttribute('content','#1f1f1f')
+        document.body.classList.add('theme-dark');
+        document.body.classList.remove('theme-light', 'detect-theme');
+        for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked="checked"};
+            localStorage.setItem(pwaName+'-Theme', 'dark-mode');
+            removeTransitions();
+        setTimeout(function(){
+            addTransitions();
+        },650);
+    } catch(e) {
+        console.log(e);
+    }
 }
 
 function removeTransitions(){document.body.classList.add('no-ani');}
