@@ -358,8 +358,8 @@ async function loadDepthTable(symbol, precision = 0.01) {
                 td4Width = 0;
             }
 
-            td3.style.background = `linear-gradient(to left, transparent ${td3Width}%, rgba(255, 0, 0, 0.2) ${td3Width}%)`;  // 紅色 for asks
-            td4.style.background = `linear-gradient(to left, transparent ${td4Width}%, rgba(255, 0, 0, 0.2) ${td4Width}%)`;  // 紅色 for asks
+            td3.style.background = `linear-gradient(to left, transparent ${100 - td3Width}%, rgba(255, 0, 0, 0.2) ${100 - td3Width}%)`;  // 紅色 for asks
+            td4.style.background = `linear-gradient(to left, transparent ${100 - td4Width}%, rgba(255, 0, 0, 0.2) ${100 - td4Width}%)`;  // 紅色 for asks
 
             td2.innerText = bidPrice;
             td3.innerText = askPrice;
