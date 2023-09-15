@@ -75,7 +75,7 @@ function darkMode() {
     document.body.classList.add('theme-dark');
     document.body.classList.remove('theme-light', 'detect-theme');
     for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked="checked"};
-    localStorage.setItem(pwaName+'-Theme', 'dark-mode');
+    localStorage.setItem('iBot-Theme', 'dark-mode');
 }
 
 async function initSite() {
