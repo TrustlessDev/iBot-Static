@@ -157,12 +157,12 @@ async function initKChart(symbol) {
     
 }
 
-async function loadKChartElem(symbol, kdata) {
-    $("#symbolIcon").attr("src", "images/crypto/" + symbol + ".png");
-    $(".showSymbol").text(symbol + "/USDT");
+async function loadKChartElem(baseAsset, quoteAsset, kdata) {
+    $("#symbolIcon").attr("src", "images/crypto/" + baseAsset + ".png");
+    $(".showSymbol").text(baseAsset + "/" +quoteAsset);
     clearInterval(kTimer);
     kTimer = setInterval(() => {
-        let data = priceTable.find(item => item.symbol === symbol);
+        let data = priceTable.find(item => item.symbol === baseAsset);
         // 找出最高的 high
         let high = Math.max.apply(Math, kdata.map(function(o) { return o.high; }));
         // 找出最低的 low
