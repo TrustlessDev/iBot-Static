@@ -165,7 +165,7 @@ async function loadKChartElem(baseAsset, quoteAsset, kdata) {
     $(".showSymbol").text(baseAsset + "/" +quoteAsset);
     clearInterval(kTimer);
     kTimer = setInterval(() => {
-        let data = priceTable.find(item => item.symbol === baseAsset);
+        let data = priceTable.find(item => item.symbol === baseAsset + quoteAsset);
         // 找出最高的 high
         let high = Math.max.apply(Math, kdata.map(function(o) { return o.high; }));
         // 找出最低的 low
