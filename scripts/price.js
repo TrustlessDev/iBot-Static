@@ -351,11 +351,11 @@ async function loadDepthTable(symbol, precision = 0.01) {
             let td4Width = 0;
             let p2 = 100 - askWidth;
             if (p2 > 50) {
-                td3Width = (p2 - 50) * 2;
-                td4Width = 100;
+                td3Width = 100;
+                td4Width = (p2 - 50) * 2;
             } else {
-                td3Width = 0;
-                td4Width = p2 * 2;
+                td3Width = p2 * 2;
+                td4Width = 0;
             }
 
             td3.style.background = `linear-gradient(to left, transparent ${td3Width}%, rgba(255, 0, 0, 0.4) ${td3Width}%)`;  // 紅色 for asks
