@@ -60,7 +60,7 @@ async function listenRealTimeTrade(symbol) {
         let data = JSON.parse(event.data);
         if(data.e == "trade") {
             tradeQueue.push(data);
-            if(tradeQueue.length > 10) {
+            if(tradeQueue.length > 20) {
                 tradeQueue.shift();
             }
             $("#realtime-trade-block").empty();
@@ -291,8 +291,8 @@ async function loadDepthTable(symbol, precision = 0.01) {
         // 以兩邊的第一筆資料的價格來計算均價
         let avgPrice = (parseFloat(asksTable[0].price) + parseFloat(bidsTable[0].price)) / 2;
         $(".priceDynamic").text(parseFloat(parseFloat(avgPrice).toFixed(4)));
-        // 只顯示前 10 筆 使用 element 方式產生 tr td
-        for(let i=0;i<10;i++) {
+        // 只顯示前 20 筆 使用 element 方式產生 tr td
+        for(let i=0;i<20 && i<bidsTable.length;i++) {
             let tr = document.createElement("tr");
             let td1 = document.createElement("td");
             td1.classList.add("color-gray-dark");
