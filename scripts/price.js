@@ -6,7 +6,8 @@ let kUpdateTimer = 0;
 let depthTableTimer = 0;
 let priceTable = [];
 let watchSymbols = [];
-let currentSymbol = "";
+let currentBaseAsset = "";
+let currentQuoteAsset = "";
 let kchartElement = null;
 let tradeQueue = [];
 
@@ -125,20 +126,22 @@ async function changeInterval(newInterval) {
         return;
     }
     interval = newInterval;
-    let data = await fetch("https://" + site.apiUrl + "/klines?symbol=" + currentSymbol + "&interval=" + interval + "&t=" + new Date().getTime());
+    let data = await fetch("https://" + site.apiUrl + "/klines?symbol=" + currentBaseAsset + currentQuoteAsset + "&interval=" + interval + "&t=" + new Date().getTime());
     data = await data.json();
     if(data.success) {
         data = data.data;
     }
-    loadKChart(currentSymbol, data);
+    loadKChart(currentBaseAsset, currentQuoteAsset, data);
 }
 
 async function initPrice() {
     setupWebSocket();
 }
 
-async function initKChart(symbol) {
-    currentSymbol = symbol;
+async function initKChart(baseAsset, quoteAsset) {
+    currentBaseAsset = baseAsset;
+    currentQuoteAsset = quoteAsset;
+    let symbol = baseAsset + quoteAsset;
     setTimeout(async function () {
         await initSite();
         await initLanguages();
@@ -147,8 +150,8 @@ async function initKChart(symbol) {
         if(data.success) {
             data = data.data;
         }
-        loadKChart(symbol, data);
-        loadKChartElem(symbol,data);
+        loadKChart(baseAsset, quoteAsset, data);
+        loadKChartElem(baseAsset, quoteAsset, data);
         loadDepthTable(symbol);
         listenRealTimeTrade(symbol);
         mappingLang();
@@ -457,7 +460,7 @@ function drawDepthChart(selector, asks, bids, sWidth, sHeight) {
     .attr("stroke", "#e5e5e5");
 }
 
-async function loadKChart(symbol, kData) {
+async function loadKChart(baseAsset, quoteAsset, kData) {
     if(kchartElement) {
         kchartElement.remove();
     }
@@ -561,7 +564,7 @@ async function loadKChart(symbol, kData) {
     }).t;
 
     kUpdateTimer = setInterval(async () => {
-        let data = await fetch("https://" + site.apiUrl + "/klines?interval=" + interval + "&symbol=" + symbol + "&t=" + new Date().getTime());
+        let data = await fetch("https://" + site.apiUrl + "/klines?interval=" + interval + "&symbol=" + baseAsset + "" + quoteAsset + "&t=" + new Date().getTime());
         data = await data.json();
         if(data.success) {
             data = data.data;
