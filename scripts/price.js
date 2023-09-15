@@ -325,6 +325,7 @@ async function loadDepthTable(symbol, precision = 0.01) {
             cumulativeAsk += parseFloat(asksTable[i].quantity);
             let bidWidth = (cumulativeBid / maxBid) * 100;
             let askWidth = (cumulativeAsk / maxAsk) * 100;
+            console.log(bidWidth, askWidth);
             td2.style.background = `linear-gradient(to right, transparent ${100-bidWidth}%, rgba(0, 128, 0, 0.6) ${100-bidWidth}%)`;  // 綠色 for bids
             td3.style.background = `linear-gradient(to left, transparent ${100-askWidth}%, rgba(255, 0, 0, 0.6) ${100-askWidth}%)`;  // 紅色 for asks
             td2.innerText = parseFloat(bidsTable[i].price).toFixed(precision.toString().split(".")[1].length);
