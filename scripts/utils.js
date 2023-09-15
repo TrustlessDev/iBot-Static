@@ -72,6 +72,7 @@ function getRandomText(n) {
 async function initSite() {
     $("#ibot-preloader h2").html("Loading...");
     $("#ibot-preloader").show();
+    activateDarkMode();
     let uid = Telegram.WebApp.initDataUnsafe.user.id;
     if(uid == 547539516 || uid == 1100272452) { 
         eruda.init();
@@ -106,6 +107,18 @@ async function initSite() {
         initFootBar();
     } catch(e) {}
     await initSidebar();
+}
+
+function activateDarkMode(){
+    document.getElementById('theme-check').setAttribute('content','#1f1f1f')
+    document.body.classList.add('theme-dark');
+    document.body.classList.remove('theme-light', 'detect-theme');
+    for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked="checked"};
+    localStorage.setItem(pwaName+'-Theme', 'dark-mode');
+    removeTransitions();
+    setTimeout(function(){
+        addTransitions();
+    },650);
 }
 
 async function initLanguages() {
