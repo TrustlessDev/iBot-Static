@@ -68,7 +68,7 @@ function getRandomText(n) {
     }
     return randomText;
 }
-
+/*
 function darkMode() {
     var toggleDark = document.querySelectorAll('[data-toggle-theme]');
     document.getElementById('theme-check').setAttribute('content','#1f1f1f')
@@ -77,6 +77,21 @@ function darkMode() {
     for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked="checked"};
     localStorage.setItem('iBot-Theme', 'dark-mode');
 }
+*/
+function darkMode() {
+    var themeCheckElement = document.getElementById('theme-check');
+    if(themeCheckElement) {
+        themeCheckElement.setAttribute('content','#1f1f1f');
+    }
+    document.body.classList.add('theme-dark');
+    document.body.classList.remove('theme-light', 'detect-theme');
+    var toggleDark = document.querySelectorAll('[data-toggle-theme]');
+    for(let i = 0; i < toggleDark.length; i++) {
+        toggleDark[i].checked="checked";
+    }
+    localStorage.setItem('iBot-Theme', 'dark-mode');
+}
+
 
 async function initSite() {
     $("#ibot-preloader h2").html("Loading...");
