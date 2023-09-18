@@ -71,7 +71,7 @@ function getRandomText(n) {
 
 function darkMode() {
     var toggleDark = document.querySelectorAll('[data-toggle-theme]');
-    //document.getElementById('theme-check').setAttribute('content','#1f1f1f')
+    document.getElementById('theme-check').setAttribute('content','#1f1f1f')
     document.body.classList.add('theme-dark');
     document.body.classList.remove('theme-light', 'detect-theme');
     for(let i = 0; i < toggleDark.length; i++){toggleDark[i].checked="checked"};
