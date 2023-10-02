@@ -274,12 +274,6 @@
         setInterval(function(){
           refreshMarket();
         }, 1000);
-        let count = 0;
-        while(priceTable.length == 0 && count < 3) {
-          await sleep(1000);
-          count++;
-        }
-        
         await initLanguages();
         
         
