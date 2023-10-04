@@ -216,13 +216,16 @@ function formatPrice(number) {
 function setBidsProgress(bidsPercentage) {
     const greenDiv = document.querySelector('.bids-progress');
     const redDiv = document.querySelector('.asks-progress');
-    greenDiv.style.width = `${bidsPercentage}%`;
-    redDiv.style.width = `${100 - bidsPercentage}%`;
+    try {
+        greenDiv.style.width = `${bidsPercentage}%`;
+        redDiv.style.width = `${100 - bidsPercentage}%`;
+    } catch(e) {}
     const bidsPercentageText = document.querySelector('.bids-percentage');
     const asksPercentageText = document.querySelector('.asks-percentage');
-    bidsPercentageText.innerHTML = `${bidsPercentage}%`;
-    asksPercentageText.innerHTML = `${100 - bidsPercentage}%`;
-
+    try {
+        bidsPercentageText.innerHTML = `${bidsPercentage}%`;
+        asksPercentageText.innerHTML = `${100 - bidsPercentage}%`;
+    } catch(e) {}
 }
 
 async function loadDepthTable(symbol, precision = 0.01) {
