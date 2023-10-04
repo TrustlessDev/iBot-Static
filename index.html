@@ -536,7 +536,7 @@
     function createMarketElement(baseAsset, quoteAsset, price, change, quoteVolume) {
       let a = document.createElement("a");
       a.style = "margin-left: 7px;margin-right: 7px;"
-      a.href = "page-cards-price.html?t=" + version; // page-cards-price page-trade
+      a.href = "page-trade.html?t=" + version; // page-cards-price page-trade
       a.onclick = function () {
         initKChart(baseAsset, quoteAsset);
       };
