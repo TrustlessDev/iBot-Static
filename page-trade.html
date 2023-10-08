@@ -81,7 +81,143 @@
             </div>
             <div id="chart-container" style="width: 100%;"></div> 
         </div>
-       
+
+        <div class="card card-style">
+			<div class="content">
+				<div class="row">
+					<div class="col-7">
+						<div class="tabs tabs-pill" id="buysell-group">
+							<div class="tab-controls p-1 rounded-xs">
+								<a class="font-12 rounded-xs buy-btn gradient-green" data-bs-toggle="collapse" href="#tab-buy" aria-expanded="true">買入</a>
+								<a class="font-12 rounded-xs sell-btn" data-bs-toggle="collapse" href="#tab-sell" aria-expanded="false">賣出</a>
+							</div>
+							<div style="display:none">
+								<div class="collapse show" id="tab-buy" data-bs-parent="#buysell-group"></div>
+								<div class="collapse" id="tab-sell" data-bs-parent="#buysell-group"></div>
+							</div>
+						</div>
+						<div class="mt-1"></div>
+						<div class="form-custom form-label mb-1">
+							<select class="form-select rounded-xs" id="c6">
+								<option selected>限價單</option>
+								<option value="1">市價單</option>
+							</select>
+							<label for="c6" class="color-theme">Select an Option</label>
+							<div class="valid-feedback">HTML5 does not offer Dates Field Validation!<!-- text for field valid--></div>
+						</div>
+						<div class="form-custom form-label mb-1">
+							<input type="text" class="form-control rounded-xs" id="tradePrice" value="2.13456" placeholder="價格" pattern="[A-Za-z ]{1,32}" required />
+							<label for="tradePrice" class="color-theme">Your Name</label>
+							<span>USDT</span>
+						</div>
+						<div class="form-custom form-label mb-1">
+							<input type="text" class="form-control rounded-xs" id="tradeAmount" placeholder="數量" pattern="[A-Za-z ]{1,32}" required />
+							<label for="tradeAmount" class="color-theme">Your Name</label>
+							<span>TON</span>
+						</div>
+						<div class="custom-range-container mb-1">
+							<input type="range" min="0" max="100" value="50" class="custom-range" id="customRange">
+							<div class="range-labels">
+								<span class="font-8">0%</span>
+								<span class="font-8">25%</span>
+								<span class="font-8">50%</span>
+								<span class="font-8">75%</span>
+								<span class="font-8">100%</span>
+							</div>
+						</div>
+						<div class="d-flex pb-1">
+							<div class="align-self-center">
+								<h5 class="mb-0 font-400 font-12">可用</h5>
+							</div>
+							<div class="align-self-center ms-auto">
+								371.899 USDT
+							</div>
+						</div>
+						<div class="d-flex pb-1">
+							<div class="align-self-center">
+								<h5 class="mb-0 font-400 font-12">成交額</h5>
+							</div>
+							<div class="align-self-center ms-auto">
+								0 USDT
+							</div>
+						</div>
+						<a href="#" class="btn btn-full btn-trade gradient-green">買入</a>
+					</div>
+					<div class="col-5">
+						<div class="table-responsive">
+							<table class="table color-theme mb-2 border-0">
+								<thead>
+									<tr>
+										<th class="py-1 font-10 border-0 text-start color-gray-dark" scope="col">價格(USDT)</th>
+										<th class="py-1 font-10 border-0 text-end color-gray-dark" scope="col">數量(TON)</th>
+									</tr>
+								</thead>
+								<tbody id="depth-sell-table">
+									<tr>
+										<td class="py-0 border-0 text-start color-red-dark">2.13456</td>
+										<td class="py-0 border-0 text-end color-gray-dark">0.000000</td>
+									</tr>
+									<tr>
+										<td class="py-0 border-0 text-start color-red-dark">2.13456</td>
+										<td class="py-0 border-0 text-end color-gray-dark">0.000000</td>
+									</tr>
+									<tr>
+										<td class="py-0 border-0 text-start color-red-dark">2.13456</td>
+										<td class="py-0 border-0 text-end color-gray-dark">0.000000</td>
+									</tr>
+									<tr>
+										<td class="py-0 border-0 text-start color-red-dark">2.13456</td>
+										<td class="py-0 border-0 text-end color-gray-dark">0.000000</td>
+									</tr>
+									<tr>
+										<td class="py-0 border-0 text-start color-red-dark">2.13456</td>
+										<td class="py-0 border-0 text-end color-gray-dark">0.000000</td>
+									</tr>
+									<tr>
+										<td class="py-0 border-0 text-start color-red-dark">2.13456</td>
+										<td class="py-0 border-0 text-end color-gray-dark">0.000000</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div>
+							<h5 class="text-center color-green-dark">0.000345</h5>
+						</div>
+						<div class="table-responsive">
+							<table class="table color-theme mb-2 border-0">
+								<tbody id="depth-sell-table">
+									<tr>
+										<td class="py-0 border-0 text-start color-green-dark">2.13456</td>
+										<td class="py-0 border-0 text-end color-gray-dark">0.000000</td>
+									</tr>
+									<tr>
+										<td class="py-0 border-0 text-start color-green-dark">2.13456</td>
+										<td class="py-0 border-0 text-end color-gray-dark">0.000000</td>
+									</tr>
+									<tr>
+										<td class="py-0 border-0 text-start color-green-dark">2.13456</td>
+										<td class="py-0 border-0 text-end color-gray-dark">0.000000</td>
+									</tr>
+									<tr>
+										<td class="py-0 border-0 text-start color-green-dark">2.13456</td>
+										<td class="py-0 border-0 text-end color-gray-dark">0.000000</td>
+									</tr>
+									<tr>
+										<td class="py-0 border-0 text-start color-green-dark">2.13456</td>
+										<td class="py-0 border-0 text-end color-gray-dark">0.000000</td>
+									</tr>
+									<tr>
+										<td class="py-0 border-0 text-start color-green-dark">2.13456</td>
+										<td class="py-0 border-0 text-end color-gray-dark">0.000000</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        
         <div class="tabs tabs-pill" id="tab-group-trade-toolbar">
             <div class="tab-controls p-1">
                 <a class="font-12" data-bs-toggle="collapse" onclick="" href="#tab-trade" aria-expanded="false">交易</a>
